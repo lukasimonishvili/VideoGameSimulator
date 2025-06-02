@@ -1,6 +1,10 @@
 package com.lukasimonishvili;
 
 public abstract class Mision {
+    enum EstadoMision {
+        PENDIENTE,
+        COMPLETADA
+    }
     String nombre;
     int duracion;
     int prioridad;
@@ -18,7 +22,7 @@ public abstract class Mision {
         this.nombre = nombre;
         this.duracion = duracion;
         this.prioridad = prioridad;
-        this.estado = "Pendiente";
+        this.estado = estado;
         this.experienciaRequerida = calcularExperienciaRequerida();
     }
 
@@ -33,9 +37,9 @@ public abstract class Mision {
         return prioridad;
     }
     
-    public void intsetPrioridad(){
+    public void setPrioridad(int prioridad){
         if(prioridad < 1 || prioridad > 10) {
-        throw new IllegalArgumentException("La prioridad debe estar entre 1 y 10.");
+            throw new IllegalArgumentException("La prioridad debe estar entre 1 y 10.");
         }
         this.prioridad = prioridad;
     }
@@ -51,8 +55,9 @@ public abstract class Mision {
     public abstract int calcularExperienciaRequerida();
 
     public void completarMision() {
-        if (estado.equals("Pendiente")) {
-            estado = "Completada";
+        if ("Pendiente".equalsIgnoreCase(estado)) {
+            this.estado = "Completada";
+            System.out.println("Misión completada: " + nombre);
         } else {
             throw new IllegalStateException("La misión ya está completada.");
         }
@@ -71,12 +76,12 @@ public abstract class Mision {
 }
 
 class MisionExploracion extends Mision{
-    private int autonomia;
+    int autonomia;
 
     public MisionExploracion(String nombre, int duracion, int prioridad, int autonomia) {
         super(nombre, duracion, prioridad, "Pendiente");
-        if(autonomia<=1000){
-            throw new IllegalArgumentException("La autonomía debe ser mayor a 1000 km.");
+        if(autonomia<1000){
+            throw new IllegalArgumentException("\nLa autonomía debe ser mayor a 1000 horas.\n");
         }
         this.autonomia = autonomia;
     }
@@ -88,12 +93,12 @@ class MisionExploracion extends Mision{
 }
 
 class MisionRecoleccionDatos extends Mision{
-    private boolean sensoresCientificos;
+    boolean sensoresCientificos;
 
     public MisionRecoleccionDatos(String nombre, int duracion, int prioridad, boolean sensoresCientificos) {
         super(nombre, duracion, prioridad, "Pendiente");
         if(!sensoresCientificos){
-            throw new IllegalArgumentException("La autonomía debe ser mayor a 1000 km.");
+            throw new IllegalArgumentException("Los sensores científicos son necesarios para la recolección de datos.");
         }
         this.sensoresCientificos = sensoresCientificos;
     }
@@ -105,13 +110,13 @@ class MisionRecoleccionDatos extends Mision{
 }
 
 class MisionColonizacion extends Mision{
-    private int capacidadCarga;
+    int capacidadCarga;
 
 
     public MisionColonizacion(String nombre, int duracion, int prioridad, int capacidadCarga) {
         super(nombre, duracion, prioridad, "Pendiente");
         if(capacidadCarga <500){
-            throw new IllegalArgumentException("La capacidad de carga debe ser mayor a 500 kg.");
+            throw new IllegalArgumentException("La capacidad de carga debe ser mayor a 500 unidades.");
         }
         this.capacidadCarga=capacidadCarga;
     }
