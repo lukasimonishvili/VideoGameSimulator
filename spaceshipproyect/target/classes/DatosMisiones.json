@@ -1,0 +1,21 @@
+{
+    "tipos_mision": [
+        {
+            "mision_exploracion": [
+                {
+                "nombre": "fuga",
+                "prioridad": 1
+                }
+            ]
+        },
+        {
+            "mision_recoleccion_datos": [
+                {
+                "nombre": "recoleccion1",
+                "prioridad": 2
+                }
+            ]
+        }
+        
+    ]   
+}
