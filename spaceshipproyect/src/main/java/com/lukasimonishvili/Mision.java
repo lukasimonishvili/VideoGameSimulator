@@ -5,25 +5,28 @@ public abstract class Mision {
         PENDIENTE,
         COMPLETADA
     }
-    String nombre;
-    int duracion;
-    int prioridad;
-    String estado;
-    int experienciaRequerida;
+    protected String nombre;
+    protected int duracion;
+    protected int prioridad;
+    protected EstadoMision estado;
+    protected int experienciaRequerida;
     
-    public Mision(String nombre, int duracion, int prioridad, String estado) {
+    public Mision(String nombre, int duracion, int prioridad, EstadoMision estado, int experienciaRequerida) {
         if (duracion <= 0) {
             throw new IllegalArgumentException("La duración debe ser mayor a 0.");
-            
         }
         if(prioridad < 1 || prioridad > 10) {
-        throw new IllegalArgumentException("La prioridad debe estar entre 1 y 10.");
+            throw new IllegalArgumentException("La prioridad debe estar entre 1 y 10.");
         }
+        if(experienciaRequerida<0){
+            throw new IllegalArgumentException("La experiencia requerida no puede ser negativa.");
+        }
+
         this.nombre = nombre;
         this.duracion = duracion;
         this.prioridad = prioridad;
-        this.estado = estado;
-        this.experienciaRequerida = calcularExperienciaRequerida();
+        this.estado = EstadoMision.PENDIENTE;
+        this.experienciaRequerida = experienciaRequerida;
     }
 
     public String getNombre() {
@@ -37,31 +40,29 @@ public abstract class Mision {
         return prioridad;
     }
     
-    public void setPrioridad(int prioridad){
-        if(prioridad < 1 || prioridad > 10) {
-            throw new IllegalArgumentException("La prioridad debe estar entre 1 y 10.");
-        }
-        this.prioridad = prioridad;
-    }
-    
-    public String getEstado() {
-        return estado;
-    }
-
     public int getExperienciaRequerida() {
         return experienciaRequerida;
     }
-
-    public abstract int calcularExperienciaRequerida();
-
+    
+    public EstadoMision getEstado() {
+        return estado;
+    }
+    
+    
     public void completarMision() {
-        if ("Pendiente".equalsIgnoreCase(estado)) {
-            this.estado = "Completada";
+        if (estado == EstadoMision.PENDIENTE) {
+            this.estado = EstadoMision.COMPLETADA;
             System.out.println("Misión completada: " + nombre);
         } else {
             throw new IllegalStateException("La misión ya está completada.");
         }
     }
+    
+    //Validamos si la nave puede ejecutar la misión
+    public abstract boolean esApta(NaveEspacial nave); 
+
+    public abstract String getTipoExperiencia();
+    //Calculamos la experiencia requerida para la misión
 
     @Override
     public String toString() {
@@ -76,21 +77,14 @@ public abstract class Mision {
 }
 
 class MisionExploracion extends Mision{
-    int autonomia;
-
-    public MisionExploracion(String nombre, int duracion, int prioridad, int autonomia) {
-        super(nombre, duracion, prioridad, "Pendiente");
-        if(autonomia<1000){
-            throw new IllegalArgumentException("\nLa autonomía debe ser mayor a 1000 horas.\n");
+    public MisionExploracion(String nombre, int duracion, int prioridad, EstadoMision estado, int experienciaCientifica) {
+        super(nombre, duracion, prioridad, estado, experienciaCientifica);
+        if(duracion<8){
+            throw new IllegalArgumentException("\nLa duración mínima es de 8 horas.\n");
         }
-        this.autonomia = autonomia;
     }
     
     @Override
-<<<<<<< Updated upstream
-    public int calcularExperienciaRequerida() {
-        return getDuracion()*10;
-=======
     public boolean esApta(NaveEspacial nave) {
         return nave.getAutonomiaActual()>1000 &&
         nave.getExperienciaTotal()>= experienciaRequerida;
@@ -98,27 +92,30 @@ class MisionExploracion extends Mision{
 
     @Override
     public String getTipoExperiencia(){
-        return "cientifica";
->>>>>>> Stashed changes
+        return "científica";
+    }
+
+    @Override
+    public String toString() {
+        return "MisionExploracion: {" +
+                "nombre = '" + nombre + '\'' +
+                ", duracion = " + duracion +
+                ", prioridad = " + prioridad +
+                ", estado = '" + estado + '\'' +
+                ", experienciaRequerida = " + experienciaRequerida +
+                '}';
     }
 }
 
 class MisionRecoleccionDatos extends Mision{
-    boolean sensoresCientificos;
-
-    public MisionRecoleccionDatos(String nombre, int duracion, int prioridad, boolean sensoresCientificos) {
-        super(nombre, duracion, prioridad, "Pendiente");
-        if(!sensoresCientificos){
-            throw new IllegalArgumentException("Los sensores científicos son necesarios para la recolección de datos.");
+    public MisionRecoleccionDatos(String nombre, int duracion, int prioridad, EstadoMision estado, int experienciaTecnica) {
+        super(nombre, duracion, prioridad, estado, experienciaTecnica);
+        if(duracion>8){
+            throw new IllegalArgumentException("La duración típica debe ser estar entre 4 y 8 horas.");
         }
-        this.sensoresCientificos = sensoresCientificos;
     }
 
     @Override
-<<<<<<< Updated upstream
-    public int calcularExperienciaRequerida() {
-        return getDuracion() * 5;
-=======
     public boolean esApta(NaveEspacial nave) {
         return nave.tieneSensoresCientificos() && 
                nave.getExperienciaTotal() >= experienciaRequerida;
@@ -126,8 +123,18 @@ class MisionRecoleccionDatos extends Mision{
 
     @Override
     public String getTipoExperiencia(){
-        return "tecnica";
->>>>>>> Stashed changes
+        return "técnica";
+    }
+
+    @Override
+    public String toString() {
+        return "MisionRecoleccionDatos: {" +
+                "nombre = '" + nombre + '\'' +
+                ", duracion = " + duracion +
+                ", prioridad = " + prioridad +
+                ", estado = '" + estado + '\'' +
+                ", experienciaRequerida = " + experienciaRequerida +
+                '}';
     }
 }
 
@@ -135,17 +142,34 @@ class MisionColonizacion extends Mision{
     int capacidadCarga;
 
 
-    public MisionColonizacion(String nombre, int duracion, int prioridad, int capacidadCarga) {
-        super(nombre, duracion, prioridad, "Pendiente");
-        if(capacidadCarga <500){
-            throw new IllegalArgumentException("La capacidad de carga debe ser mayor a 500 unidades.");
+    public MisionColonizacion(String nombre, int duracion, int prioridad, EstadoMision estado, int experienciaEstrategica, int capacidadCarga) {
+        super(nombre, duracion, prioridad,estado, experienciaEstrategica);
+        if(duracion<6){
+            throw new IllegalArgumentException("La duración mínima para colonizar es de 6 horas.");
         }
-        this.capacidadCarga=capacidadCarga;
+    }
+
+    @Override //Falta getCapacidadCarga en NaveEspacial
+    public boolean esApta(NaveEspacial nave) {
+        return //nave.getCapacidadCarga() >= capacidadCarga &&
+               nave.aptasParaUnaMision(duracion, "estrategica", experienciaRequerida);
     }
 
     @Override
-    public int calcularExperienciaRequerida() {
-        return getDuracion() * 20;
+    public String getTipoExperiencia(){
+        return "estrategica";
     }
-}
 
+    @Override
+    public String toString() {
+        return "MisionColonizacion: {" +
+                "nombre = '" + nombre + '\'' +
+                ", duracion = " + duracion +
+                ", prioridad = " + prioridad +
+                ", estado = '" + estado + '\'' +
+                ", experienciaRequerida = " + experienciaRequerida +
+                ", capacidadCarga = " + capacidadCarga +
+                '}';
+    }
+
+}
