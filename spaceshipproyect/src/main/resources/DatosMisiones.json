@@ -6,6 +6,9 @@
           "nombre": "fuga",
           "prioridad": 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 40114bc (updated model clases Mision and class Simulacion)
           "estado": "PENDIENTE",
           "duracion": 8,
           "experienciaCientifica": 100,
@@ -13,23 +16,32 @@
           "experienciaTecnica": 100,
           "capacidadCarga": 1001
 
+<<<<<<< HEAD
 =======
           "estado": "Pendiente"
 >>>>>>> 68abef2 (Ignora carpeta target y elimina archivos compilados)
+=======
+>>>>>>> 40114bc (updated model clases Mision and class Simulacion)
         },
         {
           "nombre": "otra mision",
           "prioridad": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 40114bc (updated model clases Mision and class Simulacion)
           "estado": "COMPLETADA",
           "duracion": 5,
           "experienciaCientifica": 100,
           "experienciaEstrategica": 100,
           "experienciaTecnica": 100,
           "capacidadCarga": 1001
+<<<<<<< HEAD
 =======
           "estado": "Completada"
 >>>>>>> 68abef2 (Ignora carpeta target y elimina archivos compilados)
+=======
+>>>>>>> 40114bc (updated model clases Mision and class Simulacion)
         }
       ]
     },
@@ -39,6 +51,9 @@
           "nombre": "recoleccion1",
           "prioridad": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 40114bc (updated model clases Mision and class Simulacion)
           "estado": "PENDIENTE",
           "duracion": 6,
           "experienciaCientifica": 1000,
@@ -59,9 +74,12 @@
           "experienciaEstrategica": 10,
           "experienciaTecnica": 100,
           "capacidadCarga": 1020
+<<<<<<< HEAD
 =======
           "estado": "Pendiente"
 >>>>>>> 68abef2 (Ignora carpeta target y elimina archivos compilados)
+=======
+>>>>>>> 40114bc (updated model clases Mision and class Simulacion)
         }
       ]
     }
