@@ -1,9 +1,11 @@
 package com.lukasimonishvili;
 
+import com.lukasimonishvili.Mision.EstadoMision;
+
 public class Main {
     public static void main(String[] args) {
-       Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, 2000);
-        
+        Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, EstadoMision.PENDIENTE, 2000);
+            
         System.out.println("Misión: " + mision1.getNombre());
         System.out.println("Duración: " + mision1.getDuracion() + " días");
 

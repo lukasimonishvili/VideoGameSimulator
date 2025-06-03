@@ -5,12 +5,23 @@
         {
           "nombre": "fuga",
           "prioridad": 1,
-          "estado": "Pendiente"
+          "estado": "PENDIENTE",
+          "duracion": 8,
+          "experienciaCientifica": 100,
+          "experienciaEstrategica": 100,
+          "experienciaTecnica": 100,
+          "capacidadCarga": 1001
+
         },
         {
           "nombre": "otra mision",
           "prioridad": 2,
-          "estado": "Completada"
+          "estado": "COMPLETADA",
+          "duracion": 5,
+          "experienciaCientifica": 100,
+          "experienciaEstrategica": 100,
+          "experienciaTecnica": 100,
+          "capacidadCarga": 1001
         }
       ]
     },
@@ -19,7 +30,26 @@
         {
           "nombre": "recoleccion1",
           "prioridad": 2,
-          "estado": "Pendiente"
+          "estado": "PENDIENTE",
+          "duracion": 6,
+          "experienciaCientifica": 1000,
+          "experienciaEstrategica": 10,
+          "experienciaTecnica": 100,
+          "capacidadCarga": 1020
+        }
+      ]
+    },
+    {
+      "mision_colonizacion": [
+        {
+          "nombre": "recoleccion1",
+          "prioridad": 7,
+          "estado": "PENDIENTE",
+          "duracion": 6,
+          "experienciaCientifica": 1000,
+          "experienciaEstrategica": 10,
+          "experienciaTecnica": 100,
+          "capacidadCarga": 1020
         }
       ]
     }

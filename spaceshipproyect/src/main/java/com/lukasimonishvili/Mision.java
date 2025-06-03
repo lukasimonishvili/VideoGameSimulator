@@ -11,7 +11,7 @@ public abstract class Mision {
     protected EstadoMision estado;
     protected int experienciaRequerida;
     
-    public Mision(String nombre, int duracion, int prioridad, int experienciaRequerida) {
+    public Mision(String nombre, int duracion, int prioridad, EstadoMision estado, int experienciaRequerida) {
         if (duracion <= 0) {
             throw new IllegalArgumentException("La duración debe ser mayor a 0.");
         }
@@ -77,8 +77,8 @@ public abstract class Mision {
 }
 
 class MisionExploracion extends Mision{
-    public MisionExploracion(String nombre, int duracion, int prioridad, int experienciaCientifica) {
-        super(nombre, duracion, prioridad,experienciaCientifica);
+    public MisionExploracion(String nombre, int duracion, int prioridad, EstadoMision estado, int experienciaCientifica) {
+        super(nombre, duracion, prioridad, estado, experienciaCientifica);
         if(duracion<8){
             throw new IllegalArgumentException("\nLa duración mínima es de 8 horas.\n");
         }
@@ -94,11 +94,22 @@ class MisionExploracion extends Mision{
     public String getTipoExperiencia(){
         return "científica";
     }
+
+    @Override
+    public String toString() {
+        return "MisionExploracion: {" +
+                "nombre = '" + nombre + '\'' +
+                ", duracion = " + duracion +
+                ", prioridad = " + prioridad +
+                ", estado = '" + estado + '\'' +
+                ", experienciaRequerida = " + experienciaRequerida +
+                '}';
+    }
 }
 
 class MisionRecoleccionDatos extends Mision{
-    public MisionRecoleccionDatos(String nombre, int duracion, int prioridad, int experienciaTecnica) {
-        super(nombre, duracion, prioridad,  experienciaTecnica);
+    public MisionRecoleccionDatos(String nombre, int duracion, int prioridad, EstadoMision estado, int experienciaTecnica) {
+        super(nombre, duracion, prioridad, estado, experienciaTecnica);
         if(duracion>8){
             throw new IllegalArgumentException("La duración típica debe ser estar entre 4 y 8 horas.");
         }
@@ -114,14 +125,25 @@ class MisionRecoleccionDatos extends Mision{
     public String getTipoExperiencia(){
         return "técnica";
     }
+
+    @Override
+    public String toString() {
+        return "MisionRecoleccionDatos: {" +
+                "nombre = '" + nombre + '\'' +
+                ", duracion = " + duracion +
+                ", prioridad = " + prioridad +
+                ", estado = '" + estado + '\'' +
+                ", experienciaRequerida = " + experienciaRequerida +
+                '}';
+    }
 }
 
 class MisionColonizacion extends Mision{
     int capacidadCarga;
 
 
-    public MisionColonizacion(String nombre, int duracion, int prioridad, int experienciaEstrategica, int capacidadCarga) {
-        super(nombre, duracion, prioridad,experienciaEstrategica);
+    public MisionColonizacion(String nombre, int duracion, int prioridad, EstadoMision estado, int experienciaEstrategica, int capacidadCarga) {
+        super(nombre, duracion, prioridad,estado, experienciaEstrategica);
         if(duracion<6){
             throw new IllegalArgumentException("La duración mínima para colonizar es de 6 horas.");
         }
@@ -129,13 +151,25 @@ class MisionColonizacion extends Mision{
 
     @Override //Falta getCapacidadCarga en NaveEspacial
     public boolean esApta(NaveEspacial nave) {
-        return nave.getCapacidadCarga() >= capacidadCarga &&
+        return //nave.getCapacidadCarga() >= capacidadCarga &&
                nave.aptasParaUnaMision(duracion, "estrategica", experienciaRequerida);
     }
 
     @Override
     public String getTipoExperiencia(){
         return "estrategica";
+    }
+
+    @Override
+    public String toString() {
+        return "MisionColonizacion: {" +
+                "nombre = '" + nombre + '\'' +
+                ", duracion = " + duracion +
+                ", prioridad = " + prioridad +
+                ", estado = '" + estado + '\'' +
+                ", experienciaRequerida = " + experienciaRequerida +
+                ", capacidadCarga = " + capacidadCarga +
+                '}';
     }
 
 }
