@@ -1,0 +1,37 @@
+{
+  "naves": [
+    {
+      "nombre": "Castor",
+      "autonomiaMaxima": 6,
+      "autonomiaActual": 4,
+      "sensoresCientificos": 8,
+      "experiencias": {
+        "tecnica": 0,
+        "cientifica": 100,
+        "estrategica": 0
+      }
+    },
+    {
+      "nombre": "Paco Sanz",
+      "autonomiaMaxima": 8,
+      "autonomiaActual": 8,
+      "sensoresCientificos": 8,
+      "experiencias": {
+        "tecnica": 0,
+        "cientifica": 100,
+        "estrategica": 10
+      }
+    },
+    {
+      "nombre": "Maxwell",
+      "autonomiaMaxima": 4,
+      "autonomiaActual": 2,
+      "sensoresCientificos": 8,
+      "experiencias": {
+        "tecnica": 100,
+        "cientifica": 10,
+        "estrategica": 0
+      }
+    }
+  ]
+}

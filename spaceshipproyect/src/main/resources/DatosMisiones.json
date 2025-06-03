@@ -17,9 +17,9 @@
           "prioridad": 2,
           "estado": "COMPLETADA",
           "duracion": 5,
-          "experienciaCientifica": 100,
-          "experienciaEstrategica": 100,
-          "experienciaTecnica": 100,
+          "experienciaCientifica": 10,
+          "experienciaEstrategica": 10,
+          "experienciaTecnica": 10,
           "capacidadCarga": 1001
         }
       ]
@@ -31,8 +31,8 @@
           "prioridad": 2,
           "estado": "PENDIENTE",
           "duracion": 6,
-          "experienciaCientifica": 1000,
-          "experienciaEstrategica": 10,
+          "experienciaCientifica": 1,
+          "experienciaEstrategica": 1,
           "experienciaTecnica": 100,
           "capacidadCarga": 1020
         }
