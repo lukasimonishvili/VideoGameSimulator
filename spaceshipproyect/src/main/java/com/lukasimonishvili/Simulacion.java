@@ -50,20 +50,6 @@ public class Simulacion {
         }
     }
 
-    private static Mision createMisionByType(String tipo, String nombre, int prioridad, Mision.EstadoMision estado) {
-        switch (tipo) {
-            case "mision_exploracion":
-                return new MisionExploracion(tipo, nombre, 5, prioridad, 100, estado);
-            case "mision_recoleccion_datos":
-                return new MisionRecoleccionDatos(tipo, nombre, 4, prioridad, 80, estado);
-            case "mision_colonizacion":
-                return new MisionColonizacion(tipo, nombre, 10, prioridad, 200, 1, estado);
-            default:
-                System.err.println("Tipo desconocido: " + tipo);
-                return null;
-        }
-    }
-
     private static List<Mision> sortMisionsByPriority(JsonArray listMisiones) {
         List<Mision> misiones = new ArrayList<>();
 
@@ -89,27 +75,12 @@ public class Simulacion {
                     Mision nuevaMision = createMisionByType(tipo, nombre, prioridad, estado, duracion, experienciaCientifica, experienciaTecnica, experienciaEstrategica, capacidadCarga);
                     if (nuevaMision != null) {
                         misiones.add(nuevaMision);
-
-                    if (!estadoStr.equalsIgnoreCase("PENDIENTE")) {
-                        continue; // saltar las misiones no pendientes
-                    }
-
-                    try {
-                        Mision.EstadoMision estado = Mision.EstadoMision.valueOf(estadoStr.toUpperCase());
-                        Mision nuevaMision = createMisionByType(tipo, nombre, prioridad, estado);
-                        if (nuevaMision != null) {
-                            misiones.add(nuevaMision);
-                        }
-                    } catch (IllegalArgumentException e) {
-                        System.err.println("Estado inválido para misión '" + nombre + "': " + estadoStr);
-                    }
                 }
             }
         }
-
+    }
         misiones.sort(Comparator.comparingInt(m -> m.prioridad));
         return misiones;
-        }
     }
 
     public static void main(String[] args) {
