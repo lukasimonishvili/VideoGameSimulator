@@ -1,21 +1,27 @@
 {
-    "tipos_mision": [
+  "tipos_mision": [
+    {
+      "mision_exploracion": [
         {
-            "mision_exploracion": [
-                {
-                "nombre": "fuga",
-                "prioridad": 1
-                }
-            ]
+          "nombre": "fuga",
+          "prioridad": 1,
+          "estado": "Pendiente"
         },
         {
-            "mision_recoleccion_datos": [
-                {
-                "nombre": "recoleccion1",
-                "prioridad": 2
-                }
-            ]
+          "nombre": "otra mision",
+          "prioridad": 2,
+          "estado": "Completada"
         }
-        
-    ]   
+      ]
+    },
+    {
+      "mision_recoleccion_datos": [
+        {
+          "nombre": "recoleccion1",
+          "prioridad": 2,
+          "estado": "Pendiente"
+        }
+      ]
+    }
+  ]
 }
