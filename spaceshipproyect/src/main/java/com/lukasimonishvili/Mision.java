@@ -85,14 +85,8 @@ class MisionExploracion extends Mision{
     }
     
     @Override
-    public boolean esApta(NaveEspacial nave) {
-        return nave.getAutonomiaActual()>1000 &&
-        nave.getExperienciaTotal()>= experienciaRequerida;
-    }
-
-    @Override
-    public String getTipoExperiencia(){
-        return "científica";
+    public int calcularExperienciaRequerida() {
+        return getDuracion()*10;
     }
 }
 
@@ -111,8 +105,8 @@ class MisionRecoleccionDatos extends Mision{
     }
 
     @Override
-    public String getTipoExperiencia(){
-        return "técnica";
+    public int calcularExperienciaRequerida() {
+        return getDuracion() * 5;
     }
 }
 
