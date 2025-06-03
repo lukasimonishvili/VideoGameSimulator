@@ -5,6 +5,7 @@
         {
           "nombre": "fuga",
           "prioridad": 1,
+<<<<<<< HEAD
           "estado": "PENDIENTE",
           "duracion": 8,
           "experienciaCientifica": 100,
@@ -12,16 +13,23 @@
           "experienciaTecnica": 100,
           "capacidadCarga": 1001
 
+=======
+          "estado": "Pendiente"
+>>>>>>> 68abef2 (Ignora carpeta target y elimina archivos compilados)
         },
         {
           "nombre": "otra mision",
           "prioridad": 2,
+<<<<<<< HEAD
           "estado": "COMPLETADA",
           "duracion": 5,
           "experienciaCientifica": 100,
           "experienciaEstrategica": 100,
           "experienciaTecnica": 100,
           "capacidadCarga": 1001
+=======
+          "estado": "Completada"
+>>>>>>> 68abef2 (Ignora carpeta target y elimina archivos compilados)
         }
       ]
     },
@@ -30,6 +38,7 @@
         {
           "nombre": "recoleccion1",
           "prioridad": 2,
+<<<<<<< HEAD
           "estado": "PENDIENTE",
           "duracion": 6,
           "experienciaCientifica": 1000,
@@ -50,6 +59,9 @@
           "experienciaEstrategica": 10,
           "experienciaTecnica": 100,
           "capacidadCarga": 1020
+=======
+          "estado": "Pendiente"
+>>>>>>> 68abef2 (Ignora carpeta target y elimina archivos compilados)
         }
       ]
     }
