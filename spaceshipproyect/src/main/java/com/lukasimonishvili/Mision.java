@@ -7,11 +7,12 @@ public abstract class Mision {
     }
     protected String nombre;
     protected int duracion;
+    protected int autonomia;
     protected int prioridad;
     protected EstadoMision estado;
     protected int experienciaRequerida;
     
-    public Mision(String nombre, int duracion, int prioridad, int experienciaRequerida) {
+    public Mision(String nombre, int duracion, int prioridad, int experienciaRequerida, int autonomia) {
         if (duracion <= 0) {
             throw new IllegalArgumentException("La duración debe ser mayor a 0.");
         }
@@ -27,6 +28,7 @@ public abstract class Mision {
         this.prioridad = prioridad;
         this.estado = EstadoMision.PENDIENTE;
         this.experienciaRequerida = experienciaRequerida;
+        this.autonomia = autonomia;
     }
 
     public String getNombre() {
@@ -139,3 +141,5 @@ class MisionColonizacion extends Mision{
     }
 
 }
+
+//
