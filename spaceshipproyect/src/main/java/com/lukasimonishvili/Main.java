@@ -1,21 +1,20 @@
 package com.lukasimonishvili;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-       Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, 2000);
-        
-        System.out.println("Misión: " + mision1.getNombre());
-        System.out.println("Duración: " + mision1.getDuracion() + " días");
+        RegistroMisiones registro=new RegistroMisiones();
+        Scanner scanner=new Scanner(System.in);
 
+        Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, 10, 1500);
+        //registro.agregarMision();
         System.out.println("-----MISION-----");
         System.out.println("\nMisión: " + mision1.getNombre());
         System.out.println("Duración: " + mision1.getDuracion() + "  horas.");
-
         System.out.println("Prioridad: " + mision1.getPrioridad());
         System.out.println("Estado: " + mision1.getEstado());
         System.out.println("Experiencia requerida: " + mision1.getExperienciaRequerida());
-        
-        mision1.completarMision(); 
 
         NaveEspacial nave1 = new NaveEspacial("Galáctica", 1500, true);
         nave1.registrarExperiencia("cientifica", 10);
@@ -30,20 +29,20 @@ public class Main {
         
         System.out.println("\n-----------------------------");
         System.out.println("Evaluación de la Misión.\n");
-        /**if(mision1.esApta(nave1)) {
+        if(mision1.esApta(nave1)) {
             System.out.println("La nave es apta para la misión.");
             nave1.ejecutarMision(mision1.getDuracion(), mision1.getTipoExperiencia(), 1);
             mision1.completarMision();
         } else {
             System.out.println("La nave no es apta para la misión.");
         }
-        */
         
-        System.out.println("\n-----------------------------");
+        System.out.println("\n----------RESULTADOS-------------");
         System.out.println("\nEstado de la Misión: " + mision1.getEstado());
         System.out.println("Autonomía actual de la nave después de la misión: " + nave1.getAutonomiaActual() + " horas");
         System.out.println("Experiencia total de la nave después de la misión: " + nave1.getExperienciaTotal());
         System.out.println("\n-----------------------------");
 
+        //registro.listarMisiones();
     }
 }

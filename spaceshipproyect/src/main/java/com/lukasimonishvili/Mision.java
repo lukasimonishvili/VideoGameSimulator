@@ -79,8 +79,8 @@ public abstract class Mision {
 }
 
 class MisionExploracion extends Mision{
-    public MisionExploracion(String nombre, int duracion, int prioridad, int experienciaCientifica) {
-        super(nombre, duracion, prioridad,experienciaCientifica);
+    public MisionExploracion(String nombre, int duracion, int prioridad, int experienciaCientifica, int autonomia) {
+        super(nombre, duracion, prioridad,experienciaCientifica, autonomia);
         if(duracion<8){
             throw new IllegalArgumentException("\nLa duración mínima es de 8 horas.\n");
         }
@@ -99,8 +99,8 @@ class MisionExploracion extends Mision{
 }
 
 class MisionRecoleccionDatos extends Mision{
-    public MisionRecoleccionDatos(String nombre, int duracion, int prioridad, int experienciaTecnica) {
-        super(nombre, duracion, prioridad,  experienciaTecnica);
+    public MisionRecoleccionDatos(String nombre, int duracion, int prioridad, int experienciaTecnica, int autonomia) {
+        super(nombre, duracion, prioridad,  experienciaTecnica, autonomia);
         if(duracion>8){
             throw new IllegalArgumentException("La duración típica debe ser estar entre 4 y 8 horas.");
         }
@@ -122,11 +122,12 @@ class MisionColonizacion extends Mision{
     int capacidadCarga;
 
 
-    public MisionColonizacion(String nombre, int duracion, int prioridad, int experienciaEstrategica, int capacidadCarga) {
-        super(nombre, duracion, prioridad,experienciaEstrategica);
+    public MisionColonizacion(String nombre, int duracion, int prioridad, int experienciaEstrategica, int capacidadCarga, int autonomia) {
+        super(nombre, duracion, prioridad,experienciaEstrategica, autonomia);
         if(duracion<6){
             throw new IllegalArgumentException("La duración mínima para colonizar es de 6 horas.");
         }
+        this.capacidadCarga=capacidadCarga;
     }
 
     @Override //Falta getCapacidadCarga en NaveEspacial
