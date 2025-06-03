@@ -4,21 +4,19 @@ public class Main {
     public static void main(String[] args) {
        Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, 2000);
         
-<<<<<<< Updated upstream
         System.out.println("Misión: " + mision1.getNombre());
         System.out.println("Duración: " + mision1.getDuracion() + " días");
-=======
+
         System.out.println("-----MISION-----");
         System.out.println("\nMisión: " + mision1.getNombre());
         System.out.println("Duración: " + mision1.getDuracion() + "  horas.");
->>>>>>> Stashed changes
+
         System.out.println("Prioridad: " + mision1.getPrioridad());
         System.out.println("Estado: " + mision1.getEstado());
         System.out.println("Experiencia requerida: " + mision1.getExperienciaRequerida());
         
-<<<<<<< Updated upstream
         mision1.completarMision(); 
-=======
+
         NaveEspacial nave1 = new NaveEspacial("Galáctica", 1200, true);
         nave1.registrarExperiencia("cientifica", 10);
 
@@ -32,13 +30,14 @@ public class Main {
         
         System.out.println("\n-----------------------------");
         System.out.println("Evaluación de la Misión.\n");
-        if(mision1.esApta(nave1)) {
+        /**if(mision1.esApta(nave1)) {
             System.out.println("La nave es apta para la misión.");
             nave1.ejecutarMision(mision1.getDuracion(), mision1.getTipoExperiencia(), 1);
             mision1.completarMision();
         } else {
             System.out.println("La nave no es apta para la misión.");
         }
+        */
         
         System.out.println("\n-----------------------------");
         System.out.println("\nEstado de la Misión: " + mision1.getEstado());
@@ -46,6 +45,5 @@ public class Main {
         System.out.println("Experiencia total de la nave después de la misión: " + nave1.getExperienciaTotal());
         System.out.println("\n-----------------------------");
 
->>>>>>> Stashed changes
     }
 }
