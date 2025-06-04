@@ -21,7 +21,7 @@ public class RegistroMisiones {
         
         System.out.println("Ingrese el tipo de exploración: ");
         System.out.println("1-Exploración.");
-        System.out.println("2-Recolección de Dattos.");
+        System.out.println("2-Recolección de Datos.");
         System.out.println("3-Colonización.");
         int tipoExploracion=lectura.nextInt();
 
@@ -34,23 +34,20 @@ public class RegistroMisiones {
         
         System.out.println("¿Qué nivel de experiencia requiere?.");
         int experienciaRequerida = lectura.nextInt();
-        //Agregar la autonomia necesaria
-        System.out.println("¿Cuánta autonomía máxima existirá?.");
-        int autonomia=lectura.nextInt();
         
         Mision nuevaMision=null;
         
         switch (tipoExploracion) {
             case 1:
-                nuevaMision=new MisionExploracion(nombre, duracion, prioridad, experienciaRequerida, autonomia);
+                nuevaMision=new MisionExploracion(nombre, duracion, prioridad, experienciaRequerida);
                 break;
             case 2:
-                nuevaMision=new MisionRecoleccionDatos(nombre, duracion, prioridad, experienciaRequerida, autonomia);
+                nuevaMision=new MisionRecoleccionDatos(nombre, duracion, prioridad, experienciaRequerida);
                 break;
             case 3:
                 System.out.println("Ingrese la cantidad de carga requerida.");
                 int capacidadCarga=lectura.nextInt();
-                nuevaMision=new MisionColonizacion(nombre, duracion, prioridad, autonomia, capacidadCarga, autonomia);
+                nuevaMision = new MisionColonizacion(nombre, duracion, prioridad, experienciaRequerida, capacidadCarga);
             default:
                 System.out.println("Tipo de misión no válido.");
         }
@@ -73,7 +70,7 @@ public class RegistroMisiones {
                 System.out.println("No hay misiones pendientes.");
             }else{
                 for(Mision mision : misionesPendientes){
-                    System.out.println(" "+mision.getNombre()+" ("+mision.getClass().getSimpleName()+")");
+                    System.out.println(" "+mision.getNombre()+" " + mision.getClass());
                 }
             }
         }

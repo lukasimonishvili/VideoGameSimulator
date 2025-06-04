@@ -4,13 +4,11 @@ import com.lukasimonishvili.Mision.EstadoMision;
 
 public class Main {
     public static void main(String[] args) {
-        Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, EstadoMision.PENDIENTE, 2000);
-            
-        System.out.println("Misión: " + mision1.getNombre());
-        System.out.println("Duración: " + mision1.getDuracion() + " días");
-
-        Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, 10, 1500);
-        //registro.agregarMision();
+        RegistroMisiones registro = new RegistroMisiones();
+        
+        registro.agregarMision();
+        
+        /*Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, 10);
         System.out.println("-----MISION-----");
         System.out.println("\nMisión: " + mision1.getNombre());
         System.out.println("Duración: " + mision1.getDuracion() + "  horas.");
@@ -44,7 +42,7 @@ public class Main {
         System.out.println("Autonomía actual de la nave después de la misión: " + nave1.getAutonomiaActual() + " horas");
         System.out.println("Experiencia total de la nave después de la misión: " + nave1.getExperienciaTotal());
         System.out.println("\n-----------------------------");
-
-        //registro.listarMisiones();
+        */
+        registro.listarMisiones();
     }
 }
