@@ -5,10 +5,12 @@ package com.lukasimonishvili;
 public class Main {
     public static void main(String[] args) {
         RegistroMisiones registro = new RegistroMisiones();
-        
+        DepositoDeNaves naves=new DepositoDeNaves();
+
         registro.agregarMision();
-        
+        naves.creareNave();
         registro.listarMisiones();
+
         
         /*Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, 10);
         
