@@ -88,6 +88,10 @@ public class Simulacion {
             int autonomiaMaxima = naveObj.getInt("autonomiaMaxima");
             boolean sensoresCientificos = naveObj.getInt("sensoresCientificos") > 0;
             int capacidadCarga = naveObj.getInt("capacidadCarga");
+            JsonObject experienciasObj = naveObj.getJsonObject("experiencias");
+            int experienciaCientifica = experienciasObj.getInt("cientifica");
+            int experienciaTecnica = experienciasObj.getInt("tecnica");
+            int experienciaEstrategica = experienciasObj.getInt("estrategica");
 
             NaveEspacial nave = new NaveEspacial(
                 nombre,
@@ -96,12 +100,9 @@ public class Simulacion {
                 capacidadCarga
             );
 
-            // Si quieres registrar experiencia desde JSON:
-            JsonObject experienciasObj = naveObj.getJsonObject("experiencias");
-            nave.registrarExperiencia(TipoMision.TECHNICA, experienciasObj.getInt("tecnica"));
-            nave.registrarExperiencia(TipoMision.CIENTIFICA, experienciasObj.getInt("cientifica"));
-            nave.registrarExperiencia(TipoMision.ESTRATEGICA, experienciasObj.getInt("estrategica"));
-
+            nave.registrarExperiencia(TipoMision.CIENTIFICA, experienciaCientifica);
+            nave.registrarExperiencia(TipoMision.TECHNICA, experienciaTecnica);
+            nave.registrarExperiencia(TipoMision.ESTRATEGICA, experienciaEstrategica);
             naves.add(nave);
         }
         return naves;
@@ -147,14 +148,15 @@ public class Simulacion {
         List<Mision> misionesOrdenadas = sortMisionsByPriority(listMisiones);
         List<NaveEspacial> listaNaves = mapDatosNaves(jsonNaves);
 
-        System.out.println("Misiones ordenadas por prioridad:");
+        System.out.println("\nMisiones ordenadas por prioridad:");
+        for (Mision m : misionesOrdenadas) System.out.println(m + "\n");
+
         List<NaveEspacial> navesAsignadas = new ArrayList<>();
 
         for (Mision m : misionesOrdenadas) {
-            System.out.println(m);
             TipoMision tipoExp = m.getTipoExperiencia();
             int expNecesaria = m.getExperienciaRequerida();
-
+            
             NaveEspacial naveApta = buscarNaveApta(listaNaves, m.getDuracion(), false, expNecesaria, tipoExp);
 
             if (naveApta == null) {
@@ -163,7 +165,7 @@ public class Simulacion {
                 if (naveApta == null) {
                     System.out.println("\nNo hay naves con experiencia suficiente para la misión '" + m.getNombre() + "' de tipo '" + tipoExp + "'.\nNúmero de naves disponibles: " + listaNaves.size());
                 } else {
-                    System.out.println("\nAsignada nave (por experiencia total): " + naveApta.getNombre() + "\n");
+                    System.out.println("\nAsignada nave '" + naveApta.getNombre() + "' (por experiencia total) " + " a misión '" + m.getNombre() + "'\n");
                     navesAsignadas.add(naveApta);
                     listaNaves.remove(naveApta); // Se elimina de la lista para que no pueda usarse en otras misiones
                     naveApta.ejecutarMision(m.getDuracion(), m.getTipoExperiencia(), 1);
@@ -177,7 +179,5 @@ public class Simulacion {
                 m.setEstado(EstadoMission.COMPLETADA);
             }
         }
-
     }
-
 }

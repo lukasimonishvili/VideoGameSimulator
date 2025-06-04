@@ -1,7 +1,6 @@
 package com.lukasimonishvili;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,13 +8,10 @@ public class RegistroMisiones {
     Scanner lectura = new Scanner(System.in);
     List<Mision> misiones = new ArrayList<>();
     List<Mision> misionesPendientes=new ArrayList<>();
+    List<Mision> registroHistorial=new ArrayList<>();
     //private static final String .vscode="misiones_guardadas.json";
 
     public RegistroMisiones() {
-        misiones.add(new MisionExploracion("Exploración de Marte", 30, 5, 10, EstadoMission.PENDIENTE));
-        misiones.add(new MisionRecoleccionDatos("Recolección de Datos en Venus", 6, 7, 15, EstadoMission.PENDIENTE));
-        misiones.add(new MisionColonizacion("Colonización de Titán", 50, 8, 20, 1000, EstadoMission.PENDIENTE));
-        misiones.add(new MisionExploracion("Exploración de Júpiter", 40, 6, 12, EstadoMission.PENDIENTE));
         //cargarMisionesDeJson();
     }
 
@@ -57,7 +53,6 @@ public class RegistroMisiones {
                 System.out.println("Ingrese la cantidad de carga requerida.");
                 int capacidadCarga=lectura.nextInt();
                 nuevaMision = new MisionColonizacion(nombre, duracion, prioridad, experienciaRequerida, capacidadCarga, EstadoMission.PENDIENTE);
-                break;
             default:
                 System.out.println("Tipo de misión no válido.");
         }
@@ -68,8 +63,8 @@ public class RegistroMisiones {
 
     public void actualizarMisionesPendientes(){
         misionesPendientes.clear();
-        for(Mision mision:misiones){
-            if(mision.getEstado() == EstadoMission.PENDIENTE){ 
+        for(Mision mision:misionesPendientes){
+            if(mision.getEstado().toString().equalsIgnoreCase("pendiente")) {
                 misionesPendientes.add(mision);
             }
         }
@@ -101,42 +96,16 @@ public class RegistroMisiones {
                 System.out.println("Estado: " + mision.getEstado());
                 System.out.println("Experiencia requerida: " + mision.getExperienciaRequerida());
             }
-        }
+    }
     }
 
+    
+    public void registroDeHistorial(){
+        
+    }
     public void cerrarScanner(){
         lectura.close();
     }
 
-    
-    public List<Mision> filtrarMisionesPorTipo(TipoMision tipoMision) {
-        List<Mision> misionesFiltradas = new ArrayList<>();
-        for (Mision mision : misiones) {
-            if (mision.getTipoExperiencia() == tipoMision) {
-                misionesFiltradas.add(mision);
-            }
-        }
-        return misionesFiltradas;
-    }
 
-    public List<Mision> filtrarMisionesPorEstado(EstadoMission estado) {
-        List<Mision> misionesFiltradas = new ArrayList<>();
-        for (Mision mision : misiones) {
-            if (mision.getEstado() == estado) {
-                misionesFiltradas.add(mision);
-            }
-        }
-        return misionesFiltradas;
-    }
-
-    public List<Mision> filtrarMisionesPorPrioridad(String direccionDePrioridad) throws IllegalArgumentException {
-        if(direccionDePrioridad.equals("alta")) {
-            misiones.sort(Comparator.comparingInt(Mision::getPrioridad).reversed());
-        }else if(direccionDePrioridad.equals("baja")) {
-            misiones.sort(Comparator.comparingInt(Mision::getPrioridad));
-        } else {
-            throw new IllegalArgumentException("Dirección de prioridad no válida. Use 'alta' o 'baja'.");
-        }
-        return misiones;
-    }
 }
