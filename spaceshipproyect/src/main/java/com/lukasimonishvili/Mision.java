@@ -151,7 +151,7 @@ class MisionColonizacion extends Mision{
 
     @Override //Falta getCapacidadCarga en NaveEspacial
     public boolean esApta(NaveEspacial nave) {
-        return //nave.getCapacidadCarga() >= capacidadCarga &&
+        return nave.getCapacidadCarga() >= capacidadCarga &&
                nave.aptasParaUnaMision(duracion, "estrategica", experienciaRequerida);
     }
 

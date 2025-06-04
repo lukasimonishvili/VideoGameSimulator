@@ -19,7 +19,7 @@ public class Main {
         
         mision1.completarMision(); 
 
-        NaveEspacial nave1 = new NaveEspacial("Galáctica", 1200, true);
+        NaveEspacial nave1 = new NaveEspacial("Galáctica", 1200, true, 2000);
         nave1.registrarExperiencia("cientifica", 10);
 
         System.out.println("\n-----------------------------");
