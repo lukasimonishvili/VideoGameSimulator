@@ -1,19 +1,17 @@
 package com.lukasimonishvili;
 
+//import com.lukasimonishvili.Mision.EstadoMision;
+
 public class Main {
     public static void main(String[] args) {
         RegistroMisiones registro = new RegistroMisiones();
         
         registro.agregarMision();
         
+        registro.listarMisiones();
+        
         /*Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, 10);
-        System.out.println("-----MISION-----");
-        System.out.println("\nMisión: " + mision1.getNombre());
-        System.out.println("Duración: " + mision1.getDuracion() + "  horas.");
-        System.out.println("Prioridad: " + mision1.getPrioridad());
-        System.out.println("Estado: " + mision1.getEstado());
-        System.out.println("Experiencia requerida: " + mision1.getExperienciaRequerida());
-
+        
         NaveEspacial nave1 = new NaveEspacial("Galáctica", 1200, true, 2000);
         nave1.registrarExperiencia("cientifica", 10);
 
@@ -41,6 +39,5 @@ public class Main {
         System.out.println("Experiencia total de la nave después de la misión: " + nave1.getExperienciaTotal());
         System.out.println("\n-----------------------------");
         */
-        registro.listarMisiones();
     }
 }

@@ -54,6 +54,12 @@ public abstract class Mision {
             throw new IllegalStateException("La misión ya está completada.");
         }
     }
+
+    public void misionPendiente(){
+        if(estado==EstadoMision.PENDIENTE){
+            System.out.println("Misión pendiente: " + nombre);
+        }
+    }
     
     public void fallarMision() {
         if (estado == EstadoMission.PENDIENTE) {
