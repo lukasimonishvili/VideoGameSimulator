@@ -11,7 +11,7 @@ public abstract class Mision {
     protected EstadoMision estado;
     protected int experienciaRequerida;
     
-    public Mision(String nombre, int duracion, int prioridad, EstadoMision estado, int experienciaRequerida) {
+    public Mision(String nombre, int duracion, int prioridad, int experienciaRequerida) {
         if (duracion <= 0) {
             throw new IllegalArgumentException("La duración debe ser mayor a 0.");
         }
@@ -77,8 +77,8 @@ public abstract class Mision {
 }
 
 class MisionExploracion extends Mision{
-    public MisionExploracion(String nombre, int duracion, int prioridad, EstadoMision estado, int experienciaCientifica) {
-        super(nombre, duracion, prioridad, estado, experienciaCientifica);
+    public MisionExploracion(String nombre, int duracion, int prioridad, int experienciaCientifica) {
+        super(nombre, duracion, prioridad,experienciaCientifica);
         if(duracion<8){
             throw new IllegalArgumentException("\nLa duración mínima es de 8 horas.\n");
         }
@@ -108,8 +108,8 @@ class MisionExploracion extends Mision{
 }
 
 class MisionRecoleccionDatos extends Mision{
-    public MisionRecoleccionDatos(String nombre, int duracion, int prioridad, EstadoMision estado, int experienciaTecnica) {
-        super(nombre, duracion, prioridad, estado, experienciaTecnica);
+    public MisionRecoleccionDatos(String nombre, int duracion, int prioridad, int experienciaTecnica) {
+        super(nombre, duracion, prioridad,  experienciaTecnica);
         if(duracion>8){
             throw new IllegalArgumentException("La duración típica debe ser estar entre 4 y 8 horas.");
         }
@@ -141,12 +141,12 @@ class MisionRecoleccionDatos extends Mision{
 class MisionColonizacion extends Mision{
     int capacidadCarga;
 
-
-    public MisionColonizacion(String nombre, int duracion, int prioridad, EstadoMision estado, int experienciaEstrategica, int capacidadCarga) {
-        super(nombre, duracion, prioridad,estado, experienciaEstrategica);
+    public MisionColonizacion(String nombre, int duracion, int prioridad, int experienciaEstrategica, int capacidadCarga) {
+        super(nombre, duracion, prioridad,experienciaEstrategica);
         if(duracion<6){
             throw new IllegalArgumentException("La duración mínima para colonizar es de 6 horas.");
         }
+        this.capacidadCarga=capacidadCarga;
     }
 
     @Override //Falta getCapacidadCarga en NaveEspacial
