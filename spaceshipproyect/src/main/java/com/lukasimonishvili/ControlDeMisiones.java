@@ -28,7 +28,7 @@ public class ControlDeMisiones {
 
             nave.ejecutarMision(mision.getDuracion(), mision.getTipoExperiencia(), experiencia);
             nave.restaurarNave();
-            mision.completarMision();
+            nave.registrarMision(mision);
         } else {
             System.out.println("La nave no está apta para la misión: " + mision.getNombre());
         }
