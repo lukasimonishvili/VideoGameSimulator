@@ -1,14 +1,11 @@
 package com.lukasimonishvili;
 
 public abstract class Mision {
-    enum EstadoMision {
-        PENDIENTE,
-        COMPLETADA
-    }
+  
     protected String nombre;
     protected int duracion;
     protected int prioridad;
-    protected EstadoMision estado;
+    protected EstadoMission estado;
     protected int experienciaRequerida;
     
     public Mision(String nombre, int duracion, int prioridad, int experienciaRequerida) {
@@ -25,7 +22,7 @@ public abstract class Mision {
         this.nombre = nombre;
         this.duracion = duracion;
         this.prioridad = prioridad;
-        this.estado = EstadoMision.PENDIENTE;
+        this.estado = EstadoMission.PENDIENTE;
         this.experienciaRequerida = experienciaRequerida;
     }
 
@@ -44,14 +41,14 @@ public abstract class Mision {
         return experienciaRequerida;
     }
     
-    public EstadoMision getEstado() {
+    public EstadoMission getEstado() {
         return estado;
     }
     
     
     public void completarMision() {
-        if (estado == EstadoMision.PENDIENTE) {
-            this.estado = EstadoMision.COMPLETADA;
+        if (estado == EstadoMission.PENDIENTE) {
+            this.estado = EstadoMission.COMPLETADA;
             System.out.println("Misión completada: " + nombre);
         } else {
             throw new IllegalStateException("La misión ya está completada.");
@@ -64,10 +61,18 @@ public abstract class Mision {
         }
     }
     
+    public void fallarMision() {
+        if (estado == EstadoMission.PENDIENTE) {
+            this.estado = EstadoMission.FALLIDA;
+            System.out.println("Misión fallida: " + nombre);
+        } else {
+            throw new IllegalStateException("La misión ya está completada o fallida.");
+        }
+    }
     //Validamos si la nave puede ejecutar la misión
     public abstract boolean esApta(NaveEspacial nave); 
 
-    public abstract String getTipoExperiencia();
+    public abstract TipoMision getTipoExperiencia();
     //Calculamos la experiencia requerida para la misión
 
     @Override
@@ -97,8 +102,8 @@ class MisionExploracion extends Mision{
     }
 
     @Override
-    public String getTipoExperiencia(){
-        return "científica";
+    public TipoMision getTipoExperiencia(){
+        return TipoMision.CIENTIFICA;
     }
 
     @Override
@@ -128,8 +133,8 @@ class MisionRecoleccionDatos extends Mision{
     }
 
     @Override
-    public String getTipoExperiencia(){
-        return "técnica";
+    public TipoMision getTipoExperiencia(){
+        return TipoMision.TECHNICA;
     }
 
     @Override
@@ -158,12 +163,12 @@ class MisionColonizacion extends Mision{
     @Override //Falta getCapacidadCarga en NaveEspacial
     public boolean esApta(NaveEspacial nave) {
         return nave.getCapacidadCarga() >= capacidadCarga &&
-               nave.aptasParaUnaMision(duracion, "estrategica", experienciaRequerida);
+               nave.aptasParaUnaMision(duracion, TipoMision.ESTRATEGICA, experienciaRequerida);
     }
 
     @Override
-    public String getTipoExperiencia(){
-        return "estrategica";
+    public TipoMision getTipoExperiencia(){
+        return TipoMision.ESTRATEGICA;
     }
 
     @Override
