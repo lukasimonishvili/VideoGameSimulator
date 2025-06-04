@@ -8,16 +8,18 @@ public class NaveEspacial {
     private int autonomiaMaxima;
     private int autonomiaActual;
     private boolean sensoresCientificos;
-    private Map<String, Integer> experiencias = new HashMap<>();
+    private Map<TipoMision, Integer> experiencias = new HashMap<>();
+    private int capacidadCarga;
 
-    public NaveEspacial(String nombre, int autonomiaMaxima, boolean sensoresCientificos) {
+    public NaveEspacial(String nombre, int autonomiaMaxima, boolean sensoresCientificos, int capacidadCarga) {
         this.sensoresCientificos = sensoresCientificos;
         this.autonomiaMaxima = autonomiaMaxima;
         this.autonomiaActual = autonomiaMaxima; // Inicialmente la autonomía actual es igual a la máxima
         this.nombre = nombre;
-        experiencias.put("tecnica", 0);
-        experiencias.put("cientifica", 0);
-        experiencias.put("estrategica", 0);
+        this.capacidadCarga = capacidadCarga;
+        experiencias.put(TipoMision.TECHNICA, 0);
+        experiencias.put(TipoMision.CIENTIFICA, 0);
+        experiencias.put(TipoMision.ESTRATEGICA, 0);
     }
 
     public String getNombre() {
@@ -36,11 +38,7 @@ public class NaveEspacial {
         return this.sensoresCientificos;
     }
 
-    public void registrarExperiencia(String tipo, int cantidad) {
-        if (!experiencias.containsKey(tipo)) {
-            System.out.println("Tipo de experiencia no válido: " + tipo);
-            return;
-        }
+    public void registrarExperiencia(TipoMision tipo, int cantidad) {
         if (cantidad < 0) {
             System.out.println("No se puede registrar una cantidad negativa de experiencia.");
             return;
@@ -53,7 +51,7 @@ public class NaveEspacial {
         return experiencias.values().stream().mapToInt(Integer::intValue).sum();
     }
 
-    public boolean aptasParaUnaMision(int autonomiaNecesaria, String tipoExperiencia, int experienciaNecesaria) {
+    public boolean aptasParaUnaMision(int autonomiaNecesaria, TipoMision tipoExperiencia, int experienciaNecesaria) {
         boolean resultado = true;
         if(autonomiaNecesaria > this.autonomiaMaxima) {
             System.out.println("La nave no tiene suficiente autonomía para la misión.");
@@ -71,13 +69,19 @@ public class NaveEspacial {
         return resultado;
     }
 
-    public void ejecutarMision(int autonomiaNecesaria, String tipoExperiencia, int experienciaAdquirida) {
+    public void ejecutarMision(int autonomiaNecesaria, TipoMision tipoExperiencia, int experienciaAdquirida) {
         this.autonomiaActual -= autonomiaNecesaria;
-        this.experiencias.put(tipoExperiencia, experiencias.get(tipoExperiencia) + experienciaAdquirida);
+        System.out.println("Misión ejecutada. Autonomía restante: " + this.autonomiaActual);
+        this.registrarExperiencia(tipoExperiencia, experienciaAdquirida);
+
     }
 
     public void restaurarNave() {
         this.autonomiaActual = this.autonomiaMaxima;
         System.out.println("La nave ha sido restaurada a su autonomía máxima: " + this.autonomiaMaxima);
+    }
+
+    public int getCapacidadCarga() {
+        return this.capacidadCarga;
     }
 }
