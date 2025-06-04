@@ -8,6 +8,7 @@ public class RegistroMisiones {
     Scanner lectura = new Scanner(System.in);
     List<Mision> misiones = new ArrayList<>();
     List<Mision> misionesPendientes=new ArrayList<>();
+    List<Mision> registroHistorial=new ArrayList<>();
     //private static final String .vscode="misiones_guardadas.json";
 
     public RegistroMisiones() {
@@ -98,8 +99,13 @@ public class RegistroMisiones {
     }
     }
 
+    
+    public void registroDeHistorial(){
+        
+    }
     public void cerrarScanner(){
         lectura.close();
     }
+
 
 }
