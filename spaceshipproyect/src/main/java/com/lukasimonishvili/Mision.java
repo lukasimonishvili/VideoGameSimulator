@@ -56,7 +56,7 @@ public abstract class Mision {
     }
 
     public void misionPendiente(){
-        if(estado==EstadoMision.PENDIENTE){
+        if(estado==EstadoMission.PENDIENTE){
             System.out.println("Misión pendiente: " + nombre);
         }
     }
