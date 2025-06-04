@@ -1,11 +1,13 @@
 package com.lukasimonishvili;
 
-import java.util.Scanner;
+import com.lukasimonishvili.Mision.EstadoMision;
 
 public class Main {
     public static void main(String[] args) {
-        RegistroMisiones registro=new RegistroMisiones();
-        Scanner scanner=new Scanner(System.in);
+        Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, EstadoMision.PENDIENTE, 2000);
+            
+        System.out.println("Misión: " + mision1.getNombre());
+        System.out.println("Duración: " + mision1.getDuracion() + " días");
 
         Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, 10, 1500);
         //registro.agregarMision();
@@ -16,7 +18,7 @@ public class Main {
         System.out.println("Estado: " + mision1.getEstado());
         System.out.println("Experiencia requerida: " + mision1.getExperienciaRequerida());
 
-        NaveEspacial nave1 = new NaveEspacial("Galáctica", 1500, true);
+        NaveEspacial nave1 = new NaveEspacial("Galáctica", 1200, true, 2000);
         nave1.registrarExperiencia("cientifica", 10);
 
         System.out.println("\n-----------------------------");

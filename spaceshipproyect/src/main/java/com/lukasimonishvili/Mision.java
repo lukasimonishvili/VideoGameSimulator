@@ -99,6 +99,17 @@ class MisionExploracion extends Mision{
     public String getTipoExperiencia(){
         return "científica";
     }
+
+    @Override
+    public String toString() {
+        return "MisionExploracion: {" +
+                "nombre = '" + nombre + '\'' +
+                ", duracion = " + duracion +
+                ", prioridad = " + prioridad +
+                ", estado = '" + estado + '\'' +
+                ", experienciaRequerida = " + experienciaRequerida +
+                '}';
+    }
 }
 
 class MisionRecoleccionDatos extends Mision{
@@ -118,6 +129,17 @@ class MisionRecoleccionDatos extends Mision{
     @Override
     public String getTipoExperiencia(){
         return "técnica";
+    }
+
+    @Override
+    public String toString() {
+        return "MisionRecoleccionDatos: {" +
+                "nombre = '" + nombre + '\'' +
+                ", duracion = " + duracion +
+                ", prioridad = " + prioridad +
+                ", estado = '" + estado + '\'' +
+                ", experienciaRequerida = " + experienciaRequerida +
+                '}';
     }
 }
 
@@ -143,6 +165,16 @@ class MisionColonizacion extends Mision{
         return "estrategica";
     }
 
-}
+    @Override
+    public String toString() {
+        return "MisionColonizacion: {" +
+                "nombre = '" + nombre + '\'' +
+                ", duracion = " + duracion +
+                ", prioridad = " + prioridad +
+                ", estado = '" + estado + '\'' +
+                ", experienciaRequerida = " + experienciaRequerida +
+                ", capacidadCarga = " + capacidadCarga +
+                '}';
+    }
 
-//
+}

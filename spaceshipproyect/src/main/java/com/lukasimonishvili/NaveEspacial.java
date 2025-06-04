@@ -9,12 +9,14 @@ public class NaveEspacial {
     private int autonomiaActual;
     private boolean sensoresCientificos;
     private Map<String, Integer> experiencias = new HashMap<>();
+    private int capacidadCarga;
 
-    public NaveEspacial(String nombre, int autonomiaMaxima, boolean sensoresCientificos) {
+    public NaveEspacial(String nombre, int autonomiaMaxima, boolean sensoresCientificos, int capacidadCarga) {
         this.sensoresCientificos = sensoresCientificos;
         this.autonomiaMaxima = autonomiaMaxima;
         this.autonomiaActual = autonomiaMaxima; // Inicialmente la autonomía actual es igual a la máxima
         this.nombre = nombre;
+        this.capacidadCarga = capacidadCarga;
         experiencias.put("tecnica", 0);
         experiencias.put("cientifica", 0);
         experiencias.put("estrategica", 0);
@@ -79,5 +81,9 @@ public class NaveEspacial {
     public void restaurarNave() {
         this.autonomiaActual = this.autonomiaMaxima;
         System.out.println("La nave ha sido restaurada a su autonomía máxima: " + this.autonomiaMaxima);
+    }
+
+    public int getCapacidadCarga() {
+        return this.capacidadCarga;
     }
 }

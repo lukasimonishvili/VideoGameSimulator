@@ -1,21 +1,56 @@
 {
-    "tipos_mision": [
+  "tipos_mision": [
+    {
+      "mision_exploracion": [
         {
-            "mision_exploracion": [
-                {
-                "nombre": "fuga",
-                "prioridad": 1
-                }
-            ]
+          "nombre": "fuga",
+          "prioridad": 1,
+          "estado": "PENDIENTE",
+          "duracion": 8,
+          "experienciaCientifica": 100,
+          "experienciaEstrategica": 100,
+          "experienciaTecnica": 100,
+          "capacidadCarga": 1001
         },
         {
-            "mision_recoleccion_datos": [
-                {
-                "nombre": "recoleccion1",
-                "prioridad": 2
-                }
-            ]
+          "nombre": "otra mision",
+          "prioridad": 2,
+          "estado": "COMPLETADA",
+          "duracion": 5,
+          "experienciaCientifica": 100,
+          "experienciaEstrategica": 100,
+          "experienciaTecnica": 100,
+          "capacidadCarga": 1001
         }
-        
-    ]   
+      ]
+    },
+    {
+      "mision_recoleccion_datos": [
+        {
+          "nombre": "recoleccion1",
+          "prioridad": 2,
+          "estado": "PENDIENTE",
+          "duracion": 6,
+          "experienciaCientifica": 1000,
+          "experienciaEstrategica": 10,
+          "experienciaTecnica": 100,
+          "capacidadCarga": 1020
+        }
+      ]
+    },
+    {
+      "mision_colonizacion": [
+        {
+          "nombre": "recoleccion1",
+          "prioridad": 7,
+          "estado": "PENDIENTE",
+          "duracion": 6,
+          "experienciaCientifica": 1000,
+          "experienciaEstrategica": 10,
+          "experienciaTecnica": 100,
+          "capacidadCarga": 1020
+        }
+      ]
+    }
+  ]
 }
