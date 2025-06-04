@@ -7,12 +7,12 @@ public abstract class Mision {
     }
     protected String nombre;
     protected int duracion;
-    protected int autonomia;
+    protected int autonomiaMaxima;
     protected int prioridad;
     protected EstadoMision estado;
     protected int experienciaRequerida;
     
-    public Mision(String nombre, int duracion, int prioridad, int experienciaRequerida, int autonomia) {
+    public Mision(String nombre, int duracion, int prioridad, int experienciaRequerida, int autonomiaMaxima) {
         if (duracion <= 0) {
             throw new IllegalArgumentException("La duración debe ser mayor a 0.");
         }
@@ -28,7 +28,7 @@ public abstract class Mision {
         this.prioridad = prioridad;
         this.estado = EstadoMision.PENDIENTE;
         this.experienciaRequerida = experienciaRequerida;
-        this.autonomia = autonomia;
+        this.autonomiaMaxima = autonomiaMaxima;
     }
 
     public String getNombre() {
@@ -50,6 +50,9 @@ public abstract class Mision {
         return estado;
     }
     
+    public int getAutonomiaMaxima(){
+        return autonomiaMaxima;
+    }
     
     public void completarMision() {
         if (estado == EstadoMision.PENDIENTE) {
@@ -120,7 +123,6 @@ class MisionRecoleccionDatos extends Mision{
 
 class MisionColonizacion extends Mision{
     int capacidadCarga;
-
 
     public MisionColonizacion(String nombre, int duracion, int prioridad, int experienciaEstrategica, int capacidadCarga, int autonomia) {
         super(nombre, duracion, prioridad,experienciaEstrategica, autonomia);

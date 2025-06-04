@@ -31,7 +31,7 @@ public class Main {
         System.out.println("Evaluación de la Misión.\n");
         if(mision1.esApta(nave1)) {
             System.out.println("La nave es apta para la misión.");
-            nave1.ejecutarMision(mision1.getDuracion(), mision1.getTipoExperiencia(), 1);
+            nave1.ejecutarMision(mision1.getDuracion(), mision1.getTipoExperiencia(), 20);
             mision1.completarMision();
         } else {
             System.out.println("La nave no es apta para la misión.");
