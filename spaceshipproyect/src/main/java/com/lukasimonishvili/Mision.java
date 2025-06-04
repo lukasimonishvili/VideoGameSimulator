@@ -57,6 +57,12 @@ public abstract class Mision {
             throw new IllegalStateException("La misión ya está completada.");
         }
     }
+
+    public void misionPendiente(){
+        if(estado==EstadoMision.PENDIENTE){
+            System.out.println("Misión pendiente: " + nombre);
+        }
+    }
     
     //Validamos si la nave puede ejecutar la misión
     public abstract boolean esApta(NaveEspacial nave); 

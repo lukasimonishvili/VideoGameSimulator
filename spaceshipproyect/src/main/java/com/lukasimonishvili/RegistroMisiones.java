@@ -19,12 +19,7 @@ public class RegistroMisiones {
         System.out.println("Ingrese el nombre de la misión: ");
         String nombre = lectura.nextLine();
         
-        System.out.println("Ingrese el tipo de exploración: ");
-        System.out.println("1-Exploración.");
-        System.out.println("2-Recolección de Datos.");
-        System.out.println("3-Colonización.");
-        int tipoExploracion=lectura.nextInt();
-
+        
         System.out.println("Ingrese la duración: ");
         int duracion = lectura.nextInt();
         
@@ -35,6 +30,12 @@ public class RegistroMisiones {
         System.out.println("¿Qué nivel de experiencia requiere?.");
         int experienciaRequerida = lectura.nextInt();
         
+        System.out.println("Ingrese el tipo de exploración: ");
+        System.out.println("1-Exploración.");
+        System.out.println("2-Recolección de Datos.");
+        System.out.println("3-Colonización.");
+        int tipoExploracion=lectura.nextInt();
+        
         Mision nuevaMision=null;
         
         switch (tipoExploracion) {
@@ -42,6 +43,9 @@ public class RegistroMisiones {
                 nuevaMision=new MisionExploracion(nombre, duracion, prioridad, experienciaRequerida);
                 break;
             case 2:
+                System.out.println("La Recolección de Datos debe durar entre 4 y 8 horas.");
+                System.out.println("Ingrese la duración de horas para la Recolección de Datos: ");
+                duracion=lectura.nextInt();
                 nuevaMision=new MisionRecoleccionDatos(nombre, duracion, prioridad, experienciaRequerida);
                 break;
             case 3:
@@ -53,27 +57,45 @@ public class RegistroMisiones {
         }
         misiones.add(nuevaMision);
         //guardarMisionesEnJson();
-        System.out.println("Misión agregada.");
+        System.out.println("\nMisión agregada.");
+    }
+
+    public void actualizarMisionesPendientes(){
+        misionesPendientes.clear();
+        for(Mision mision:misionesPendientes){
+            if(mision.getEstado().toString().equalsIgnoreCase("pendiente")) {
+                misionesPendientes.add(mision);
+            }
+        }
     }
 
     public void listarMisiones(){
-        System.out.println("----LISTA DE MISIONES----");
+        System.out.println("\n----LISTA DE MISIONES----");
         if(misiones.isEmpty()){
             System.out.println("No hay misiones para mostrar.");
         }else{
             for (Mision mision : misiones) {
-                System.out.println(mision);
-            }
-            
-            System.out.println("----MISIONES PENDIENTES.----");
-            if(misionesPendientes.isEmpty()){
-                System.out.println("No hay misiones pendientes.");
-            }else{
-                for(Mision mision : misionesPendientes){
-                    System.out.println(" "+mision.getNombre()+" " + mision.getClass());
-                }
+                System.out.println("Misión: " + mision.getNombre());
+                System.out.println("Duración: " + mision.getDuracion() + "  horas.");
+                System.out.println("Prioridad: " + mision.getPrioridad());
+                System.out.println("Estado: " + mision.getEstado());
+                System.out.println("Experiencia requerida: " + mision.getExperienciaRequerida());
             }
         }
+        
+        actualizarMisionesPendientes();
+        System.out.println("\n----MISIONES PENDIENTES.----");
+        if(misionesPendientes.isEmpty()){
+            System.out.println("No hay misiones pendientes.");
+        }else{
+            for(Mision mision : misionesPendientes){
+                System.out.println("Misión: " + mision.getNombre());
+                System.out.println("Duración: " + mision.getDuracion() + "  horas.");
+                System.out.println("Prioridad: " + mision.getPrioridad());
+                System.out.println("Estado: " + mision.getEstado());
+                System.out.println("Experiencia requerida: " + mision.getExperienciaRequerida());
+            }
+    }
     }
 
     public void cerrarScanner(){
