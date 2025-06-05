@@ -44,6 +44,10 @@ public abstract class Mision {
     public EstadoMission getEstado() {
         return estado;
     }
+
+    public void setEstado(EstadoMission estado) {
+        this.estado = estado;
+    }
     
     public void completarMision() {
         if (estado == EstadoMission.PENDIENTE) {
