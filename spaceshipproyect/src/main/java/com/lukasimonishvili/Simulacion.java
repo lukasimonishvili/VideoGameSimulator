@@ -148,6 +148,8 @@ public class Simulacion {
         List<NaveEspacial> listaNaves = mapDatosNaves(jsonNaves);
 
         System.out.println("Misiones ordenadas por prioridad:");
+        List<NaveEspacial> navesAsignadas = new ArrayList<>();
+
         for (Mision m : misionesOrdenadas) {
             System.out.println(m);
             TipoMision tipoExp = m.getTipoExperiencia();
@@ -159,14 +161,23 @@ public class Simulacion {
                 // Intentar con experiencia total
                 naveApta = buscarNaveApta(listaNaves, m.getDuracion(), true, expNecesaria, tipoExp);
                 if (naveApta == null) {
-                    System.out.println("\n⚠️ No hay naves con experiencia suficiente para esta misión en " + tipoExp);
+                    System.out.println("\nNo hay naves con experiencia suficiente para la misión '" + m.getNombre() + "' de tipo '" + tipoExp + "'.\nNúmero de naves disponibles: " + listaNaves.size());
                 } else {
-                    System.out.println("\nAsignada nave (por experiencia total): " + naveApta.getNombre());
+                    System.out.println("\nAsignada nave (por experiencia total): " + naveApta.getNombre() + "\n");
+                    navesAsignadas.add(naveApta);
+                    listaNaves.remove(naveApta); // Se elimina de la lista para que no pueda usarse en otras misiones
+                    naveApta.ejecutarMision(m.getDuracion(), m.getTipoExperiencia(), 1);
+                    m.setEstado(EstadoMission.COMPLETADA);
                 }
             } else {
                 System.out.println("\nAsignada nave: " + naveApta.getNombre());
+                navesAsignadas.add(naveApta);
+                listaNaves.remove(naveApta); // Igual aquí la removemos
+                naveApta.ejecutarMision(m.getDuracion(), m.getTipoExperiencia(), 1);
+                m.setEstado(EstadoMission.COMPLETADA);
             }
         }
+
     }
 
 }
