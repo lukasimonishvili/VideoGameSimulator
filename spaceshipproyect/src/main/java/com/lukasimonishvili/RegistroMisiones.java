@@ -8,7 +8,6 @@ public class RegistroMisiones {
     Scanner lectura = new Scanner(System.in);
     List<Mision> misiones = new ArrayList<>();
     List<Mision> misionesPendientes=new ArrayList<>();
-    List<Mision> registroHistorial=new ArrayList<>();
     //private static final String .vscode="misiones_guardadas.json";
 
     public RegistroMisiones() {
@@ -41,34 +40,30 @@ public class RegistroMisiones {
         
         switch (tipoExploracion) {
             case 1:
-                nuevaMision=new MisionExploracion(nombre, duracion, prioridad, experienciaRequerida);
+                nuevaMision=new MisionExploracion(nombre, duracion, prioridad, experienciaRequerida, EstadoMission.PENDIENTE);
                 break;
             case 2:
                 System.out.println("La Recolección de Datos debe durar entre 4 y 8 horas.");
                 System.out.println("Ingrese la duración de horas para la Recolección de Datos: ");
                 duracion=lectura.nextInt();
-                nuevaMision=new MisionRecoleccionDatos(nombre, duracion, prioridad, experienciaRequerida);
+                nuevaMision=new MisionRecoleccionDatos(nombre, duracion, prioridad, experienciaRequerida, EstadoMission.PENDIENTE);
                 break;
             case 3:
                 System.out.println("Ingrese la cantidad de carga requerida.");
                 int capacidadCarga=lectura.nextInt();
-                nuevaMision = new MisionColonizacion(nombre, duracion, prioridad, experienciaRequerida, capacidadCarga);
-                break;
+                nuevaMision = new MisionColonizacion(nombre, duracion, prioridad, experienciaRequerida, capacidadCarga, EstadoMission.PENDIENTE);
             default:
                 System.out.println("Tipo de misión no válido.");
-                return;
         }
-        if(nuevaMision!=null){
-            misiones.add(nuevaMision);
-            //guardarMisionesEnJson();
-            System.out.println("\nMisión agregada.");
-        }
+        misiones.add(nuevaMision);
+        //guardarMisionesEnJson();
+        System.out.println("\nMisión agregada.");
     }
 
     public void actualizarMisionesPendientes(){
         misionesPendientes.clear();
-        for(Mision mision : misiones){
-            if (mision.getEstado() == EstadoMission.PENDIENTE) {
+        for(Mision mision:misionesPendientes){
+            if(mision.getEstado().toString().equalsIgnoreCase("pendiente")) {
                 misionesPendientes.add(mision);
             }
         }
@@ -88,6 +83,7 @@ public class RegistroMisiones {
             }
         }
         
+        actualizarMisionesPendientes();
         System.out.println("\n----MISIONES PENDIENTES.----");
         if(misionesPendientes.isEmpty()){
             System.out.println("No hay misiones pendientes.");
@@ -105,6 +101,5 @@ public class RegistroMisiones {
     public void cerrarScanner(){
         lectura.close();
     }
-
 
 }

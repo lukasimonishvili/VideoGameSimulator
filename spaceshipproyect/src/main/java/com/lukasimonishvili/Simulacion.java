@@ -21,7 +21,7 @@ public class Simulacion {
     private static final String MISION_COLONIZACION_STRING = "mision_colonizacion";
     
 
-    public static NaveEspacial buscarMejorNaveApta(List<NaveEspacial> naves, int autonomiaNecesaria, String tipoExperiencia, int experienciaNecesaria) {
+    public static NaveEspacial buscarMejorNaveApta(List<NaveEspacial> naves, int autonomiaNecesaria, TipoMision tipoExperiencia, int experienciaNecesaria) {
         Optional<NaveEspacial> mejorNave = naves.stream()
             // Filtrar solo las naves aptas para la misión
             .filter(n -> n.aptasParaUnaMision(autonomiaNecesaria, tipoExperiencia, experienciaNecesaria))
@@ -49,14 +49,14 @@ public class Simulacion {
         return Json.createArrayBuilder().build();
     }
     // create mission by type (MisionExploracion...)
-    private static Mision createMisionByType(String tipo, String nombre, int prioridad, Mision.EstadoMision estado, int duracion, int experienciaCientifica, int experienciaTecnica, int experienciaEstrategica, int capacidadCarga) {
+    private static Mision createMisionByType(String tipo, String nombre, int prioridad, EstadoMission estado, int duracion, int experienciaCientifica, int experienciaTecnica, int experienciaEstrategica, int capacidadCarga) {
         switch (tipo) {
             case MISION_EXPLORACION_STRING:
-                return new MisionExploracion(nombre, duracion, prioridad, estado, experienciaCientifica);
+                return new MisionExploracion(nombre, duracion, prioridad, experienciaCientifica, estado);
             case MISION_RECOLECCION_DATOS_STRING:
-                return new MisionRecoleccionDatos(nombre, duracion, prioridad, estado, experienciaTecnica);
+                return new MisionRecoleccionDatos(nombre, duracion, prioridad, experienciaTecnica, estado);
             case MISION_COLONIZACION_STRING:
-                return new MisionColonizacion(nombre, duracion, prioridad, estado, experienciaEstrategica, capacidadCarga);
+                return new MisionColonizacion(nombre, duracion, prioridad, experienciaEstrategica, capacidadCarga, estado);
             default:
                 System.err.println("Tipo desconocido: " + tipo);
                 return null;
@@ -84,7 +84,7 @@ public class Simulacion {
                     if (!estadoStr.equalsIgnoreCase("PENDIENTE")) {
                         continue;
                     }
-                    Mision.EstadoMision estado = Mision.EstadoMision.valueOf(estadoStr.toUpperCase());
+                    EstadoMission estado = EstadoMission.valueOf(estadoStr.toUpperCase());
                     Mision nuevaMision = createMisionByType(tipo, nombre, prioridad, estado, duracion, experienciaCientifica, experienciaTecnica, experienciaEstrategica, capacidadCarga);
                     if (nuevaMision != null) {
                         misiones.add(nuevaMision);
@@ -101,8 +101,5 @@ public class Simulacion {
         List<Mision> misionesOrdenadas = sortMisionsByPriority(listMisiones);
         System.out.println("Misiones ordenadas por prioridad:");
         for (Mision m: misionesOrdenadas) System.out.println(m);
-
-
     }
 }
-
