@@ -22,7 +22,7 @@ public abstract class Mision {
         this.nombre = nombre;
         this.duracion = duracion;
         this.prioridad = prioridad;
-        this.estado = EstadoMission.PENDIENTE;
+        this.estado = estado;
         this.experienciaRequerida = experienciaRequerida;
     }
 
