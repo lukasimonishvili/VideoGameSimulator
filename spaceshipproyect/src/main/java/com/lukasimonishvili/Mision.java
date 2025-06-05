@@ -8,7 +8,7 @@ public abstract class Mision {
     protected EstadoMission estado;
     protected int experienciaRequerida;
     
-    public Mision(String nombre, int duracion, int prioridad, int experienciaRequerida) {
+    public Mision(String nombre, int duracion, int prioridad, int experienciaRequerida, EstadoMission estado) {
         if (duracion <= 0) {
             throw new IllegalArgumentException("La duración debe ser mayor a 0.");
         }
@@ -44,7 +44,6 @@ public abstract class Mision {
     public EstadoMission getEstado() {
         return estado;
     }
-    
     
     public void completarMision() {
         if (estado == EstadoMission.PENDIENTE) {
@@ -88,8 +87,8 @@ public abstract class Mision {
 }
 
 class MisionExploracion extends Mision{
-    public MisionExploracion(String nombre, int duracion, int prioridad, int experienciaCientifica) {
-        super(nombre, duracion, prioridad,experienciaCientifica);
+    public MisionExploracion(String nombre, int duracion, int prioridad, int experienciaCientifica, EstadoMission estado) {
+        super(nombre, duracion, prioridad,experienciaCientifica, estado);
         if(duracion<8){
             throw new IllegalArgumentException("\nLa duración mínima es de 8 horas.\n");
         }
@@ -118,9 +117,9 @@ class MisionExploracion extends Mision{
     }
 }
 
-class MisionRecoleccionDatos extends Mision{
-    public MisionRecoleccionDatos(String nombre, int duracion, int prioridad, int experienciaTecnica) {
-        super(nombre, duracion, prioridad,  experienciaTecnica);
+class MisionRecoleccionDatos extends Mision {
+    public MisionRecoleccionDatos(String nombre, int duracion, int prioridad, int experienciaTecnica, EstadoMission estado) {
+        super(nombre, duracion, prioridad,  experienciaTecnica, estado);
         if(duracion>8){
             throw new IllegalArgumentException("La duración típica debe ser estar entre 4 y 8 horas.");
         }
@@ -152,8 +151,8 @@ class MisionRecoleccionDatos extends Mision{
 class MisionColonizacion extends Mision{
     int capacidadCarga;
 
-    public MisionColonizacion(String nombre, int duracion, int prioridad, int experienciaEstrategica, int capacidadCarga) {
-        super(nombre, duracion, prioridad,experienciaEstrategica);
+    public MisionColonizacion(String nombre, int duracion, int prioridad, int experienciaEstrategica, int capacidadCarga, EstadoMission estado) {
+        super(nombre, duracion, prioridad,experienciaEstrategica, estado);
         if(duracion<6){
             throw new IllegalArgumentException("La duración mínima para colonizar es de 6 horas.");
         }

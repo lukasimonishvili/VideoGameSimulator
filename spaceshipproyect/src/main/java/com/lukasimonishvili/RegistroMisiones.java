@@ -40,18 +40,18 @@ public class RegistroMisiones {
         
         switch (tipoExploracion) {
             case 1:
-                nuevaMision=new MisionExploracion(nombre, duracion, prioridad, experienciaRequerida);
+                nuevaMision=new MisionExploracion(nombre, duracion, prioridad, experienciaRequerida, EstadoMission.PENDIENTE);
                 break;
             case 2:
                 System.out.println("La Recolección de Datos debe durar entre 4 y 8 horas.");
                 System.out.println("Ingrese la duración de horas para la Recolección de Datos: ");
                 duracion=lectura.nextInt();
-                nuevaMision=new MisionRecoleccionDatos(nombre, duracion, prioridad, experienciaRequerida);
+                nuevaMision=new MisionRecoleccionDatos(nombre, duracion, prioridad, experienciaRequerida, EstadoMission.PENDIENTE);
                 break;
             case 3:
                 System.out.println("Ingrese la cantidad de carga requerida.");
                 int capacidadCarga=lectura.nextInt();
-                nuevaMision = new MisionColonizacion(nombre, duracion, prioridad, experienciaRequerida, capacidadCarga);
+                nuevaMision = new MisionColonizacion(nombre, duracion, prioridad, experienciaRequerida, capacidadCarga, EstadoMission.PENDIENTE);
             default:
                 System.out.println("Tipo de misión no válido.");
         }
