@@ -32,12 +32,17 @@ public class ControlDeMisiones {
             }
 
             nave.ejecutarMision(mision.getDuracion(), mision.getTipoExperiencia(), experiencia);
+            nave.registrarExperiencia(mision.getTipoExperiencia(), experiencia);
             nave.restaurarNave();
             nave.registrarMision(mision);
             historial.registrarResultado(mision, nave, experiencia, eventoEspecial);
         } else {
             System.out.println("La nave no está apta para la misión: " + mision.getNombre());
         }
+    }
+
+    public void mostrarHistorial(){
+        historial.mostrarHistorial();
     }
 
 }

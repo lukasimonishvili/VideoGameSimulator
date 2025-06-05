@@ -7,13 +7,19 @@ public class Main {
         //RegistroMisiones registro = new RegistroMisiones();
         //DepositoDeNaves naves=new DepositoDeNaves();
         ControlDeMisiones misiones = new ControlDeMisiones();
+        HistorialDeMisiones historial=new HistorialDeMisiones();
         
-        Mision mision=new MisionExploracion("Explorar Marte", 5, 5, 3, null);
+        Mision mision=new MisionExploracion("Explorar Marte", 9, 5, 2, EstadoMission.COMPLETADA);
         NaveEspacial nave=new NaveEspacial("Atlanta", 1000, true, 500);
+        Mision mision2=new MisionExploracion("Explorar Venus", 9, 9, 6, EstadoMission.COMPLETADA);
+        NaveEspacial nave2=new NaveEspacial("Zeus", 2000, true, 500);
 
         //registro.agregarMision();
         //naves.creareNave();
+        nave.registrarExperiencia(TipoMision.CIENTIFICA, 2);
         misiones.ejecutarMision(mision, nave);
+        misiones.ejecutarMision(mision2, nave2);
+        misiones.mostrarHistorial();
         //registro.listarMisiones();
 
         
