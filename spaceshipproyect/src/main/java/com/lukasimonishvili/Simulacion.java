@@ -2,9 +2,9 @@ package com.lukasimonishvili;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -15,30 +15,47 @@ public class Simulacion {
 
     private static final String PATH_DATOS_MISION = "DatosMisiones.json";
     private static final String KEY_DATOS_MISION = "tipos_mision";
+    private static final String PATH_DATOS_NAVES = "DatosNaves.json";
+    private static final String KEY_DATOS_NAVES = "naves";
 
     private static final String MISION_EXPLORACION_STRING = "mision_exploracion";
     private static final String MISION_RECOLECCION_DATOS_STRING = "mision_recoleccion_datos";
     private static final String MISION_COLONIZACION_STRING = "mision_colonizacion";
     
 
-    public static NaveEspacial buscarMejorNaveApta(List<NaveEspacial> naves, int autonomiaNecesaria, TipoMision tipoExperiencia, int experienciaNecesaria) {
-        Optional<NaveEspacial> mejorNave = naves.stream()
-            // Filtrar solo las naves aptas para la misión
-            .filter(n -> n.aptasParaUnaMision(autonomiaNecesaria, tipoExperiencia, experienciaNecesaria))
-            // Ordenar según los criterios indicados (descendente autonomíaActual, descendente experiencia total, ascendente nombre)
-            .sorted(Comparator.comparingInt(NaveEspacial::getAutonomiaActual).reversed()
-                    .thenComparing(Comparator.comparingInt(NaveEspacial::getExperienciaTotal).reversed())
-                    .thenComparing(NaveEspacial::getNombre))
-            .findFirst();
-        return mejorNave.orElse(null);
+
+    public static NaveEspacial buscarNaveApta(Collection<NaveEspacial> naves, int autonomiaNecesaria,
+        boolean usarExperienciaTotal, int experienciaNecesaria,
+        TipoMision tipoExperiencia) {
+        Comparator<NaveEspacial> comparador = Comparator
+        .comparingInt(NaveEspacial::getAutonomiaActual).reversed()
+        .thenComparing((n1, n2) -> {
+            int exp1 = usarExperienciaTotal ? n1.getExperienciaTotal() : n1.getExperiencia().getOrDefault(tipoExperiencia, 0);
+            int exp2 = usarExperienciaTotal ? n2.getExperienciaTotal() : n2.getExperiencia().getOrDefault(tipoExperiencia, 0);
+            return Integer.compare(exp2, exp1); // reversed
+        })
+        .thenComparing(NaveEspacial::getNombre);
+        
+        return naves.stream()
+            .filter(n -> n.getAutonomiaActual() >= autonomiaNecesaria)
+            .filter(n -> {
+                if (usarExperienciaTotal) {
+                    return n.getExperienciaTotal() >= experienciaNecesaria;
+                } else {
+                    return n.getExperiencia().getOrDefault(tipoExperiencia, 0) >= experienciaNecesaria;
+                }
+            })
+            .sorted(comparador)
+            .findFirst()
+            .orElse(null);
     }
-    
+
     //get JSON file "DatosMisiones" and parse as JSONArray
-    public static JsonArray getMissionTypes() {
-        InputStream is = Simulacion.class.getClassLoader().getResourceAsStream(PATH_DATOS_MISION);
+    public static JsonArray getMissionTypes(String path, String key) {
+        InputStream is = Simulacion.class.getClassLoader().getResourceAsStream(path);
         if (is != null) {
             try (JsonReader reader = Json.createReader(is)) {
-                return reader.readObject().getJsonArray(KEY_DATOS_MISION);
+                return reader.readObject().getJsonArray(key);
             } catch (Exception e) {
                 System.err.println("Error al leer o parsear el JSON:");
                 e.printStackTrace();
@@ -61,6 +78,33 @@ public class Simulacion {
                 System.err.println("Tipo desconocido: " + tipo);
                 return null;
         }
+    }
+
+    private static List<NaveEspacial> mapDatosNaves(JsonArray listNaves) {
+        List<NaveEspacial> naves = new ArrayList<>();
+
+        for (JsonObject naveObj : listNaves.getValuesAs(JsonObject.class)) {
+            String nombre = naveObj.getString("nombre");
+            int autonomiaMaxima = naveObj.getInt("autonomiaMaxima");
+            boolean sensoresCientificos = naveObj.getInt("sensoresCientificos") > 0;
+            int capacidadCarga = naveObj.getInt("capacidadCarga");
+
+            NaveEspacial nave = new NaveEspacial(
+                nombre,
+                autonomiaMaxima,
+                sensoresCientificos,
+                capacidadCarga
+            );
+
+            // Si quieres registrar experiencia desde JSON:
+            JsonObject experienciasObj = naveObj.getJsonObject("experiencias");
+            nave.registrarExperiencia(TipoMision.TECHNICA, experienciasObj.getInt("tecnica"));
+            nave.registrarExperiencia(TipoMision.CIENTIFICA, experienciasObj.getInt("cientifica"));
+            nave.registrarExperiencia(TipoMision.ESTRATEGICA, experienciasObj.getInt("estrategica"));
+
+            naves.add(nave);
+        }
+        return naves;
     }
 
     private static List<Mision> sortMisionsByPriority(JsonArray listMisiones) {
@@ -97,9 +141,32 @@ public class Simulacion {
     }
 
     public static void main(String[] args) {
-        JsonArray listMisiones = getMissionTypes();
+        JsonArray listMisiones = getMissionTypes(PATH_DATOS_MISION, KEY_DATOS_MISION);
+        JsonArray jsonNaves = getMissionTypes(PATH_DATOS_NAVES, KEY_DATOS_NAVES);
+        
         List<Mision> misionesOrdenadas = sortMisionsByPriority(listMisiones);
+        List<NaveEspacial> listaNaves = mapDatosNaves(jsonNaves);
+
         System.out.println("Misiones ordenadas por prioridad:");
-        for (Mision m: misionesOrdenadas) System.out.println(m);
+        for (Mision m : misionesOrdenadas) {
+            System.out.println(m);
+            TipoMision tipoExp = m.getTipoExperiencia();
+            int expNecesaria = m.getExperienciaRequerida();
+
+            NaveEspacial naveApta = buscarNaveApta(listaNaves, m.getDuracion(), false, expNecesaria, tipoExp);
+
+            if (naveApta == null) {
+                // Intentar con experiencia total
+                naveApta = buscarNaveApta(listaNaves, m.getDuracion(), true, expNecesaria, tipoExp);
+                if (naveApta == null) {
+                    System.out.println("\n⚠️ No hay naves con experiencia suficiente para esta misión en " + tipoExp);
+                } else {
+                    System.out.println("\nAsignada nave (por experiencia total): " + naveApta.getNombre());
+                }
+            } else {
+                System.out.println("\nAsignada nave: " + naveApta.getNombre());
+            }
+        }
     }
+
 }

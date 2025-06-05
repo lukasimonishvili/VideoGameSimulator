@@ -5,6 +5,7 @@
       "autonomiaMaxima": 6,
       "autonomiaActual": 4,
       "sensoresCientificos": 8,
+      "capacidadCarga": 1001,
       "experiencias": {
         "tecnica": 0,
         "cientifica": 100,
@@ -16,6 +17,7 @@
       "autonomiaMaxima": 8,
       "autonomiaActual": 8,
       "sensoresCientificos": 8,
+      "capacidadCarga": 1001,
       "experiencias": {
         "tecnica": 0,
         "cientifica": 100,
@@ -27,6 +29,7 @@
       "autonomiaMaxima": 4,
       "autonomiaActual": 2,
       "sensoresCientificos": 8,
+      "capacidadCarga": 1001,
       "experiencias": {
         "tecnica": 100,
         "cientifica": 10,
