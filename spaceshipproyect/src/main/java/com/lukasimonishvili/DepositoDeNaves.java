@@ -32,5 +32,6 @@ public class DepositoDeNaves {
         NaveEspacial nuevoNaveEspacial = new NaveEspacial(nombre, autonomiaMaxima, sensoresCientific, capacidadCarga);
         naves.add(nuevoNaveEspacial);
         System.out.println("Nueva nave espacial creada");
+        scanner.close();
     }
 }
