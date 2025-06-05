@@ -54,6 +54,10 @@ public class NaveEspacial {
         return experiencias.values().stream().mapToInt(Integer::intValue).sum();
     }
 
+     public Map<TipoMision, Integer> getExperiencia() {
+        return this.experiencias;
+    }
+
     public boolean aptasParaUnaMision(int autonomiaNecesaria, TipoMision tipoExperiencia, int experienciaNecesaria) {
         boolean resultado = true;
         if(autonomiaNecesaria > this.autonomiaMaxima) {
