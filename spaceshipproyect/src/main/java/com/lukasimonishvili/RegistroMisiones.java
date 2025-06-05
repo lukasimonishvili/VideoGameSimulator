@@ -52,19 +52,27 @@ public class RegistroMisiones {
             case 3:
                 System.out.println("Ingrese la cantidad de carga requerida.");
                 int capacidadCarga=lectura.nextInt();
+<<<<<<< HEAD
                 nuevaMision = new MisionColonizacion(nombre, duracion, prioridad, experienciaRequerida, capacidadCarga, EstadoMission.PENDIENTE);
+=======
+                nuevaMision = new MisionColonizacion(nombre, duracion, prioridad, experienciaRequerida, capacidadCarga);
+                break;
+>>>>>>> 62859ec (Arreglos de clases.)
             default:
                 System.out.println("Tipo de misión no válido.");
+                return;
         }
-        misiones.add(nuevaMision);
-        //guardarMisionesEnJson();
-        System.out.println("\nMisión agregada.");
+        if(nuevaMision!=null){
+            misiones.add(nuevaMision);
+            //guardarMisionesEnJson();
+            System.out.println("\nMisión agregada.");
+        }
     }
 
     public void actualizarMisionesPendientes(){
         misionesPendientes.clear();
-        for(Mision mision:misionesPendientes){
-            if(mision.getEstado().toString().equalsIgnoreCase("pendiente")) {
+        for(Mision mision : misiones){
+            if (mision.getEstado() == EstadoMission.PENDIENTE) {
                 misionesPendientes.add(mision);
             }
         }
@@ -84,7 +92,6 @@ public class RegistroMisiones {
             }
         }
         
-        actualizarMisionesPendientes();
         System.out.println("\n----MISIONES PENDIENTES.----");
         if(misionesPendientes.isEmpty()){
             System.out.println("No hay misiones pendientes.");
@@ -99,10 +106,6 @@ public class RegistroMisiones {
     }
     }
 
-    
-    public void registroDeHistorial(){
-        
-    }
     public void cerrarScanner(){
         lectura.close();
     }
