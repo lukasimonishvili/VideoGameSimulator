@@ -21,19 +21,19 @@
       "experiencias": {
         "tecnica": 0,
         "cientifica": 100,
-        "estrategica": 10
+        "estrategica": 100
       }
     },
     {
       "nombre": "Maxwell",
-      "autonomiaMaxima": 4,
-      "autonomiaActual": 2,
+      "autonomiaMaxima": 8,
+      "autonomiaActual": 6,
       "sensoresCientificos": 8,
-      "capacidadCarga": 1001,
+      "capacidadCarga": 1031,
       "experiencias": {
-        "tecnica": 100,
+        "tecnica": 0,
         "cientifica": 10,
-        "estrategica": 0
+        "estrategica": 100
       }
     }
   ]
