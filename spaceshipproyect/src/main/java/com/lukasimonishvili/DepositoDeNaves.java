@@ -36,23 +36,36 @@ public class DepositoDeNaves {
         scanner.close();
     }
 
-    public void mostrarRankingNaves(){
-        TipoMision tipo = TipoMision.CIENTIFICA;
+    public void mostrarRankingNavesPorExperiencia(){        
         ArrayList<NaveEspacial> navesOrdenadas = new ArrayList<>(naves);
         
         navesOrdenadas.sort((nave1, nave2)->Integer.compare(
             nave2.getExperienciaTotal(),
             nave1.getExperienciaTotal()
         ));
-        
-        System.out.println("Ranking por experiencia " + tipo + ":");
+        System.out.println("Ranking por experiencia :");
 
         int posicion = 1;
         for (NaveEspacial nave : navesOrdenadas) {
-            int experiencia = nave.getExperienciaTotal();
+            System.out.println(posicion + ". " + nave.getNombre() + " - " + nave.getExperienciaTotal());
+            posicion++;
+        }
+    }
 
-            System.out.println(posicion + ". " + nave.getNombre() + "  " + experiencia + " experciencia");
+    public void mostrarRankingNavesPorTipo(TipoMision tipo){
+        
+        ArrayList<NaveEspacial> navesOrdenadas = new ArrayList<>(naves);
+        
+        navesOrdenadas.sort((nave1, nave2)->Integer.compare(
+            nave2.getExperiencia(tipo),
+            nave1.getExperiencia(tipo)
+        ));
+        System.out.println("Ranking por tipo de experiencia : " + tipo);
 
+        int posicion = 1;
+        for (NaveEspacial nave : navesOrdenadas) {
+            int experiencia = nave.getExperiencia(tipo);
+            System.out.println(posicion + ". " + nave.getNombre() + " - " + experiencia + " experiencia ");
             posicion++;
         }
     }
