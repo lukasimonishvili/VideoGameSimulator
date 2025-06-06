@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class DepositoDeNaves {
     public List<NaveEspacial> naves = new ArrayList<>();
+    
 
     public DepositoDeNaves() {
          NaveEspacial nave1 = new NaveEspacial("Nautilus", 3000, false, 2000);
@@ -33,5 +34,26 @@ public class DepositoDeNaves {
         naves.add(nuevoNaveEspacial);
         System.out.println("Nueva nave espacial creada");
         scanner.close();
+    }
+
+    public void mostrarRankingNaves(){
+        TipoMision tipo = TipoMision.CIENTIFICA;
+        ArrayList<NaveEspacial> navesOrdenadas = new ArrayList<>(naves);
+        
+        navesOrdenadas.sort((nave1, nave2)->Integer.compare(
+            nave2.getExperienciaTotal(),
+            nave1.getExperienciaTotal()
+        ));
+        
+        System.out.println("Ranking por experiencia " + tipo + ":");
+
+        int posicion = 1;
+        for (NaveEspacial nave : navesOrdenadas) {
+            int experiencia = nave.getExperienciaTotal();
+
+            System.out.println(posicion + ". " + nave.getNombre() + "  " + experiencia + " experciencia");
+
+            posicion++;
+        }
     }
 }
