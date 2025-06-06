@@ -52,12 +52,9 @@ public class RegistroMisiones {
             case 3:
                 System.out.println("Ingrese la cantidad de carga requerida.");
                 int capacidadCarga=lectura.nextInt();
-<<<<<<< HEAD
+
                 nuevaMision = new MisionColonizacion(nombre, duracion, prioridad, experienciaRequerida, capacidadCarga, EstadoMission.PENDIENTE);
-=======
-                nuevaMision = new MisionColonizacion(nombre, duracion, prioridad, experienciaRequerida, capacidadCarga);
                 break;
->>>>>>> 62859ec (Arreglos de clases.)
             default:
                 System.out.println("Tipo de misión no válido.");
                 return;
