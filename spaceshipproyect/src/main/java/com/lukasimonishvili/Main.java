@@ -4,19 +4,31 @@ package com.lukasimonishvili;
 
 public class Main {
     public static void main(String[] args) {
-        RegistroMisiones registro = new RegistroMisiones();
-        DepositoDeNaves naves=new DepositoDeNaves();
+        //RegistroMisiones registro = new RegistroMisiones();
+        //DepositoDeNaves naves=new DepositoDeNaves();
+        ControlDeMisiones misiones = new ControlDeMisiones();
+        HistorialDeMisiones historial=new HistorialDeMisiones();
+        
+        Mision mision=new MisionExploracion("Explorar Marte", 9, 5, 2, EstadoMission.COMPLETADA);
+        NaveEspacial nave=new NaveEspacial("Atlanta", 1000, true, 500);
+        Mision mision2=new MisionExploracion("Explorar Venus", 9, 9, 6, EstadoMission.COMPLETADA);
+        NaveEspacial nave2=new NaveEspacial("Zeus", 2000, true, 500);
 
-        registro.agregarMision();
-        naves.creareNave();
-        registro.listarMisiones();
+        //registro.agregarMision();
+        //naves.creareNave();
+        nave.registrarExperiencia(TipoMision.CIENTIFICA, 2);
+        misiones.ejecutarMision(mision, nave);
+        misiones.ejecutarMision(mision2, nave2);
+        misiones.mostrarHistorial();
+        //registro.listarMisiones();
 
         
-        /*Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, 10);
+        
+        /*
+        Mision mision1=new MisionExploracion("Exploración de Marte", 30, 5, 10);
         
         NaveEspacial nave1 = new NaveEspacial("Galáctica", 1200, true, 2000);
         nave1.registrarExperiencia("cientifica", 10);
-
         System.out.println("\n-----------------------------");
         System.out.println("Datos de la Nave Espacial:");
         System.out.println("Nombre: " + nave1.getNombre());
