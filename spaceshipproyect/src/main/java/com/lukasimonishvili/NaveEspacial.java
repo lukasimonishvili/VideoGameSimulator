@@ -1,9 +1,9 @@
 package com.lukasimonishvili;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class NaveEspacial {
     private String nombre;
@@ -12,7 +12,6 @@ public class NaveEspacial {
     private boolean sensoresCientificos;
     private Map<TipoMision, Integer> experiencias = new HashMap<>();
     private int capacidadCarga;
-    private List<Mision> misionesHecho = new ArrayList<>();
 
     public NaveEspacial() {}
 
@@ -56,6 +55,7 @@ public class NaveEspacial {
         System.out.println("Experiencia registrada. Tipo: " + tipo + ", Cantidad: " + cantidad);
     }
 
+    @JsonIgnore
     public int getExperienciaTotal() {
         return experiencias.values().stream().mapToInt(Integer::intValue).sum();
     }
@@ -85,11 +85,7 @@ public class NaveEspacial {
         return this.capacidadCarga;
     }
 
-    public void registrarMision(Mision mision) {
-        misionesHecho.add(mision);
-        System.out.println("Misión registrada: " + mision.getNombre());
-    }
-
+    @JsonIgnore
     public String getEstatisticaDeNave() {
         String resultado = "";
         resultado += "Nombre de la nave: " + this.nombre + "\n";
@@ -102,11 +98,6 @@ public class NaveEspacial {
         resultado += "  Estratégica: " + experiencias.get(TipoMision.ESTRATEGICA) + "\n";
         resultado += "  Experiencia total: " + this.getExperienciaTotal() + "\n";
         resultado += "Capacidad de carga: " + this.capacidadCarga + "\n";
-        resultado += "Misiones realizadas:\n";
-        for(Mision mision : misionesHecho) {
-            String misionEstado = mision.getEstado() == EstadoMission.COMPLETADA ? "Completada" : "Fallida";
-            resultado += misionEstado +  "  - " + mision.getNombre() + "\n";
-        }
         return resultado;
     }
 }
