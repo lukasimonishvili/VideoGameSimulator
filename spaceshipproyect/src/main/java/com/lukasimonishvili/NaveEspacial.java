@@ -41,6 +41,10 @@ public class NaveEspacial {
         return this.sensoresCientificos;
     }
 
+    public int getExperiencia(TipoMision tipo){
+        return experiencias.getOrDefault(tipo, 0);
+    }
+
     public void registrarExperiencia(TipoMision tipo, int cantidad) {
         if (cantidad < 0) {
             System.out.println("No se puede registrar una cantidad negativa de experiencia.");

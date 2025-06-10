@@ -7,6 +7,7 @@ public class DepositoDeNaves {
     public List<NaveEspacial> naves = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
 
+
     public DepositoDeNaves() {
          NaveEspacial nave1 = new NaveEspacial("Nautilus", 3000, false, 2000);
          NaveEspacial nave2 = new NaveEspacial("Space-X", 1800, true, 3000);
@@ -53,5 +54,39 @@ public class DepositoDeNaves {
             }
         }
         return navesFiltradas;
+    }
+
+    public void mostrarRankingNavesPorExperiencia(){        
+        ArrayList<NaveEspacial> navesOrdenadas = new ArrayList<>(naves);
+        
+        navesOrdenadas.sort((nave1, nave2)->Integer.compare(
+            nave2.getExperienciaTotal(),
+            nave1.getExperienciaTotal()
+        ));
+        System.out.println("Ranking por experiencia :");
+
+        int posicion = 1;
+        for (NaveEspacial nave : navesOrdenadas) {
+            System.out.println(posicion + ". " + nave.getNombre() + " - " + nave.getExperienciaTotal());
+            posicion++;
+        }
+    }
+
+    public void mostrarRankingNavesPorTipo(TipoMision tipo){
+        
+        ArrayList<NaveEspacial> navesOrdenadas = new ArrayList<>(naves);
+        
+        navesOrdenadas.sort((nave1, nave2)->Integer.compare(
+            nave2.getExperiencia(tipo),
+            nave1.getExperiencia(tipo)
+        ));
+        System.out.println("Ranking por tipo de experiencia : " + tipo);
+
+        int posicion = 1;
+        for (NaveEspacial nave : navesOrdenadas) {
+            int experiencia = nave.getExperiencia(tipo);
+            System.out.println(posicion + ". " + nave.getNombre() + " - " + experiencia + " experiencia ");
+            posicion++;
+        }
     }
 }
