@@ -1,11 +1,16 @@
 package com.lukasimonishvili;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 public class DepositoDeNaves {
     public List<NaveEspacial> naves = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
+    private ObjectMapper objectMapper = new ObjectMapper();
 
 
     public DepositoDeNaves() {
@@ -18,6 +23,7 @@ public class DepositoDeNaves {
          naves.add(nave2);
          naves.add(nave3);
          naves.add(nave4);
+         guardarNavesEnArchivo();
     }
 
     public void creareNave() {
@@ -87,6 +93,16 @@ public class DepositoDeNaves {
             int experiencia = nave.getExperiencia(tipo);
             System.out.println(posicion + ". " + nave.getNombre() + " - " + experiencia + " experiencia ");
             posicion++;
+        }
+    }
+
+    private void guardarNavesEnArchivo() {
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        try{
+            File archivo = new File("spaceshipproyect/src/main/resources/DatosNaves.json");
+            objectMapper.writeValue(archivo, naves);
+        }catch (Exception e) {
+            System.out.println("Error al guardar las naves en el archivo: " + e.getMessage());
         }
     }
 }

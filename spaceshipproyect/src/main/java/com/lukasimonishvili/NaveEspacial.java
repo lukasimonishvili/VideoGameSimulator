@@ -14,6 +14,8 @@ public class NaveEspacial {
     private int capacidadCarga;
     private List<Mision> misionesHecho = new ArrayList<>();
 
+    public NaveEspacial() {}
+
     public NaveEspacial(String nombre, int autonomiaMaxima, boolean sensoresCientificos, int capacidadCarga) {
         this.sensoresCientificos = sensoresCientificos;
         this.autonomiaMaxima = autonomiaMaxima;
