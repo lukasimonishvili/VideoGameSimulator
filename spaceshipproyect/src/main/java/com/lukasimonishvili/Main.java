@@ -4,7 +4,9 @@ import java.io.ObjectInputStream.GetField;
 import java.util.Scanner;
 
 public class Main {
+    private static final MenuDeInterfaz menuDeInterfaz = new MenuDeInterfaz();
     public static void main(String[] args) {
+
         Scanner scanner = ScannerSingleton.getInstance().getScanner();
         // DepositoDeNaves depositoNaves=new DepositoDeNaves();
         // ControlDeMisiones misiones = new ControlDeMisiones();
@@ -65,5 +67,6 @@ public class Main {
                     break;
             }
         }
+        menuDeInterfaz.mostrarMenu();
     }
 }

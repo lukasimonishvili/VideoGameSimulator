@@ -8,11 +8,10 @@ import java.util.Scanner;
 public class RegistroMisiones {
     Scanner lectura = new Scanner(System.in);
     List<Mision> misiones = new ArrayList<>();
-    List<Mision> misionesPendientes=new ArrayList<>();
     //private static final String .vscode="misiones_guardadas.json";
 
     public RegistroMisiones() {
-        misiones.add(new MisionExploracion("Exploración de Marte", 30, 5, 10, EstadoMission.PENDIENTE));
+        misiones.add(new MisionExploracion("Exploración de Marte", 30, 5, 0, EstadoMission.PENDIENTE));
         misiones.add(new MisionRecoleccionDatos("Recolección de Datos en Venus", 6, 7, 15, EstadoMission.PENDIENTE));
         misiones.add(new MisionColonizacion("Colonización de Titán", 50, 8, 20, 1000, EstadoMission.PENDIENTE));
         misiones.add(new MisionExploracion("Exploración de Júpiter", 40, 6, 12, EstadoMission.PENDIENTE));
@@ -66,35 +65,12 @@ public class RegistroMisiones {
         System.out.println("\nMisión agregada.");
     }
 
-    public void actualizarMisionesPendientes(){
-        misionesPendientes.clear();
-        for(Mision mision:misiones){
-            if(mision.getEstado() == EstadoMission.PENDIENTE){ 
-                misionesPendientes.add(mision);
-            }
-        }
-    }
-
-    public void listarMisiones(){
+    public void listarMisiones(List<Mision> listDeMisiones) {
         System.out.println("\n----LISTA DE MISIONES----");
-        if(misiones.isEmpty()){
+        if(listDeMisiones.isEmpty()){
             System.out.println("No hay misiones para mostrar.");
         }else{
-            for (Mision mision : misiones) {
-                System.out.println("Misión: " + mision.getNombre());
-                System.out.println("Duración: " + mision.getDuracion() + "  horas.");
-                System.out.println("Prioridad: " + mision.getPrioridad());
-                System.out.println("Estado: " + mision.getEstado());
-                System.out.println("Experiencia requerida: " + mision.getExperienciaRequerida());
-            }
-        }
-        
-        actualizarMisionesPendientes();
-        System.out.println("\n----MISIONES PENDIENTES.----");
-        if(misionesPendientes.isEmpty()){
-            System.out.println("No hay misiones pendientes.");
-        }else{
-            for(Mision mision : misionesPendientes){
+            for (Mision mision : listDeMisiones) {
                 System.out.println("Misión: " + mision.getNombre());
                 System.out.println("Duración: " + mision.getDuracion() + "  horas.");
                 System.out.println("Prioridad: " + mision.getPrioridad());
