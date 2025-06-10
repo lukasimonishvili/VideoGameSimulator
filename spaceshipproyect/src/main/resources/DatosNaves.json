@@ -1,40 +1,57 @@
-{
-  "naves": [
-    {
-      "nombre": "Castor",
-      "autonomiaMaxima": 6,
-      "autonomiaActual": 4,
-      "sensoresCientificos": 8,
-      "capacidadCarga": 1001,
-      "experiencias": {
-        "tecnica": 0,
-        "cientifica": 100,
-        "estrategica": 0
-      }
-    },
-    {
-      "nombre": "Paco Sanz",
-      "autonomiaMaxima": 8,
-      "autonomiaActual": 8,
-      "sensoresCientificos": 8,
-      "capacidadCarga": 1001,
-      "experiencias": {
-        "tecnica": 0,
-        "cientifica": 100,
-        "estrategica": 100
-      }
-    },
-    {
-      "nombre": "Maxwell",
-      "autonomiaMaxima": 8,
-      "autonomiaActual": 6,
-      "sensoresCientificos": 8,
-      "capacidadCarga": 1031,
-      "experiencias": {
-        "tecnica": 0,
-        "cientifica": 10,
-        "estrategica": 100
-      }
+[
+  {
+    "nombre": "Nautilus",
+    "autonomiaMaxima": 3000,
+    "autonomiaActual": 3000,
+    "capacidadCarga": 2000,
+    "experiencia": {
+      "TECHNICA": 0,
+      "ESTRATEGICA": 0,
+      "CIENTIFICA": 0
     }
-  ]
-}
+  },
+  {
+    "nombre": "Space-X",
+    "autonomiaMaxima": 1800,
+    "autonomiaActual": 1800,
+    "capacidadCarga": 3000,
+    "experiencia": {
+      "TECHNICA": 0,
+      "ESTRATEGICA": 0,
+      "CIENTIFICA": 2000
+    }
+  },
+  {
+    "nombre": "Black pearl",
+    "autonomiaMaxima": 2500,
+    "autonomiaActual": 2500,
+    "capacidadCarga": 5000,
+    "experiencia": {
+      "TECHNICA": 0,
+      "ESTRATEGICA": 0,
+      "CIENTIFICA": 0
+    }
+  },
+  {
+    "nombre": "North light",
+    "autonomiaMaxima": 2700,
+    "autonomiaActual": 2700,
+    "capacidadCarga": 2500,
+    "experiencia": {
+      "TECHNICA": 0,
+      "ESTRATEGICA": 0,
+      "CIENTIFICA": 0
+    }
+  },
+  {
+    "nombre": "namaste",
+    "autonomiaMaxima": 1000,
+    "autonomiaActual": 1000,
+    "capacidadCarga": 500,
+    "experiencia": {
+      "TECHNICA": 0,
+      "ESTRATEGICA": 0,
+      "CIENTIFICA": 0
+    }
+  }
+]
