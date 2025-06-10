@@ -32,7 +32,7 @@ public class DepositoDeNaves {
         int capacidadCarga = scanner.nextInt();
         NaveEspacial nuevoNaveEspacial = new NaveEspacial(nombre, autonomiaMaxima, sensoresCientific, capacidadCarga);
         naves.add(nuevoNaveEspacial);
-        System.out.println("Nueva nave espacial creada");
+        System.out.println("_____Nueva nave espacial creada_____");
     }
 
     public void mostrarTodosLosNaves() {
@@ -63,7 +63,7 @@ public class DepositoDeNaves {
             nave2.getExperienciaTotal(),
             nave1.getExperienciaTotal()
         ));
-        System.out.println("Ranking por experiencia :");
+        System.out.println("--Ranking por experiencia : --");
 
         int posicion = 1;
         for (NaveEspacial nave : navesOrdenadas) {

@@ -9,7 +9,7 @@ public class HistorialDeMisiones {
     public void registrarResultado(Mision mision, NaveEspacial nave, int experienciaObtenida, String eventoEspecial){
         RegistroHistorial nuevoRegistro=new RegistroHistorial(mision, nave, experienciaObtenida, eventoEspecial);
         registroHistorial.add(nuevoRegistro);
-        System.out.println("NUEVO REGISTRO AGREGADO");
+        System.out.println("---NUEVO REGISTRO AGREGADO---");
 
     }
 
