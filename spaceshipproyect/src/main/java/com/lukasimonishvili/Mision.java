@@ -1,7 +1,6 @@
 package com.lukasimonishvili;
 
 public abstract class Mision {
-  
     protected String nombre;
     protected int duracion;
     protected int prioridad;
