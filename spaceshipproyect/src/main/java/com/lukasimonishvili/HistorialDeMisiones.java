@@ -10,6 +10,7 @@ public class HistorialDeMisiones {
         RegistroHistorial nuevoRegistro=new RegistroHistorial(mision, nave, experienciaObtenida, eventoEspecial);
         registroHistorial.add(nuevoRegistro);
         System.out.println("NUEVO REGISTRO AGREGADO");
+
     }
 
     public void mostrarHistorial(){
@@ -21,6 +22,4 @@ public class HistorialDeMisiones {
             }
         }
     }
-
-
 }
