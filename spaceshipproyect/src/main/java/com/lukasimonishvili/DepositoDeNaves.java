@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -11,6 +12,16 @@ public class DepositoDeNaves {
     public List<NaveEspacial> naves = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
     private ObjectMapper objectMapper = new ObjectMapper();
+
+    public DepositoDeNaves() {
+        File archivo = new File("spaceshipproyect/src/main/resources/DatosNaves.json");
+        try{
+            this.naves = objectMapper.readValue(archivo, new TypeReference<List<NaveEspacial>>() {});
+        }catch (Exception e) {
+            System.out.println("Error al cargar el archivo de naves: " + e.getMessage());
+        }
+        System.out.println("Se han cargado " + naves.size() + " naves espaciales desde el archivo.");
+    }
 
     public void creareNave() {
         System.out.println("Por favor escriba el nombre de la nave espacial");
