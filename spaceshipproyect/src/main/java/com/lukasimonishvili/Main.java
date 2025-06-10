@@ -39,7 +39,26 @@ public class Main {
                     String nombreMision = scanner.next();
                     System.out.println("Ingrese la prioridad de la mision (1-10):");
                     int prioridad = scanner.nextInt();
-                    
+                    System.out.println("Ingrese la duracion de la mision (en horas):");
+                    int duracion = scanner.nextInt();
+                    System.out.println("Ingrese la experiencia requerida para la mision:");
+                    int experienciaRequerida = scanner.nextInt();
+                    System.out.println("Ingrese el tipo de mision (1: Exploracion, 2: Colonizacion, 3: Recoleccion de Datos):");
+                    int tipoMision = scanner.nextInt();
+                    Mision nuevaMision = null;
+                    switch (tipoMision) {
+                        case 1:
+                            nuevaMision = new MisionExploracion(nombreMision, duracion, prioridad, experienciaRequerida, EstadoMission.COMPLETADA);
+                            break;
+                        case 2:
+                            nuevaMision = new MisionColonizacion(nombreMision, duracion, prioridad, experienciaRequerida, 0, EstadoMission.PENDIENTE);
+                            break;
+                        case 3:
+                            nuevaMision = new MisionRecoleccionDatos(nombreMision, duracion, prioridad, experienciaRequerida, EstadoMission.PENDIENTE);
+                            break;
+                        default:
+                            System.out.println("Tipo de mision no valido.");
+                    }
                     break;
             
                 default:
