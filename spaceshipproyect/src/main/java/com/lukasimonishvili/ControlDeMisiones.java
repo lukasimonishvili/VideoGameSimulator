@@ -32,7 +32,6 @@ public class ControlDeMisiones {
             }
 
             nave.ejecutarMision(mision.getDuracion(), mision.getTipoExperiencia(), experiencia);
-            nave.registrarExperiencia(mision.getTipoExperiencia(), experiencia);
             nave.restaurarNave();
             nave.registrarMision(mision);
             historial.registrarResultado(mision, nave, experiencia, eventoEspecial);

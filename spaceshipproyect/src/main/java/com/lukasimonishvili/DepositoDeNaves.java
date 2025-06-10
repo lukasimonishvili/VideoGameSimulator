@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class DepositoDeNaves {
     public List<NaveEspacial> naves = new ArrayList<>();
-    
+    private Scanner scanner = new Scanner(System.in);
 
     public DepositoDeNaves() {
          NaveEspacial nave1 = new NaveEspacial("Nautilus", 3000, false, 2000);
@@ -20,7 +20,6 @@ public class DepositoDeNaves {
     }
 
     public void creareNave() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Por favor escriba el nombre de la nave espacial");
         String nombre = scanner.nextLine();
         System.out.println("Por favor escriba la autonomia maxima de la nave espacial");
@@ -33,40 +32,26 @@ public class DepositoDeNaves {
         NaveEspacial nuevoNaveEspacial = new NaveEspacial(nombre, autonomiaMaxima, sensoresCientific, capacidadCarga);
         naves.add(nuevoNaveEspacial);
         System.out.println("Nueva nave espacial creada");
-        scanner.close();
     }
 
-    public void mostrarRankingNavesPorExperiencia(){        
-        ArrayList<NaveEspacial> navesOrdenadas = new ArrayList<>(naves);
-        
-        navesOrdenadas.sort((nave1, nave2)->Integer.compare(
-            nave2.getExperienciaTotal(),
-            nave1.getExperienciaTotal()
-        ));
-        System.out.println("Ranking por experiencia :");
-
-        int posicion = 1;
-        for (NaveEspacial nave : navesOrdenadas) {
-            System.out.println(posicion + ". " + nave.getNombre() + " - " + nave.getExperienciaTotal());
-            posicion++;
+    public void mostrarTodosLosNaves() {
+        if (naves.isEmpty()) {
+            System.out.println("No hay naves espaciales registradas.");
+            return;
+        }
+        System.out.println("Naves espaciales registradas:");
+        for (NaveEspacial nave : naves) {
+            System.out.println(nave.getNombre() + " - Autonomía Máxima: " + nave.getAutonomiaMaxima() + ", Capacidad de Carga: " + nave.getCapacidadCarga());
         }
     }
 
-    public void mostrarRankingNavesPorTipo(TipoMision tipo){
-        
-        ArrayList<NaveEspacial> navesOrdenadas = new ArrayList<>(naves);
-        
-        navesOrdenadas.sort((nave1, nave2)->Integer.compare(
-            nave2.getExperiencia(tipo),
-            nave1.getExperiencia(tipo)
-        ));
-        System.out.println("Ranking por tipo de experiencia : " + tipo);
-
-        int posicion = 1;
-        for (NaveEspacial nave : navesOrdenadas) {
-            int experiencia = nave.getExperiencia(tipo);
-            System.out.println(posicion + ". " + nave.getNombre() + " - " + experiencia + " experiencia ");
-            posicion++;
+    public List<NaveEspacial> getNavesAptadaParaMision(int duracion, TipoMision tipoExperiencia, int experienciaRequerida) {
+        List<NaveEspacial> navesFiltradas = new ArrayList<>();
+        for (NaveEspacial nave : naves) {
+            if (nave.aptasParaUnaMision(duracion, tipoExperiencia, experienciaRequerida)) {
+                navesFiltradas.add(nave);
+            }
         }
+        return navesFiltradas;
     }
 }

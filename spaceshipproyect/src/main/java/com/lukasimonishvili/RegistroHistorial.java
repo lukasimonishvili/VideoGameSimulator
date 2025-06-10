@@ -20,10 +20,13 @@ public class RegistroHistorial {
 
     @Override
     public String toString(){
+        EstadoMission estadoMision = mision.getEstado();
+        String estado = estadoMision == EstadoMission.PENDIENTE ? "Pendiente" :
+                          estadoMision == EstadoMission.COMPLETADA ? "Completada" : "Fallida";
         return "RegistroHistorial{" +
-                "mision=" + mision +
-                ", nave=" + nave +
-                ", resultadoMision=" + mision.getEstado() +
+                "mision=" + mision.getNombre() +
+                ", nave=" + nave.getNombre() +
+                ", resultadoMision=" + estado +
                 ", experienciaObtenida=" + experienciaObtenida +
                 ", eventoEspecial='" + eventoEspecial + '\'' +
                 '}';
