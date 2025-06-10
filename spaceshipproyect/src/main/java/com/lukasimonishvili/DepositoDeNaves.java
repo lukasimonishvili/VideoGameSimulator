@@ -1,24 +1,16 @@
 package com.lukasimonishvili;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 public class DepositoDeNaves {
     public List<NaveEspacial> naves = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
-
-
-    public DepositoDeNaves() {
-         NaveEspacial nave1 = new NaveEspacial("Nautilus", 3000, false, 2000);
-         NaveEspacial nave2 = new NaveEspacial("Space-X", 1800, true, 3000);
-         NaveEspacial nave3 = new NaveEspacial("Black pearl", 2500, true, 5000);
-         NaveEspacial nave4 = new NaveEspacial("North light", 2700, false, 2500);
-
-         naves.add(nave1);
-         naves.add(nave2);
-         naves.add(nave3);
-         naves.add(nave4);
-    }
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     public void creareNave() {
         System.out.println("Por favor escriba el nombre de la nave espacial");
@@ -33,6 +25,7 @@ public class DepositoDeNaves {
         NaveEspacial nuevoNaveEspacial = new NaveEspacial(nombre, autonomiaMaxima, sensoresCientific, capacidadCarga);
         naves.add(nuevoNaveEspacial);
         System.out.println("Nueva nave espacial creada");
+        guardarNavesEnArchivo();
     }
 
     public void mostrarTodosLosNaves() {
@@ -87,6 +80,16 @@ public class DepositoDeNaves {
             int experiencia = nave.getExperiencia(tipo);
             System.out.println(posicion + ". " + nave.getNombre() + " - " + experiencia + " experiencia ");
             posicion++;
+        }
+    }
+
+    public void guardarNavesEnArchivo() {
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        try{
+            File archivo = new File("spaceshipproyect/src/main/resources/DatosNaves.json");
+            objectMapper.writeValue(archivo, naves);
+        }catch (Exception e) {
+            System.out.println("Error al guardar las naves en el archivo: " + e.getMessage());
         }
     }
 }

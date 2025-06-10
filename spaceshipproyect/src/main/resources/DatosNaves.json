@@ -1,40 +1,49 @@
-{
-  "naves": [
-    {
-      "nombre": "Castor",
-      "autonomiaMaxima": 6,
-      "autonomiaActual": 4,
-      "sensoresCientificos": 8,
-      "capacidadCarga": 1001,
-      "experiencias": {
-        "tecnica": 0,
-        "cientifica": 100,
-        "estrategica": 0
-      }
-    },
-    {
-      "nombre": "Paco Sanz",
-      "autonomiaMaxima": 8,
-      "autonomiaActual": 8,
-      "sensoresCientificos": 8,
-      "capacidadCarga": 1001,
-      "experiencias": {
-        "tecnica": 0,
-        "cientifica": 100,
-        "estrategica": 100
-      }
-    },
-    {
-      "nombre": "Maxwell",
-      "autonomiaMaxima": 8,
-      "autonomiaActual": 6,
-      "sensoresCientificos": 8,
-      "capacidadCarga": 1031,
-      "experiencias": {
-        "tecnica": 0,
-        "cientifica": 10,
-        "estrategica": 100
-      }
-    }
-  ]
-}
+[ {
+  "nombre" : "Nautilus",
+  "autonomiaMaxima" : 3000,
+  "autonomiaActual" : 3000,
+  "capacidadCarga" : 2000,
+  "estatisticaDeNave" : "Nombre de la nave: Nautilus\nAutonomía máxima: 3000\nAutonomía actual: 3000\nSensores científicos: No\nExperiencias:\n  Técnica: 0\n  Científica: 0\n  Estratégica: 0\n  Experiencia total: 0\nCapacidad de carga: 2000\nMisiones realizadas:\n",
+  "experiencia" : {
+    "TECHNICA" : 0,
+    "ESTRATEGICA" : 0,
+    "CIENTIFICA" : 0
+  },
+  "experienciaTotal" : 0
+}, {
+  "nombre" : "Space-X",
+  "autonomiaMaxima" : 1800,
+  "autonomiaActual" : 1800,
+  "capacidadCarga" : 3000,
+  "estatisticaDeNave" : "Nombre de la nave: Space-X\nAutonomía máxima: 1800\nAutonomía actual: 1800\nSensores científicos: Sí\nExperiencias:\n  Técnica: 0\n  Científica: 0\n  Estratégica: 0\n  Experiencia total: 0\nCapacidad de carga: 3000\nMisiones realizadas:\n",
+  "experiencia" : {
+    "TECHNICA" : 0,
+    "ESTRATEGICA" : 0,
+    "CIENTIFICA" : 0
+  },
+  "experienciaTotal" : 0
+}, {
+  "nombre" : "Black pearl",
+  "autonomiaMaxima" : 2500,
+  "autonomiaActual" : 2500,
+  "capacidadCarga" : 5000,
+  "estatisticaDeNave" : "Nombre de la nave: Black pearl\nAutonomía máxima: 2500\nAutonomía actual: 2500\nSensores científicos: Sí\nExperiencias:\n  Técnica: 0\n  Científica: 0\n  Estratégica: 0\n  Experiencia total: 0\nCapacidad de carga: 5000\nMisiones realizadas:\n",
+  "experiencia" : {
+    "TECHNICA" : 0,
+    "ESTRATEGICA" : 0,
+    "CIENTIFICA" : 0
+  },
+  "experienciaTotal" : 0
+}, {
+  "nombre" : "North light",
+  "autonomiaMaxima" : 2700,
+  "autonomiaActual" : 2700,
+  "capacidadCarga" : 2500,
+  "estatisticaDeNave" : "Nombre de la nave: North light\nAutonomía máxima: 2700\nAutonomía actual: 2700\nSensores científicos: No\nExperiencias:\n  Técnica: 0\n  Científica: 0\n  Estratégica: 0\n  Experiencia total: 0\nCapacidad de carga: 2500\nMisiones realizadas:\n",
+  "experiencia" : {
+    "TECHNICA" : 0,
+    "ESTRATEGICA" : 0,
+    "CIENTIFICA" : 0
+  },
+  "experienciaTotal" : 0
+} ]
