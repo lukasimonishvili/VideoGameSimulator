@@ -1,7 +1,7 @@
 package com.lukasimonishvili;
 
 public abstract class Mision {
-    protected String nombre;
+    protected static String nombre;
     protected int duracion;
     protected int prioridad;
     protected EstadoMission estado;
@@ -25,7 +25,7 @@ public abstract class Mision {
         this.experienciaRequerida = experienciaRequerida;
     }
 
-    public String getNombre() {
+    public static String getNombre() {
         return nombre;
     }
     public int getDuracion() {

@@ -1,21 +1,26 @@
 package com.lukasimonishvili;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 public class RegistroMisiones {
     Scanner lectura = new Scanner(System.in);
     List<Mision> misiones = new ArrayList<>();
-    //private static final String .vscode="misiones_guardadas.json";
 
     public RegistroMisiones() {
         misiones.add(new MisionExploracion("Exploración de Marte", 30, 5, 0, EstadoMission.PENDIENTE));
         misiones.add(new MisionRecoleccionDatos("Recolección de Datos en Venus", 6, 7, 15, EstadoMission.PENDIENTE));
         misiones.add(new MisionColonizacion("Colonización de Titán", 50, 8, 20, 1000, EstadoMission.PENDIENTE));
         misiones.add(new MisionExploracion("Exploración de Júpiter", 40, 6, 12, EstadoMission.PENDIENTE));
-        //cargarMisionesDeJson();
+        
     }
 
     public void agregarMision() {
@@ -64,7 +69,6 @@ public class RegistroMisiones {
                 System.out.println("Tipo de misión no válido.");
         }
         misiones.add(nuevaMision);
-        //guardarMisionesEnJson();
         System.out.println("\n----MISIÓN AGREGADA.----");
     }
 
@@ -87,6 +91,37 @@ public class RegistroMisiones {
         lectura.close();
     }
 
+    private void guardarMisionesEnJson(){
+        ObjectMapper mapper=new ObjectMapper();
+        File archivoMisiones = new File("spaceshipproyect/src/main/resources/DatosMisiones.json");
+
+        try {
+            JsonNode  raiz = mapper.createObjectNode();
+            ArrayNode tiposMision = (ArrayNode) raiz.get("tipos_mision");
+
+            String clave ="";
+            ObjectNode nuevaMision= mapper.createObjectNode();
+            nuevaMision.put("Nombre", Mision.getNombre());
+            nuevaMision.put("Duracion", Mision.getDuracion());
+            nuevaMision.put("Prioridad", Mision.getPrioridad());
+            nuevaMision.put("Estado", Mision.getEstado().toString());
+            nuevaMision.put("ExperienciaRequerida", Mision.getExperienciaRequerida());
+            if (misiones instanceof MisionExploracion) {
+                clave = "mision_exploracion";
+            } else if (misiones instanceof MisionRecoleccionDatos) {
+                clave = "mision_recoleccion_datos";
+            } else if (misiones instanceof MisionColonizacion) {
+                clave = "mision_colonizacion";
+            }
+
+            
+            mapper.writerWithDefaultPrettyPrinter().writeValue(archivoMisiones, misiones);
+            System.out.println("Misiones guardadas correctamente en el archivo JSON.");
+        } catch (Exception e) {
+            System.out.println("Error al guardar las misiones: " + e.getMessage());
+        }
+
+    }
     
     public List<Mision> filtrarMisionesPorTipo(TipoMision tipoMision) {
         List<Mision> misionesFiltradas = new ArrayList<>();
