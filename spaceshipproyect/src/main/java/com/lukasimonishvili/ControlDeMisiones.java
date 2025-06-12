@@ -6,7 +6,7 @@ public class ControlDeMisiones {
     private HistorialDeMisiones historial=new HistorialDeMisiones();
 
     public void ejecutarMision(Mision mision, NaveEspacial nave) {
-        if (nave.aptasParaUnaMision(mision.getDuracion(), mision.getTipoExperiencia(), mision.getExperienciaRequerida())) {
+        if (nave.aptasParaUnaMision(mision.getDuracion(), mision.getTipo(), mision.getExperienciaRequerida())) {
             System.out.println("Ejecutando misión: " + mision.getNombre());
             Random aleatorio = new Random();
             int numeroAleatorio = aleatorio.nextInt(100);
@@ -31,7 +31,7 @@ public class ControlDeMisiones {
                 System.out.println("¡Descubrimiento especial!");
             }
 
-            nave.ejecutarMision(mision.getDuracion(), mision.getTipoExperiencia(), experiencia);
+            nave.ejecutarMision(mision.getDuracion(), mision.getTipo(), experiencia);
             nave.restaurarNave();
             historial.registrarResultado(mision, nave, experiencia, eventoEspecial);
         } else {

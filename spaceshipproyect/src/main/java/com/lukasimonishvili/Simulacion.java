@@ -153,7 +153,7 @@ public class Simulacion {
         List<NaveEspacial> navesAsignadas = new ArrayList<>();
 
         for (Mision m : misionesOrdenadas) {
-            TipoMision tipoExp = m.getTipoExperiencia();
+            TipoMision tipoExp = m.getTipo();
             int expNecesaria = m.getExperienciaRequerida();
             
             NaveEspacial naveApta = buscarNaveApta(listaNaves, m.getDuracion(), false, expNecesaria, tipoExp);
@@ -167,14 +167,14 @@ public class Simulacion {
                     System.out.println("\nAsignada nave '" + naveApta.getNombre() + "' (por experiencia total) " + " a misión '" + m.getNombre() + "'\n");
                     navesAsignadas.add(naveApta);
                     listaNaves.remove(naveApta); // Se elimina de la lista para que no pueda usarse en otras misiones
-                    naveApta.ejecutarMision(m.getDuracion(), m.getTipoExperiencia(), 1);
+                    naveApta.ejecutarMision(m.getDuracion(), m.getTipo(), 1);
                     m.setEstado(EstadoMission.COMPLETADA);
                 }
             } else {
                 System.out.println("\nAsignada nave: " + naveApta.getNombre());
                 navesAsignadas.add(naveApta);
                 listaNaves.remove(naveApta); // Igual aquí la removemos
-                naveApta.ejecutarMision(m.getDuracion(), m.getTipoExperiencia(), 1);
+                naveApta.ejecutarMision(m.getDuracion(), m.getTipo(), 1);
                 m.setEstado(EstadoMission.COMPLETADA);
             }
         }

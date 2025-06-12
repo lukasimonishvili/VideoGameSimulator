@@ -1,54 +1,28 @@
-{
-  "tipos_mision" : [ {
-    "mision_exploracion" : [ {
-      "nombre" : "fuga",
-      "prioridad" : 1,
-      "estado" : "PENDIENTE",
-      "duracion" : 8,
-      "experienciaCientifica" : 100,
-      "experienciaEstrategica" : 0,
-      "experienciaTecnica" : 0,
-      "capacidadCarga" : 1001
-    }, {
-      "nombre" : "otra mision",
-      "prioridad" : 2,
-      "estado" : "COMPLETADA",
-      "duracion" : 5,
-      "experienciaCientifica" : 10,
-      "experienciaEstrategica" : 10,
-      "experienciaTecnica" : 10,
-      "capacidadCarga" : 1001
-    } ]
-  }, {
-    "mision_recoleccion_datos" : [ {
-      "nombre" : "recoleccion1",
-      "prioridad" : 2,
-      "estado" : "PENDIENTE",
-      "duracion" : 6,
-      "experienciaCientifica" : 0,
-      "experienciaEstrategica" : 0,
-      "experienciaTecnica" : 100,
-      "capacidadCarga" : 1020
-    } ]
-  }, {
-    "mision_colonizacion" : [ {
-      "nombre" : "colonizacionZ",
-      "prioridad" : 7,
-      "estado" : "PENDIENTE",
-      "duracion" : 6,
-      "experienciaCientifica" : 0,
-      "experienciaEstrategica" : 100,
-      "experienciaTecnica" : 0,
-      "capacidadCarga" : 1020
-    }, {
-      "nombre" : "colonizacionNueva",
-      "prioridad" : 3,
-      "estado" : "PENDIENTE",
-      "duracion" : 10,
-      "experienciaCientifica" : 20,
-      "experienciaEstrategica" : 20,
-      "experienciaTecnica" : 20,
-      "capacidadCarga" : 1500
-    } ]
-  } ]
-}
+[
+  {
+    "nombre": "explorar mars",
+    "duracion": 20,
+    "prioridad": 4,
+    "estado": "PENDIENTE",
+    "experienciaRequerida": 10,
+    "capacidadCarga": 20,
+    "tipo": "ESTRATEGICA"
+  },
+  {
+    "nombre": "test",
+    "duracion": 5,
+    "prioridad": 10,
+    "estado": "PENDIENTE",
+    "experienciaRequerida": 100,
+    "tipo": "TECHNICA"
+  },
+  {
+    "nombre": "test2",
+    "duracion": 10,
+    "prioridad": 4,
+    "estado": "PENDIENTE",
+    "experienciaRequerida": 9,
+    "capacidadCarga": 2,
+    "tipo": "ESTRATEGICA"
+  }
+]

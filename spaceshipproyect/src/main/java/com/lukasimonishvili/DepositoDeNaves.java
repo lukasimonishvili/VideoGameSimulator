@@ -20,7 +20,6 @@ public class DepositoDeNaves {
         }catch (Exception e) {
             System.out.println("Error al cargar el archivo de naves: " + e.getMessage());
         }
-        System.out.println("Se han cargado " + naves.size() + " naves espaciales desde el archivo.");
     }
 
     public void creareNave() {

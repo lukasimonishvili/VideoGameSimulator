@@ -26,7 +26,7 @@ public class MenuDeInterfaz {
             case 1:
                 try{
                     depositoDeNaves.creareNave();
-                } finally {
+                } catch(Exception e) {
                     System.err.println("Error al crear la nave espacial. Asegúrese de que los datos ingresados sean correctos.");
                     mostrarMenu();
                 }
@@ -34,7 +34,7 @@ public class MenuDeInterfaz {
             case 2:
                 try{
                     registroMisiones.agregarMision();
-                } finally {
+                } catch(Exception e) {
                     System.err.println("Error al registrar la misión. Asegúrese de que los datos ingresados sean correctos.");
                     mostrarMenu();
                 }
@@ -81,7 +81,7 @@ public class MenuDeInterfaz {
             return;
         }
         for(int i = 0; i < misiones.size(); i++) {
-            TipoMision tipo = misiones.get(i).getTipoExperiencia();
+            TipoMision tipo = misiones.get(i).getTipo();
             String tipoDeMision = tipo == TipoMision.TECHNICA ? "Técnica" :
                                   tipo == TipoMision.CIENTIFICA ? "Científica" :
                                   "Estratégica";
@@ -92,7 +92,7 @@ public class MenuDeInterfaz {
         System.out.println("Ingrese el la nave espacial que desea usar:");
         List<NaveEspacial> navesAptas = depositoDeNaves.getNavesAptadaParaMision(
             misiones.get(misionSeleccionada).getDuracion(),
-            misiones.get(misionSeleccionada).getTipoExperiencia(),
+            misiones.get(misionSeleccionada).getTipo(),
             misiones.get(misionSeleccionada).getExperienciaRequerida()
         );
         if(navesAptas.isEmpty()) {
