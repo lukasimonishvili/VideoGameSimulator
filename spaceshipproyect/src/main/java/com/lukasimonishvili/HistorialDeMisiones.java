@@ -49,5 +49,5 @@ public class HistorialDeMisiones {
         }catch (Exception e) {
             System.out.println("---Error al cargar el historial desde el archivo Json:  " + e.getMessage()+" ---");
         }
-}
+    }
 }
