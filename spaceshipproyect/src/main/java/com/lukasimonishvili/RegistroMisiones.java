@@ -69,6 +69,7 @@ public class RegistroMisiones {
                 System.out.println("Tipo de misión no válido.");
         }
         misiones.add(nuevaMision);
+        guardarHistorialEnJson();
         System.out.println("\n----MISIÓN AGREGADA.----");
     }
 
@@ -91,34 +92,47 @@ public class RegistroMisiones {
         lectura.close();
     }
 
-    private void guardarMisionesEnJson(){
+    private void guardarHistorialEnJson(){
         ObjectMapper mapper=new ObjectMapper();
         File archivoMisiones = new File("spaceshipproyect/src/main/resources/DatosMisiones.json");
 
         try {
-            JsonNode  raiz = mapper.createObjectNode();
-            ArrayNode tiposMision = (ArrayNode) raiz.get("tipos_mision");
-
-            String clave ="";
             ObjectNode nuevaMision= mapper.createObjectNode();
-            nuevaMision.put("Nombre", Mision.getNombre());
-            nuevaMision.put("Duracion", Mision.getDuracion());
-            nuevaMision.put("Prioridad", Mision.getPrioridad());
-            nuevaMision.put("Estado", Mision.getEstado().toString());
-            nuevaMision.put("ExperienciaRequerida", Mision.getExperienciaRequerida());
-            if (misiones instanceof MisionExploracion) {
-                clave = "mision_exploracion";
-            } else if (misiones instanceof MisionRecoleccionDatos) {
-                clave = "mision_recoleccion_datos";
-            } else if (misiones instanceof MisionColonizacion) {
-                clave = "mision_colonizacion";
+            for(Mision mision : misiones){
+                nuevaMision.put("Nombre", mision.getNombre());
+                nuevaMision.put("Duracion", mision.getDuracion());
+                nuevaMision.put("Prioridad", mision.getPrioridad());
+                nuevaMision.put("Estado", mision.getEstado().toString());
+                nuevaMision.put("ExperienciaRequerida", mision.getExperienciaRequerida());
+            }
+            
+            String clave="";
+            if(misiones instanceof MisionColonizacion misionColonizacion){
+                clave="mision_colonizacion";
+                nuevaMision.put("CapacidadCarga", misionColonizacion.capacidadCarga);
+                nuevaMision.put("ExperienciaEstrategica", misionColonizacion.getExperienciaRequerida());
+            }else if(misiones instanceof MisionRecoleccionDatos misionRecoleccionDatos){
+                clave="mision_recoleccion_datos";
+                nuevaMision.put("ExperienciaTecnica", misionRecoleccionDatos.getExperienciaRequerida());
+            }else if(misiones instanceof MisionExploracion misionExploracion){
+                clave="mision_exploracion";
+                nuevaMision.put("ExperienciaCientifica", misionExploracion.getExperienciaRequerida());
+            }
+            
+            JsonNode tipomision= mapper.readTree(archivoMisiones).get("tipos_mision");
+            for(JsonNode tipo : tipomision) {
+                if(tipo.has(clave)){
+                    ArrayNode misionesArray =(ArrayNode) tipo.get(clave);
+                    misionesArray.add(nuevaMision);
+                    break;
+                }
             }
 
-            
             mapper.writerWithDefaultPrettyPrinter().writeValue(archivoMisiones, misiones);
-            System.out.println("Misiones guardadas correctamente en el archivo JSON.");
+            
+            System.out.println("---Misiones guardadas correctamente en el archivo JSON.---");
         } catch (Exception e) {
-            System.out.println("Error al guardar las misiones: " + e.getMessage());
+        System.out.println("--Error al guardar las misiones: " + e.getMessage()+"--");
         }
 
     }
