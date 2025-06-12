@@ -7,10 +7,9 @@ public class MenuDeInterfaz {
     private final DepositoDeNaves depositoDeNaves = new DepositoDeNaves();
     private final RegistroMisiones registroMisiones = new RegistroMisiones();
     private final ControlDeMisiones controlDeMisiones = new ControlDeMisiones();
-    private final HistorialDeMisiones historialDeMisiones = new HistorialDeMisiones();
 
     public void mostrarMenu() {
-        System.out.println("-------Bienvenido al programa de gestión de misiones espaciales.------");
+        System.out.println("\n-------Bienvenido al programa de gestión de misiones espaciales.------");
         System.out.println("1. Registrar una nueva nave espacial.");
         System.out.println("2. Registrar una nueva misión.");
         System.out.println("3. Ejecutar una misión.");
@@ -45,7 +44,8 @@ public class MenuDeInterfaz {
                 depositoDeNaves.mostrarRankingNavesPorExperiencia();
                 break;
             case 8:
-                historialDeMisiones.mostrarHistorial();
+                controlDeMisiones.mostrarHistorial();
+            break;
             case 9:
                 System.out.println("Saliendo del programa.");
                 return;

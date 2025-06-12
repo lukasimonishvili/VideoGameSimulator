@@ -7,7 +7,7 @@ public class ControlDeMisiones {
 
     public void ejecutarMision(Mision mision, NaveEspacial nave) {
         if (nave.aptasParaUnaMision(mision.getDuracion(), mision.getTipoExperiencia(), mision.getExperienciaRequerida())) {
-            System.out.println("Ejecutando misión: " + mision.getNombre());
+            System.out.println("\n ----Ejecutando misión: " + mision.getNombre()+"----");
             Random aleatorio = new Random();
             int numeroAleatorio = aleatorio.nextInt(100);
             int experiencia = 1000;
@@ -23,7 +23,7 @@ public class ControlDeMisiones {
             if(numeroAleatorio >= 10 && numeroAleatorio <= 14) {
                 experiencia = 2000;
                 eventoEspecial="Mejora tecnológica.";
-                System.out.println("¡Mejora tecnológica! Has obtenido una experiencia doble.");
+                System.out.println("¡Mejora tecnológica! Has obtenido una experiencia doble. + + ");
             }
 
             if(numeroAleatorio >= 15 && numeroAleatorio <= 19) {

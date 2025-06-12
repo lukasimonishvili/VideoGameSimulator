@@ -15,10 +15,10 @@ public class HistorialDeMisiones {
 
     public void mostrarHistorial(){
         if(registroHistorial.isEmpty()){
-            System.out.println("No se encuentras registros en el historial.");
+            System.out.println("---No se encuentras registros en el historial.---");
         }else{
             for (RegistroHistorial historial : registroHistorial) {
-                System.out.println(historial);
+                System.out.println(historial.toString());
             }
         }
     }

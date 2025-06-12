@@ -67,7 +67,7 @@ public class DepositoDeNaves {
             nave2.getExperienciaTotal(),
             nave1.getExperienciaTotal()
         ));
-        System.out.println("Ranking por experiencia :");
+        System.out.println("-----Ranking por experiencia :");
 
         int posicion = 1;
         for (NaveEspacial nave : navesOrdenadas) {
@@ -84,7 +84,7 @@ public class DepositoDeNaves {
             nave2.getExperiencia(tipo),
             nave1.getExperiencia(tipo)
         ));
-        System.out.println("Ranking por tipo de experiencia : " + tipo);
+        System.out.println("-----Ranking por tipo de experiencia : " + tipo);
 
         int posicion = 1;
         for (NaveEspacial nave : navesOrdenadas) {

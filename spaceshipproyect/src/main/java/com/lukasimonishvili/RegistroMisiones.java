@@ -62,16 +62,16 @@ public class RegistroMisiones {
         }
         misiones.add(nuevaMision);
         //guardarMisionesEnJson();
-        System.out.println("\nMisión agregada.");
+        System.out.println("\n----MISIÓN AGREGADA.----");
     }
 
     public void listarMisiones(List<Mision> listDeMisiones) {
         System.out.println("\n----LISTA DE MISIONES----");
         if(listDeMisiones.isEmpty()){
-            System.out.println("No hay misiones para mostrar.");
+            System.out.println("\nNo hay misiones para mostrar.");
         }else{
             for (Mision mision : listDeMisiones) {
-                System.out.println("Misión: " + mision.getNombre());
+                System.out.println("\nMisión: " + mision.getNombre());
                 System.out.println("Duración: " + mision.getDuracion() + "  horas.");
                 System.out.println("Prioridad: " + mision.getPrioridad());
                 System.out.println("Estado: " + mision.getEstado());

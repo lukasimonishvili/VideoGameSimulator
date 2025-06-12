@@ -51,15 +51,15 @@ public abstract class Mision {
     public void completarMision() {
         if (estado == EstadoMission.PENDIENTE) {
             this.estado = EstadoMission.COMPLETADA;
-            System.out.println("Misión completada: " + nombre);
+            System.out.println("\n----Misión completada: " + nombre+" ----");
         } else {
-            throw new IllegalStateException("La misión ya está completada.");
+            throw new IllegalStateException("---La misión ya está completada.---");
         }
     }
 
     public void misionPendiente(){
         if(estado==EstadoMission.PENDIENTE){
-            System.out.println("Misión pendiente: " + nombre);
+            System.out.println("\n----Misión pendiente: " + nombre+" ----");
         }
     }
     
