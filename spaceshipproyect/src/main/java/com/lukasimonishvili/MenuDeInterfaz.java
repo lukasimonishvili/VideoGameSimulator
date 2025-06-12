@@ -24,10 +24,20 @@ public class MenuDeInterfaz {
         int opcion = scanner.nextInt();
         switch (opcion) {
             case 1:
-                depositoDeNaves.creareNave();
+                try{
+                    depositoDeNaves.creareNave();
+                } finally {
+                    System.err.println("Error al crear la nave espacial. Asegúrese de que los datos ingresados sean correctos.");
+                    mostrarMenu();
+                }
             break;
             case 2:
-                registroMisiones.agregarMision();
+                try{
+                    registroMisiones.agregarMision();
+                } finally {
+                    System.err.println("Error al registrar la misión. Asegúrese de que los datos ingresados sean correctos.");
+                    mostrarMenu();
+                }
             break;
             case 3:
                 menuDeEjecutarMision();
