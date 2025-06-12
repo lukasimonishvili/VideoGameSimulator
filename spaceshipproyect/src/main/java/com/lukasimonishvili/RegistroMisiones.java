@@ -25,6 +25,9 @@ public class RegistroMisiones {
         
         
         System.out.println("Ingrese la duración: ");
+        System.out.println("Para Misión de Exploración, la duración mínima es de 8 horas.");
+        System.out.println("Para Misión de Recolección de Datos, la duración típica debe ser estar entre 4 y 8 horas.");
+        System.out.println("Para Misión de Colonización, la duración mínima para colonizar es de 6 horas.");
         int duracion = lectura.nextInt();
         
         System.out.println("¿Qué nivel prioritario tiene?.");

@@ -5,8 +5,8 @@
   "capacidadCarga" : 2000,
   "experiencia" : {
     "TECHNICA" : 0,
-    "CIENTIFICA" : 0,
-    "ESTRATEGICA" : 0
+    "ESTRATEGICA" : 0,
+    "CIENTIFICA" : 0
   }
 }, {
   "nombre" : "Space-X",
@@ -15,8 +15,8 @@
   "capacidadCarga" : 3000,
   "experiencia" : {
     "TECHNICA" : 0,
-    "CIENTIFICA" : 2000,
-    "ESTRATEGICA" : 0
+    "ESTRATEGICA" : 0,
+    "CIENTIFICA" : 2000
   }
 }, {
   "nombre" : "Black pearl",
@@ -25,8 +25,8 @@
   "capacidadCarga" : 5000,
   "experiencia" : {
     "TECHNICA" : 0,
-    "CIENTIFICA" : 0,
-    "ESTRATEGICA" : 0
+    "ESTRATEGICA" : 0,
+    "CIENTIFICA" : 0
   }
 }, {
   "nombre" : "North light",
@@ -35,8 +35,8 @@
   "capacidadCarga" : 2500,
   "experiencia" : {
     "TECHNICA" : 0,
-    "CIENTIFICA" : 0,
-    "ESTRATEGICA" : 0
+    "ESTRATEGICA" : 0,
+    "CIENTIFICA" : 0
   }
 }, {
   "nombre" : "namaste",
@@ -45,8 +45,8 @@
   "capacidadCarga" : 500,
   "experiencia" : {
     "TECHNICA" : 0,
-    "CIENTIFICA" : 0,
-    "ESTRATEGICA" : 0
+    "ESTRATEGICA" : 0,
+    "CIENTIFICA" : 0
   }
 }, {
   "nombre" : "kappa",
@@ -55,7 +55,17 @@
   "capacidadCarga" : 5000,
   "experiencia" : {
     "TECHNICA" : 0,
-    "CIENTIFICA" : 0,
-    "ESTRATEGICA" : 0
+    "ESTRATEGICA" : 0,
+    "CIENTIFICA" : 0
+  }
+}, {
+  "nombre" : "jas",
+  "autonomiaMaxima" : 23,
+  "autonomiaActual" : 23,
+  "capacidadCarga" : 500,
+  "experiencia" : {
+    "TECHNICA" : 0,
+    "ESTRATEGICA" : 0,
+    "CIENTIFICA" : 0
   }
 } ]
