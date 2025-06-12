@@ -1,12 +1,10 @@
 package com.lukasimonishvili;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -47,32 +45,9 @@ public class HistorialDeMisiones {
     public void cargarHistorialDesdeJson(){
         File archivoMisiones = new File("spaceshipproyect/src/main/resources/DatosMisiones.json");
         try{
-            if (!archivoMisiones.exists()) {
-                System.err.println("Error: El archivo DatosMisiones.json no existe en resources.");
-                return;
-                
-            }
-            JsonNode raiz = mapper.readTree(archivoMisiones);
-            for(JsonNode mision : raiz){
-                Iterator<String> campos = mision.fieldNames();
-
-                while (campos.hasNext()) {
-                    String nombre=campos.next();
-                    JsonNode misionesArray=mision.get("nombre");
-                    System.out.println("Tipo de misión: " + nombre);
-
-                    for (JsonNode misiones : misionesArray) {
-                        Iterator<String> atributos = misiones.fieldNames();
-                        while (atributos.hasNext()) {
-                            String campo = atributos.next();
-                            System.out.println(campo + ": " + misiones.get(campo));
-                        }
-                        System.out.println("---");
-                    }
-                }
-            }
-        }catch (IOException e) {
-            System.out.println("---Error al cargar el historial desde el archivo JSON: " + e.getMessage());
+            registroHistorial = mapper.readValue(archivoMisiones, new TypeReference<List<RegistroHistorial>>() {});
+        }catch (Exception e) {
+            System.out.println("---Error al cargar el historial desde el archivo Json:  " + e.getMessage()+" ---");
         }
 }
 }
