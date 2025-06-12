@@ -1,5 +1,18 @@
 package com.lukasimonishvili;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "tipo"
+)
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = MisionExploracion.class, name = "CIENTIFICA"),
+    @JsonSubTypes.Type(value = MisionRecoleccionDatos.class, name = "TECHNICA"),
+    @JsonSubTypes.Type(value = MisionColonizacion.class, name = "ESTRATEGICA")
+})
 public abstract class Mision {
     protected String nombre;
     protected int duracion;
@@ -71,10 +84,8 @@ public abstract class Mision {
             throw new IllegalStateException("La misión ya está completada o fallida.");
         }
     }
-    //Validamos si la nave puede ejecutar la misión
-    public abstract boolean esApta(NaveEspacial nave); 
 
-    public abstract TipoMision getTipoExperiencia();
+    public abstract TipoMision getTipo();
     //Calculamos la experiencia requerida para la misión
 
     @Override
@@ -96,15 +107,13 @@ class MisionExploracion extends Mision{
             throw new IllegalArgumentException("\nLa duración mínima es de 8 horas.\n");
         }
     }
+
+    public MisionExploracion() {
+        super("", 1, 1, 0, EstadoMission.PENDIENTE);
+    }
     
     @Override
-    public boolean esApta(NaveEspacial nave) {
-        return nave.getAutonomiaActual()>1000 &&
-        nave.getExperienciaTotal()>= experienciaRequerida;
-    }
-
-    @Override
-    public TipoMision getTipoExperiencia(){
+    public TipoMision getTipo(){
         return TipoMision.CIENTIFICA;
     }
 
@@ -128,14 +137,12 @@ class MisionRecoleccionDatos extends Mision {
         }
     }
 
-    @Override
-    public boolean esApta(NaveEspacial nave) {
-        return nave.tieneSensoresCientificos() && 
-               nave.getExperienciaTotal() >= experienciaRequerida;
+    public MisionRecoleccionDatos() {
+        super("", 1, 1, 0, EstadoMission.PENDIENTE);
     }
 
     @Override
-    public TipoMision getTipoExperiencia(){
+    public TipoMision getTipo(){
         return TipoMision.TECHNICA;
     }
 
@@ -152,7 +159,15 @@ class MisionRecoleccionDatos extends Mision {
 }
 
 class MisionColonizacion extends Mision{
-    int capacidadCarga;
+    private int capacidadCarga;
+
+    public MisionColonizacion() {
+        super("", 1, 1, 0, EstadoMission.PENDIENTE);
+    }
+
+    public int getCapacidadCarga() {
+        return capacidadCarga;
+    }
 
     public MisionColonizacion(String nombre, int duracion, int prioridad, int experienciaEstrategica, int capacidadCarga, EstadoMission estado) {
         super(nombre, duracion, prioridad,experienciaEstrategica, estado);
@@ -162,14 +177,8 @@ class MisionColonizacion extends Mision{
         this.capacidadCarga=capacidadCarga;
     }
 
-    @Override //Falta getCapacidadCarga en NaveEspacial
-    public boolean esApta(NaveEspacial nave) {
-        return nave.getCapacidadCarga() >= capacidadCarga &&
-               nave.aptasParaUnaMision(duracion, TipoMision.ESTRATEGICA, experienciaRequerida);
-    }
-
     @Override
-    public TipoMision getTipoExperiencia(){
+    public TipoMision getTipo(){
         return TipoMision.ESTRATEGICA;
     }
 
