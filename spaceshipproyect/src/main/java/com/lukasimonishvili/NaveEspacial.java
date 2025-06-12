@@ -48,11 +48,11 @@ public class NaveEspacial {
 
     public void registrarExperiencia(TipoMision tipo, int cantidad) {
         if (cantidad < 0) {
-            System.out.println("No se puede registrar una cantidad negativa de experiencia.");
+            System.out.println("\n---No se puede registrar una cantidad negativa de experiencia.---");
             return;
         }
         experiencias.put(tipo, experiencias.get(tipo) + cantidad);
-        System.out.println("Experiencia registrada. Tipo: " + tipo + ", Cantidad: " + cantidad);
+        System.out.println("---Experiencia registrada. Tipo: " + tipo + ", Cantidad: " + cantidad+"---");
     }
 
     @JsonIgnore
@@ -71,14 +71,14 @@ public class NaveEspacial {
 
     public void ejecutarMision(int autonomiaNecesaria, TipoMision tipoExperiencia, int experienciaAdquirida) {
         this.autonomiaActual -= autonomiaNecesaria;
-        System.out.println("Misión ejecutada. Autonomía restante: " + this.autonomiaActual);
+        System.out.println("---Misión ejecutada. Autonomía restante: " + this.autonomiaActual+"---");
         this.registrarExperiencia(tipoExperiencia, experienciaAdquirida);
 
     }
 
     public void restaurarNave() {
         this.autonomiaActual = this.autonomiaMaxima;
-        System.out.println("La nave ha sido restaurada a su autonomía máxima: " + this.autonomiaMaxima);
+        System.out.println("---La nave ha sido restaurada a su autonomía máxima: " + this.autonomiaMaxima+"---");
     }
 
     public int getCapacidadCarga() {

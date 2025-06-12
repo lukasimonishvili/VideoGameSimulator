@@ -147,7 +147,7 @@ public class Simulacion {
         List<Mision> misionesOrdenadas = sortMisionsByPriority(listMisiones);
         List<NaveEspacial> listaNaves = mapDatosNaves(jsonNaves);
 
-        System.out.println("\nMisiones ordenadas por prioridad:");
+        System.out.println("\n--Misiones ordenadas por prioridad:");
         for (Mision m : misionesOrdenadas) System.out.println(m + "\n");
 
         List<NaveEspacial> navesAsignadas = new ArrayList<>();

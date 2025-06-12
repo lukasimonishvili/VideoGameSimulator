@@ -14,6 +14,7 @@ public class RegistroMisiones {
     Scanner lectura = new Scanner(System.in);
     List<Mision> misiones = new ArrayList<>();
     private ObjectMapper objectMapper = new ObjectMapper();
+    
 
     public RegistroMisiones() {
         File archivo = new File("spaceshipproyect/src/main/resources/DatosMisiones.json");
@@ -23,8 +24,8 @@ public class RegistroMisiones {
             System.out.println("Error al cargar el archivo de misiones: " + e.getMessage());
         }
         System.out.println("Se han cargado " + misiones.size() + " misiones desde el archivo.");
+        
     }
-
 
     public void agregarMision() {
         System.out.println("----REGISTRO DE MISIONES.----");
@@ -33,6 +34,9 @@ public class RegistroMisiones {
         
         
         System.out.println("Ingrese la duración: ");
+        System.out.println("Para Misión de Exploración, la duración mínima es de 8 horas.");
+        System.out.println("Para Misión de Recolección de Datos, la duración típica debe ser estar entre 4 y 8 horas.");
+        System.out.println("Para Misión de Colonización, la duración mínima para colonizar es de 6 horas.");
         int duracion = lectura.nextInt();
         
         System.out.println("¿Qué nivel prioritario tiene?.");
@@ -69,11 +73,11 @@ public class RegistroMisiones {
                 System.out.println("Tipo de misión no válido.");
         }
         misiones.add(nuevaMision);
-        guardarMisionesEnJson();
-        System.out.println("\nMisión agregada.");
+        guardarMisionesEnArchivo();
+        System.out.println("\n----MISIÓN AGREGADA.----");
     }
 
-    public void guardarMisionesEnJson() {
+    public void guardarMisionesEnArchivo() {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         try{
             File archivo = new File("spaceshipproyect/src/main/resources/DatosMisiones.json");
@@ -86,10 +90,10 @@ public class RegistroMisiones {
     public void listarMisiones(List<Mision> listDeMisiones) {
         System.out.println("\n----LISTA DE MISIONES----");
         if(listDeMisiones.isEmpty()){
-            System.out.println("No hay misiones para mostrar.");
+            System.out.println("\nNo hay misiones para mostrar.");
         }else{
             for (Mision mision : listDeMisiones) {
-                System.out.println("Misión: " + mision.getNombre());
+                System.out.println("\nMisión: " + mision.getNombre());
                 System.out.println("Duración: " + mision.getDuracion() + "  horas.");
                 System.out.println("Prioridad: " + mision.getPrioridad());
                 System.out.println("Estado: " + mision.getEstado());
@@ -102,6 +106,7 @@ public class RegistroMisiones {
         lectura.close();
     }
 
+    
     
     public List<Mision> filtrarMisionesPorTipo(TipoMision tipoMision) {
         List<Mision> misionesFiltradas = new ArrayList<>();

@@ -7,10 +7,9 @@ public class MenuDeInterfaz {
     private final DepositoDeNaves depositoDeNaves = new DepositoDeNaves();
     private final RegistroMisiones registroMisiones = new RegistroMisiones();
     private final ControlDeMisiones controlDeMisiones = new ControlDeMisiones();
-    private final HistorialDeMisiones historialDeMisiones = new HistorialDeMisiones();
 
     public void mostrarMenu() {
-        System.out.println("Bienvenido al programa de gestión de misiones espaciales.");
+        System.out.println("\n-------Bienvenido al programa de gestión de misiones espaciales.------");
         System.out.println("1. Registrar una nueva nave espacial.");
         System.out.println("2. Registrar una nueva misión.");
         System.out.println("3. Ejecutar una misión.");
@@ -51,8 +50,12 @@ public class MenuDeInterfaz {
             case 6:
                 mostrarEstadisticasNaveEspacial();
             break;
+            case 7:
+                depositoDeNaves.mostrarRankingNavesPorExperiencia();
+                break;
             case 8:
-                historialDeMisiones.mostrarHistorial();
+                controlDeMisiones.mostrarHistorial();
+            break;
             case 9:
                 System.out.println("Saliendo del programa.");
                 return;
@@ -63,7 +66,7 @@ public class MenuDeInterfaz {
     }
 
     private void mostrarEstadisticasNaveEspacial() {
-        System.out.println("Mostrar estadísticas de la nave espacial.");
+        System.out.println("----Mostrar estadísticas de la nave espacial.----");
         System.out.println("Ingrese el nombre de la nave espacial:");
         for(int i = 0; i < depositoDeNaves.naves.size(); i++) {
             System.out.println((i + 1) + ". " + depositoDeNaves.naves.get(i).getNombre());
@@ -73,7 +76,7 @@ public class MenuDeInterfaz {
     }
 
     private void menuDeEjecutarMision() {
-        System.out.println("Ejecutar una misión.");
+        System.out.println("------Ejecutar una misión.------");
         System.out.println("Ingrese el nombre de la misión que desea ejecutar:");
         List<Mision> misiones = registroMisiones.filtrarMisionesPorEstado(EstadoMission.PENDIENTE);
         if( misiones.isEmpty()) {
@@ -107,7 +110,7 @@ public class MenuDeInterfaz {
     }
 
     private void menuDeMostrarMisiones() {
-        System.out.println("Mostrar las misiones registradas.");
+        System.out.println("-----Mostrar las misiones registradas.-----");
         System.out.println("1. Mostrar todas las misiones.");
         System.out.println("2. Filtrar misiones por estado.");
         System.out.println("3. Filtrar misiones por tipo.");
