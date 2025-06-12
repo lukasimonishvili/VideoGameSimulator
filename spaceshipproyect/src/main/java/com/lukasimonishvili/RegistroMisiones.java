@@ -1,19 +1,14 @@
 package com.lukasimonishvili;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 public class RegistroMisiones {
     Scanner lectura = new Scanner(System.in);
     List<Mision> misiones = new ArrayList<>();
+    
 
     public RegistroMisiones() {
         misiones.add(new MisionExploracion("Exploración de Marte", 30, 5, 0, EstadoMission.PENDIENTE));
@@ -69,7 +64,6 @@ public class RegistroMisiones {
                 System.out.println("Tipo de misión no válido.");
         }
         misiones.add(nuevaMision);
-        guardarHistorialEnJson();
         System.out.println("\n----MISIÓN AGREGADA.----");
     }
 
@@ -92,55 +86,12 @@ public class RegistroMisiones {
         lectura.close();
     }
 
-    private void guardarHistorialEnJson(){
-        ObjectMapper mapper=new ObjectMapper();
-        File archivoMisiones = new File("spaceshipproyect/src/main/resources/DatosMisiones.json");
-
-        try {
-            ObjectNode nuevaMision= mapper.createObjectNode();
-            for(Mision mision : misiones){
-                nuevaMision.put("Nombre", mision.getNombre());
-                nuevaMision.put("Duracion", mision.getDuracion());
-                nuevaMision.put("Prioridad", mision.getPrioridad());
-                nuevaMision.put("Estado", mision.getEstado().toString());
-                nuevaMision.put("ExperienciaRequerida", mision.getExperienciaRequerida());
-            }
-            
-            String clave="";
-            if(misiones instanceof MisionColonizacion misionColonizacion){
-                clave="mision_colonizacion";
-                nuevaMision.put("CapacidadCarga", misionColonizacion.capacidadCarga);
-                nuevaMision.put("ExperienciaEstrategica", misionColonizacion.getExperienciaRequerida());
-            }else if(misiones instanceof MisionRecoleccionDatos misionRecoleccionDatos){
-                clave="mision_recoleccion_datos";
-                nuevaMision.put("ExperienciaTecnica", misionRecoleccionDatos.getExperienciaRequerida());
-            }else if(misiones instanceof MisionExploracion misionExploracion){
-                clave="mision_exploracion";
-                nuevaMision.put("ExperienciaCientifica", misionExploracion.getExperienciaRequerida());
-            }
-            
-            JsonNode tipomision= mapper.readTree(archivoMisiones).get("tipos_mision");
-            for(JsonNode tipo : tipomision) {
-                if(tipo.has(clave)){
-                    ArrayNode misionesArray =(ArrayNode) tipo.get(clave);
-                    misionesArray.add(nuevaMision);
-                    break;
-                }
-            }
-
-            mapper.writerWithDefaultPrettyPrinter().writeValue(archivoMisiones, misiones);
-            
-            System.out.println("---Misiones guardadas correctamente en el archivo JSON.---");
-        } catch (Exception e) {
-        System.out.println("--Error al guardar las misiones: " + e.getMessage()+"--");
-        }
-
-    }
+    
     
     public List<Mision> filtrarMisionesPorTipo(TipoMision tipoMision) {
         List<Mision> misionesFiltradas = new ArrayList<>();
         for (Mision mision : misiones) {
-            if (mision.getTipoExperiencia() == tipoMision) {
+            if (mision.getTipo() == tipoMision) {
                 misionesFiltradas.add(mision);
             }
         }
