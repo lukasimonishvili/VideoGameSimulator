@@ -1,20 +1,29 @@
 package com.lukasimonishvili;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 public class RegistroMisiones {
     Scanner lectura = new Scanner(System.in);
     List<Mision> misiones = new ArrayList<>();
+    private ObjectMapper objectMapper = new ObjectMapper();
     
 
     public RegistroMisiones() {
-        misiones.add(new MisionExploracion("Exploración de Marte", 30, 5, 0, EstadoMission.PENDIENTE));
-        misiones.add(new MisionRecoleccionDatos("Recolección de Datos en Venus", 6, 7, 15, EstadoMission.PENDIENTE));
-        misiones.add(new MisionColonizacion("Colonización de Titán", 50, 8, 20, 1000, EstadoMission.PENDIENTE));
-        misiones.add(new MisionExploracion("Exploración de Júpiter", 40, 6, 12, EstadoMission.PENDIENTE));
+        File archivo = new File("spaceshipproyect/src/main/resources/DatosMisiones.json");
+        try{
+            this.misiones = objectMapper.readValue(archivo, new TypeReference<List<Mision>>() {});
+        }catch (Exception e) {
+            System.out.println("Error al cargar el archivo de misiones: " + e.getMessage());
+        }
+        System.out.println("Se han cargado " + misiones.size() + " misiones desde el archivo.");
         
     }
 
@@ -64,7 +73,18 @@ public class RegistroMisiones {
                 System.out.println("Tipo de misión no válido.");
         }
         misiones.add(nuevaMision);
+        guardarMisionesEnArchivo();
         System.out.println("\n----MISIÓN AGREGADA.----");
+    }
+
+    public void guardarMisionesEnArchivo() {
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        try{
+            File archivo = new File("spaceshipproyect/src/main/resources/DatosMisiones.json");
+            objectMapper.writeValue(archivo, misiones);
+        }catch (Exception e) {
+            System.out.println("Error al guardar las misiones en el archivo: " + e.getMessage());
+        }
     }
 
     public void listarMisiones(List<Mision> listDeMisiones) {
