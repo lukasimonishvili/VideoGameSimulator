@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class HistorialDeMisiones {
     private List<RegistroHistorial> registroHistorial =new ArrayList<>();
     List<Mision> misiones = new ArrayList<>();
+    private ObjectMapper mapper=new ObjectMapper();
    
     public void registrarResultado(Mision mision, NaveEspacial nave, int experienciaObtenida, String eventoEspecial){
         RegistroHistorial nuevoRegistro=new RegistroHistorial(mision, nave, experienciaObtenida, eventoEspecial);
@@ -29,7 +30,6 @@ public class HistorialDeMisiones {
     }
 
     private void guardarHistorialEnJson(){
-        ObjectMapper mapper=new ObjectMapper();
         File archivoMisiones = new File("spaceshipproyect/src/main/resources/DatosMisiones.json");
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         try {
