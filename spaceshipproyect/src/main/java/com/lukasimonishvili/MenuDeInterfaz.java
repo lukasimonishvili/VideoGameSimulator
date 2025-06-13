@@ -107,6 +107,9 @@ public class MenuDeInterfaz {
         }
         int naveSeleccionada = scanner.nextInt() - 1;
         controlDeMisiones.ejecutarMision(misiones.get(misionSeleccionada), navesAptas.get(naveSeleccionada));
+        depositoDeNaves.guardarNavesEnArchivo();
+        registroMisiones.guardarMisionesEnArchivo();
+
     }
 
     private void menuDeMostrarMisiones() {
