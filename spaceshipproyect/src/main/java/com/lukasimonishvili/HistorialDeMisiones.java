@@ -11,6 +11,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class HistorialDeMisiones {
     private List<RegistroHistorial> registroHistorial =new ArrayList<>();
     private ObjectMapper mapper=new ObjectMapper();
+
+    public HistorialDeMisiones() {
+        cargarHistorialDesdeJson();
+    }
    
     public void registrarResultado(Mision mision, NaveEspacial nave, int experienciaObtenida, String eventoEspecial){
         RegistroHistorial nuevoRegistro=new RegistroHistorial(mision, nave, experienciaObtenida, eventoEspecial);
