@@ -49,6 +49,7 @@ public class HistorialDeMisiones {
         File archivoMisiones = new File("spaceshipproyect/src/main/resources/DatosHistorial.json");
         try{
             registroHistorial = mapper.readValue(archivoMisiones, new TypeReference<List<RegistroHistorial>>() {});
+            System.out.println(registroHistorial.size() + " registros cargados desde el archivo JSON.");
         }catch (Exception e) {
             System.out.println("---Error al cargar el historial desde el archivo Json:  " + e.getMessage()+" ---");
         }
