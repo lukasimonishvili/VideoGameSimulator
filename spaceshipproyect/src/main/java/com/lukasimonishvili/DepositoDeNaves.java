@@ -40,10 +40,10 @@ public class DepositoDeNaves {
 
     public void mostrarTodosLosNaves() {
         if (naves.isEmpty()) {
-            System.out.println("No hay naves espaciales registradas.");
+            System.out.println("---->No hay naves espaciales registradas.----");
             return;
         }
-        System.out.println("Naves espaciales registradas:");
+        System.out.println("\n----->Naves espaciales registradas: \n");
         for (NaveEspacial nave : naves) {
             System.out.println(nave.getNombre() + " - Autonomía Máxima: " + nave.getAutonomiaMaxima() + ", Capacidad de Carga: " + nave.getCapacidadCarga());
         }
@@ -66,7 +66,7 @@ public class DepositoDeNaves {
             nave2.getExperienciaTotal(),
             nave1.getExperienciaTotal()
         ));
-        System.out.println("-----Ranking por experiencia :");
+        System.out.println("----->Ranking por experiencia :");
 
         int posicion = 1;
         for (NaveEspacial nave : navesOrdenadas) {
@@ -83,7 +83,7 @@ public class DepositoDeNaves {
             nave2.getExperiencia(tipo),
             nave1.getExperiencia(tipo)
         ));
-        System.out.println("-----Ranking por tipo de experiencia : " + tipo);
+        System.out.println("----->Ranking por tipo de experiencia : " + tipo);
 
         int posicion = 1;
         for (NaveEspacial nave : navesOrdenadas) {
@@ -99,7 +99,7 @@ public class DepositoDeNaves {
             File archivo = new File("spaceshipproyect/src/main/resources/DatosNaves.json");
             objectMapper.writeValue(archivo, naves);
         }catch (Exception e) {
-            System.out.println("Error al guardar las naves en el archivo: " + e.getMessage());
+            System.out.println("----Error al guardar las naves en el archivo: " + e.getMessage()+"----");
         }
     }
 }

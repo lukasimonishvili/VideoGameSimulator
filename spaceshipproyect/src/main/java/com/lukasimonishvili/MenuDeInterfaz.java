@@ -34,7 +34,7 @@ public class MenuDeInterfaz {
                 try{
                     registroMisiones.agregarMision();
                 } catch(Exception e) {
-                    System.err.println("Error al registrar la misión. Asegúrese de que los datos ingresados sean correctos.");
+                    System.err.println("---Error al registrar la misión. Asegúrese de que los datos ingresados sean correctos.---");
                     mostrarMenu();
                 }
             break;
@@ -57,10 +57,10 @@ public class MenuDeInterfaz {
                 controlDeMisiones.mostrarHistorial();
             break;
             case 9:
-                System.out.println("Saliendo del programa.");
+                System.out.println("----Saliendo del programa.----");
                 return;
             default:
-                System.out.println("Opción no válida. Intente de nuevo.");
+                System.out.println("---Opción no válida. Intente de nuevo.---");
         }
         mostrarMenu();
     }
@@ -76,11 +76,11 @@ public class MenuDeInterfaz {
     }
 
     private void menuDeEjecutarMision() {
-        System.out.println("------Ejecutar una misión.------");
+        System.out.println("\n------Ejecutar una misión.------");
         System.out.println("Ingrese el nombre de la misión que desea ejecutar:");
         List<Mision> misiones = registroMisiones.filtrarMisionesPorEstado(EstadoMission.PENDIENTE);
         if( misiones.isEmpty()) {
-            System.out.println("No hay misiones pendientes para ejecutar.");
+            System.out.println("----->No hay misiones pendientes para ejecutar.-----");
             return;
         }
         for(int i = 0; i < misiones.size(); i++) {
@@ -92,14 +92,14 @@ public class MenuDeInterfaz {
         }
         int misionSeleccionada = scanner.nextInt() - 1;
         System.out.println(misiones.get(misionSeleccionada).getNombre() + " ha sido seleccionada.");
-        System.out.println("Ingrese el la nave espacial que desea usar:");
+        System.out.println("---->Ingrese el la nave espacial que desea usar:");
         List<NaveEspacial> navesAptas = depositoDeNaves.getNavesAptadaParaMision(
             misiones.get(misionSeleccionada).getDuracion(),
             misiones.get(misionSeleccionada).getTipo(),
             misiones.get(misionSeleccionada).getExperienciaRequerida()
         );
         if(navesAptas.isEmpty()) {
-            System.out.println("No hay naves espaciales aptas para esta misión.");
+            System.out.println("---No hay naves espaciales aptas para esta misión.---");
             return;
         }
         for(int i = 0; i < navesAptas.size(); i++) {
@@ -110,7 +110,7 @@ public class MenuDeInterfaz {
     }
 
     private void menuDeMostrarMisiones() {
-        System.out.println("-----Mostrar las misiones registradas.-----");
+        System.out.println("\n-----Mostrar las misiones registradas.-----");
         System.out.println("1. Mostrar todas las misiones.");
         System.out.println("2. Filtrar misiones por estado.");
         System.out.println("3. Filtrar misiones por tipo.");
@@ -123,7 +123,7 @@ public class MenuDeInterfaz {
                 registroMisiones.listarMisiones(registroMisiones.misiones);
             break;
             case 2:
-                System.out.println("Ingrese el estado de la misión.");
+                System.out.println("\nIngrese el estado de la misión.");
                 System.out.println("1. Pendiente");
                 System.out.println("2. Completada");
                 System.out.println("3. Fallida");
@@ -134,7 +134,7 @@ public class MenuDeInterfaz {
                 registroMisiones.listarMisiones(registroMisiones.filtrarMisionesPorEstado(estadoMision));
             break;
             case 3:
-                System.out.println("Ingrese el tipo de misión.");
+                System.out.println("\nIngrese el tipo de misión.");
                 System.out.println("1. Tecnica");
                 System.out.println("2. Científica");  
                 System.out.println("3. Estratégica");
@@ -145,14 +145,14 @@ public class MenuDeInterfaz {
                 registroMisiones.listarMisiones(registroMisiones.filtrarMisionesPorTipo(tipo));
                 break;
             case 4:
-                System.out.println("Ingrese la direction de la prioridad.");
+                System.out.println("\nIngrese la direccion de la prioridad.");
                 System.out.println("1. De alta a baja");
                 System.out.println("2. De baja a alta");
                 int prioridad = scanner.nextInt();
                 registroMisiones.listarMisiones(registroMisiones.filtrarMisionesPorPrioridad(prioridad == 1 ? "alta" : "baja"));
                 break;
             default:
-                System.out.println("Opción no válida. Intente de nuevo.");
+                System.out.println("\n---Opción no válida. Intente de nuevo.---");
         }
     }
 }
