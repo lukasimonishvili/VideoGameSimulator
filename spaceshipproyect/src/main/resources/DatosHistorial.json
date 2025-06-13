@@ -1,0 +1,23 @@
+[ {
+  "mision" : {
+    "tipo" : "CIENTIFICA",
+    "nombre" : "ver si hay agua en mars",
+    "duracion" : 8,
+    "prioridad" : 9,
+    "estado" : "COMPLETADA",
+    "experienciaRequerida" : 0
+  },
+  "nave" : {
+    "nombre" : "Space-X",
+    "autonomiaMaxima" : 1800,
+    "autonomiaActual" : 1800,
+    "capacidadCarga" : 3000,
+    "experiencia" : {
+      "CIENTIFICA" : 3000,
+      "TECHNICA" : 0,
+      "ESTRATEGICA" : 0
+    }
+  },
+  "experienciaObtenida" : 1000,
+  "eventoEspecial" : ""
+} ]
