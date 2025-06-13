@@ -12,6 +12,10 @@ public class HistorialDeMisiones {
     private List<RegistroHistorial> registroHistorial =new ArrayList<>();
     List<Mision> misiones = new ArrayList<>();
     private ObjectMapper mapper=new ObjectMapper();
+
+    public HistorialDeMisiones() {
+        cargarHistorialDesdeJson();
+    }
    
     public void registrarResultado(Mision mision, NaveEspacial nave, int experienciaObtenida, String eventoEspecial){
         RegistroHistorial nuevoRegistro=new RegistroHistorial(mision, nave, experienciaObtenida, eventoEspecial);
