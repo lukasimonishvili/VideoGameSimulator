@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -39,5 +40,14 @@ public class HistorialDeMisiones {
             System.out.println("--Error al guardar las misiones: " + e.getMessage()+"--");
         }
 
+    }
+
+    public void cargarHistorialDesdeJson(){
+        File archivoMisiones = new File("spaceshipproyect/src/main/resources/DatosMisiones.json");
+        try{
+            registroHistorial = mapper.readValue(archivoMisiones, new TypeReference<List<RegistroHistorial>>() {});
+        }catch (Exception e) {
+            System.out.println("---Error al cargar el historial desde el archivo Json:  " + e.getMessage()+" ---");
+        }
     }
 }
