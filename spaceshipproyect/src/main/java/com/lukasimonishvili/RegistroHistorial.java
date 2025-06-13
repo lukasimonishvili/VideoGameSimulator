@@ -13,6 +13,8 @@ public class RegistroHistorial {
         this.eventoEspecial=eventoEspecial;
     }
 
+    public RegistroHistorial(){}
+
     public Mision getMision(){return mision;}
     public NaveEspacial getNave(){return nave;}
     public int getExperienciaObtenida(){return experienciaObtenida;}

@@ -26,7 +26,7 @@ public class MenuDeInterfaz {
                 try{
                     depositoDeNaves.creareNave();
                 } catch(Exception e) {
-                    System.err.println("Error al crear la nave espacial. Asegúrese de que los datos ingresados sean correctos.");
+                    System.err.println("---Error al crear la nave espacial. Asegúrese de que los datos ingresados sean correctos.---");
                     mostrarMenu();
                 }
             break;

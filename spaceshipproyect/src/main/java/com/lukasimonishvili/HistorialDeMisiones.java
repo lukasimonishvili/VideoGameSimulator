@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class HistorialDeMisiones {
     private List<RegistroHistorial> registroHistorial =new ArrayList<>();
-    List<Mision> misiones = new ArrayList<>();
     private ObjectMapper mapper=new ObjectMapper();
    
     public void registrarResultado(Mision mision, NaveEspacial nave, int experienciaObtenida, String eventoEspecial){
@@ -31,10 +30,10 @@ public class HistorialDeMisiones {
     }
 
     private void guardarHistorialEnJson(){
-        File archivoMisiones = new File("spaceshipproyect/src/main/resources/DatosMisiones.json");
+        File archivoMisiones = new File("spaceshipproyect/src/main/resources/DatosHistorial.json");
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(archivoMisiones, misiones);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(archivoMisiones, registroHistorial);
             System.out.println("---Misiones guardadas correctamente en el archivo JSON.---");
         } catch (Exception e) {
             System.out.println("--Error al guardar las misiones: " + e.getMessage()+"--");
@@ -43,7 +42,7 @@ public class HistorialDeMisiones {
     }
 
     public void cargarHistorialDesdeJson(){
-        File archivoMisiones = new File("spaceshipproyect/src/main/resources/DatosMisiones.json");
+        File archivoMisiones = new File("spaceshipproyect/src/main/resources/DatosHistorial.json");
         try{
             registroHistorial = mapper.readValue(archivoMisiones, new TypeReference<List<RegistroHistorial>>() {});
         }catch (Exception e) {

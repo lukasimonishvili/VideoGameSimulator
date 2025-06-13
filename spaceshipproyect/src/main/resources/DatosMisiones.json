@@ -1,28 +1,31 @@
-[
-  {
-    "nombre": "explorar mars",
-    "duracion": 20,
-    "prioridad": 4,
-    "estado": "PENDIENTE",
-    "experienciaRequerida": 10,
-    "capacidadCarga": 20,
-    "tipo": "ESTRATEGICA"
-  },
-  {
-    "nombre": "test",
-    "duracion": 5,
-    "prioridad": 10,
-    "estado": "PENDIENTE",
-    "experienciaRequerida": 100,
-    "tipo": "TECHNICA"
-  },
-  {
-    "nombre": "test2",
-    "duracion": 10,
-    "prioridad": 4,
-    "estado": "PENDIENTE",
-    "experienciaRequerida": 9,
-    "capacidadCarga": 2,
-    "tipo": "ESTRATEGICA"
-  }
-]
+[ {
+  "nombre" : "explorar mars",
+  "duracion" : 20,
+  "prioridad" : 4,
+  "estado" : "PENDIENTE",
+  "experienciaRequerida" : 10,
+  "capacidadCarga" : 20,
+  "tipo" : "ESTRATEGICA"
+}, {
+  "nombre" : "test",
+  "duracion" : 5,
+  "prioridad" : 10,
+  "estado" : "PENDIENTE",
+  "experienciaRequerida" : 100,
+  "tipo" : "TECHNICA"
+}, {
+  "nombre" : "test2",
+  "duracion" : 10,
+  "prioridad" : 4,
+  "estado" : "PENDIENTE",
+  "experienciaRequerida" : 9,
+  "capacidadCarga" : 2,
+  "tipo" : "ESTRATEGICA"
+}, {
+  "nombre" : "testttt",
+  "duracion" : 10,
+  "prioridad" : 9,
+  "estado" : "PENDIENTE",
+  "experienciaRequerida" : 0,
+  "tipo" : "CIENTIFICA"
+} ]
