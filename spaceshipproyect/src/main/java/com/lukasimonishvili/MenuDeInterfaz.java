@@ -9,7 +9,7 @@ public class MenuDeInterfaz {
     private final ControlDeMisiones controlDeMisiones = new ControlDeMisiones();
 
     public void mostrarMenu() {
-        System.out.println("\n-------Bienvenido al programa de gestión de misiones espaciales.------");
+        System.out.println("\n-------BIENVENIDO AL PROGRAMA DE GESTIÓN DE MISIONES ESPACIALES.------");
         System.out.println("1. Registrar una nueva nave espacial.");
         System.out.println("2. Registrar una nueva misión.");
         System.out.println("3. Ejecutar una misión.");
@@ -26,7 +26,7 @@ public class MenuDeInterfaz {
                 try{
                     depositoDeNaves.creareNave();
                 } catch(Exception e) {
-                    System.err.println("---Error al crear la nave espacial. Asegúrese de que los datos ingresados sean correctos.---");
+                    System.err.println("\n---Error al crear la nave espacial. Asegúrese de que los datos ingresados sean correctos.---");
                     mostrarMenu();
                 }
             break;
@@ -34,7 +34,7 @@ public class MenuDeInterfaz {
                 try{
                     registroMisiones.agregarMision();
                 } catch(Exception e) {
-                    System.err.println("---Error al registrar la misión. Asegúrese de que los datos ingresados sean correctos.---");
+                    System.err.println("\n---Error al registrar la misión. Asegúrese de que los datos ingresados sean correctos.---");
                     mostrarMenu();
                 }
             break;
@@ -66,7 +66,7 @@ public class MenuDeInterfaz {
     }
 
     private void mostrarEstadisticasNaveEspacial() {
-        System.out.println("----Mostrar estadísticas de la nave espacial.----");
+        System.out.println("\n----Mostrar estadísticas de la nave espacial.----");
         System.out.println("Ingrese el nombre de la nave espacial:");
         for(int i = 0; i < depositoDeNaves.naves.size(); i++) {
             System.out.println((i + 1) + ". " + depositoDeNaves.naves.get(i).getNombre());
@@ -99,7 +99,7 @@ public class MenuDeInterfaz {
             misiones.get(misionSeleccionada).getExperienciaRequerida()
         );
         if(navesAptas.isEmpty()) {
-            System.out.println("---No hay naves espaciales aptas para esta misión.---");
+            System.out.println("\n---No hay naves espaciales aptas para esta misión.---");
             return;
         }
         for(int i = 0; i < navesAptas.size(); i++) {

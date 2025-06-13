@@ -18,11 +18,12 @@ public class DepositoDeNaves {
         try{
             this.naves = objectMapper.readValue(archivo, new TypeReference<List<NaveEspacial>>() {});
         }catch (Exception e) {
-            System.out.println("Error al cargar el archivo de naves: " + e.getMessage());
+            System.out.println("\n---->Error al cargar el archivo de naves: " + e.getMessage());
         }
     }
 
     public void creareNave() {
+        System.out.println("\n----REGISTRO DE NAVE ESPACIAL.----");
         System.out.println("Por favor escriba el nombre de la nave espacial");
         String nombre = scanner.nextLine();
         System.out.println("Por favor escriba la autonomia maxima de la nave espacial");
@@ -34,13 +35,13 @@ public class DepositoDeNaves {
         int capacidadCarga = scanner.nextInt();
         NaveEspacial nuevoNaveEspacial = new NaveEspacial(nombre, autonomiaMaxima, sensoresCientific, capacidadCarga);
         naves.add(nuevoNaveEspacial);
-        System.out.println("Nueva nave espacial creada");
+        System.out.println("\n----NUEVA NAVE ESPACIAL CREADA.-----");
         guardarNavesEnArchivo();
     }
 
     public void mostrarTodosLosNaves() {
         if (naves.isEmpty()) {
-            System.out.println("---->No hay naves espaciales registradas.----");
+            System.out.println("\n---->No hay naves espaciales registradas.----");
             return;
         }
         System.out.println("\n----->Naves espaciales registradas: \n");
@@ -66,7 +67,7 @@ public class DepositoDeNaves {
             nave2.getExperienciaTotal(),
             nave1.getExperienciaTotal()
         ));
-        System.out.println("----->Ranking por experiencia :");
+        System.out.println("\n----->Ranking por experiencia :");
 
         int posicion = 1;
         for (NaveEspacial nave : navesOrdenadas) {
@@ -83,7 +84,7 @@ public class DepositoDeNaves {
             nave2.getExperiencia(tipo),
             nave1.getExperiencia(tipo)
         ));
-        System.out.println("----->Ranking por tipo de experiencia : " + tipo);
+        System.out.println("\n----->Ranking por tipo de experiencia : " + tipo);
 
         int posicion = 1;
         for (NaveEspacial nave : navesOrdenadas) {
@@ -99,7 +100,7 @@ public class DepositoDeNaves {
             File archivo = new File("spaceshipproyect/src/main/resources/DatosNaves.json");
             objectMapper.writeValue(archivo, naves);
         }catch (Exception e) {
-            System.out.println("----Error al guardar las naves en el archivo: " + e.getMessage()+"----");
+            System.out.println("\n----Error al guardar las naves en el archivo: " + e.getMessage()+"----");
         }
     }
 }

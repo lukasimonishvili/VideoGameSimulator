@@ -7,7 +7,7 @@ public class ControlDeMisiones {
 
     public void ejecutarMision(Mision mision, NaveEspacial nave) {
         if (nave.aptasParaUnaMision(mision.getDuracion(), mision.getTipo(), mision.getExperienciaRequerida())) {
-            System.out.println("Ejecutando misión: " + mision.getNombre());
+            System.out.println("---->Ejecutando misión: " + mision.getNombre());
             Random aleatorio = new Random();
             int numeroAleatorio = aleatorio.nextInt(100);
             int experiencia = 1000;
@@ -35,7 +35,7 @@ public class ControlDeMisiones {
             nave.restaurarNave();
             historial.registrarResultado(mision, nave, experiencia, eventoEspecial);
         } else {
-            System.out.println("La nave no está apta para la misión: " + mision.getNombre());
+            System.out.println("----La nave no está apta para la misión: " + mision.getNombre()+"----");
         }
     }
 

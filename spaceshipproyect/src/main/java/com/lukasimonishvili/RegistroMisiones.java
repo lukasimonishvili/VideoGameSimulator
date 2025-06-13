@@ -28,7 +28,7 @@ public class RegistroMisiones {
     }
 
     public void agregarMision() {
-        System.out.println("----REGISTRO DE MISIONES.----");
+        System.out.println("\n----REGISTRO DE MISIONES.----");
         System.out.println("Ingrese el nombre de la misión: ");
         String nombre = lectura.nextLine();
         
