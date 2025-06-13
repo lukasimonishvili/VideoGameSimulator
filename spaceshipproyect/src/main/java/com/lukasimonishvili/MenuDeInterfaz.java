@@ -72,6 +72,7 @@ public class MenuDeInterfaz {
             System.out.println((i + 1) + ". " + depositoDeNaves.naves.get(i).getNombre());
         }
         int naveSeleccionada = scanner.nextInt() - 1;
+        System.out.println("\n------Estadísticas de la nave espacial seleccionada: " );
         System.out.println(depositoDeNaves.naves.get(naveSeleccionada).getEstatisticaDeNave());
     }
 

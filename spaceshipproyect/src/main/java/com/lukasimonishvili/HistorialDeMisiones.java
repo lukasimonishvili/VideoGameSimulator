@@ -25,10 +25,15 @@ public class HistorialDeMisiones {
 
     public void mostrarHistorial(){
         if(registroHistorial.isEmpty()){
-            System.out.println("---No se encuentras registros en el historial.---");
+            System.out.println("---No se encuentran registros en el historial.---");
         }else{
+            System.out.println("\n---HISTORIAL DE MISIONES---");
             for (RegistroHistorial historial : registroHistorial) {
-                System.out.println(historial.toString());
+                String resultado = "\nMisión: " + historial.getMision().getNombre() + "\nNave: " + historial.getNave().getNombre() +
+                        "\nEstado: " + (historial.getMision().getEstado() == EstadoMission.COMPLETADA ? "Completada" : "Fallida") +
+                        "\nExperiencia Obtenida: " + historial.getExperienciaObtenida() +
+                        "\nEvento Especial: " + historial.getEventoEspecial()+"---";
+                System.out.println(resultado);
             }
         }
     }
@@ -40,7 +45,7 @@ public class HistorialDeMisiones {
             mapper.writerWithDefaultPrettyPrinter().writeValue(archivoMisiones, registroHistorial);
             System.out.println("---Misiones guardadas correctamente en el archivo JSON.---");
         } catch (Exception e) {
-            System.out.println("--Error al guardar las misiones: " + e.getMessage()+"--");
+            System.out.println("---Error al guardar las misiones: " + e.getMessage()+"--");
         }
 
     }

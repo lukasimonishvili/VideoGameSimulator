@@ -35,7 +35,7 @@ public class ControlDeMisiones {
             nave.restaurarNave();
             historial.registrarResultado(mision, nave, experiencia, eventoEspecial);
         } else {
-            System.out.println("----La nave no está apta para la misión: " + mision.getNombre()+"----");
+            System.out.println("---->La nave no está apta para la misión: " + mision.getNombre()+"----");
         }
     }
 

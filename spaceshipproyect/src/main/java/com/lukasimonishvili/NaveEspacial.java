@@ -93,10 +93,10 @@ public class NaveEspacial {
         resultado += "Autonomía actual: " + this.autonomiaActual + "\n";
         resultado += "Sensores científicos: " + (this.sensoresCientificos ? "Sí" : "No") + "\n";
         resultado += "Experiencias:\n";
-        resultado += "  Técnica: " + experiencias.get(TipoMision.TECHNICA) + "\n";
-        resultado += "  Científica: " + experiencias.get(TipoMision.CIENTIFICA) + "\n";
-        resultado += "  Estratégica: " + experiencias.get(TipoMision.ESTRATEGICA) + "\n";
-        resultado += "  Experiencia total: " + this.getExperienciaTotal() + "\n";
+        resultado += "-->Técnica: " + experiencias.get(TipoMision.TECHNICA) + "\n";
+        resultado += "-->Científica: " + experiencias.get(TipoMision.CIENTIFICA) + "\n";
+        resultado += "-->Estratégica: " + experiencias.get(TipoMision.ESTRATEGICA) + "\n";
+        resultado += "Experiencia total: " + this.getExperienciaTotal() + "\n";
         resultado += "Capacidad de carga: " + this.capacidadCarga + "\n";
         return resultado;
     }

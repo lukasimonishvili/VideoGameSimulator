@@ -82,7 +82,7 @@ public abstract class Mision {
             this.estado = EstadoMission.FALLIDA;
             System.out.println("Misión fallida: " + nombre);
         } else {
-            throw new IllegalStateException("La misión ya está completada o fallida.");
+            throw new IllegalStateException("\n----La misión ya está completada.---");
         }
     }
 
