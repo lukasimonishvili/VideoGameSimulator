@@ -8,8 +8,17 @@ public class MenuDeInterfaz {
     private final RegistroMisiones registroMisiones = new RegistroMisiones();
     private final ControlDeMisiones controlDeMisiones = new ControlDeMisiones();
 
+    final String RESET = "\u001B[0m";
+    final String GREEN = "\u001B[32m";
+    final String CYAN = "\u001B[36m";
+    final String YELLOW = "\u001B[33m";
+    final String RED = "\u001B[31m";
+
+    String BOLD = "\u001B[1m";
+    String SUB = "\\u001B[4m";
+
     public void mostrarMenu() {
-        System.out.println("\n-------BIENVENIDO AL PROGRAMA DE GESTIÓN DE MISIONES ESPACIALES.------");
+        System.out.println(GREEN+"\n-------BIENVENIDO AL PROGRAMA DE GESTIÓN DE MISIONES ESPACIALES.------"+RESET);
         System.out.println("1. Registrar una nueva nave espacial.");
         System.out.println("2. Registrar una nueva misión.");
         System.out.println("3. Ejecutar una misión.");
@@ -26,7 +35,7 @@ public class MenuDeInterfaz {
                 try{
                     depositoDeNaves.creareNave();
                 } catch(Exception e) {
-                    System.err.println("\n---Error al crear la nave espacial. Asegúrese de que los datos ingresados sean correctos.---");
+                    System.err.println(BOLD+ RED +"\n---Error al crear la nave espacial. Asegúrese de que los datos ingresados sean correctos.---"+RESET);
                     mostrarMenu();
                 }
             break;
@@ -34,7 +43,7 @@ public class MenuDeInterfaz {
                 try{
                     registroMisiones.agregarMision();
                 } catch(Exception e) {
-                    System.err.println("\n---Error al registrar la misión. Asegúrese de que los datos ingresados sean correctos.---");
+                    System.err.println(BOLD+ RED +"\n---Error al registrar la misión. Asegúrese de que los datos ingresados sean correctos.---"+RESET);
                     mostrarMenu();
                 }
             break;
@@ -57,10 +66,10 @@ public class MenuDeInterfaz {
                 controlDeMisiones.mostrarHistorial();
             break;
             case 9:
-                System.out.println("----Saliendo del programa.----");
+                System.out.println(BOLD+ GREEN+"----Saliendo del programa.----"+RESET);
                 return;
             default:
-                System.out.println("---Opción no válida. Intente de nuevo.---");
+                System.out.println(BOLD+ RED +"---Opción no válida. Intente de nuevo.---"+RESET);
         }
         mostrarMenu();
     }
