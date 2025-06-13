@@ -1,6 +1,7 @@
 package com.lukasimonishvili;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 @JsonTypeInfo(
@@ -85,6 +86,7 @@ public abstract class Mision {
         }
     }
 
+    @JsonIgnore
     public abstract TipoMision getTipo();
     //Calculamos la experiencia requerida para la misión
 

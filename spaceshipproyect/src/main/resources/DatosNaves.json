@@ -1,61 +1,57 @@
-[ {
-  "nombre" : "Nautilus",
-  "autonomiaMaxima" : 3000,
-  "autonomiaActual" : 3000,
-  "capacidadCarga" : 2000,
-  "experiencia" : {
-    "CIENTIFICA" : 0,
-    "TECHNICA" : 0,
-    "ESTRATEGICA" : 0
+[
+  {
+    "nombre": "Nautilus",
+    "autonomiaMaxima": 3000,
+    "autonomiaActual": 3000,
+    "capacidadCarga": 2000,
+    "experiencia": {
+      "TECHNICA": 0,
+      "ESTRATEGICA": 0,
+      "CIENTIFICA": 0
+    }
+  },
+  {
+    "nombre": "Space-X",
+    "autonomiaMaxima": 1800,
+    "autonomiaActual": 1800,
+    "capacidadCarga": 3000,
+    "experiencia": {
+      "TECHNICA": 0,
+      "ESTRATEGICA": 0,
+      "CIENTIFICA": 2000
+    }
+  },
+  {
+    "nombre": "Black pearl",
+    "autonomiaMaxima": 2500,
+    "autonomiaActual": 2500,
+    "capacidadCarga": 5000,
+    "experiencia": {
+      "TECHNICA": 0,
+      "ESTRATEGICA": 0,
+      "CIENTIFICA": 0
+    }
+  },
+  {
+    "nombre": "North light",
+    "autonomiaMaxima": 2700,
+    "autonomiaActual": 2700,
+    "capacidadCarga": 2500,
+    "experiencia": {
+      "TECHNICA": 0,
+      "ESTRATEGICA": 0,
+      "CIENTIFICA": 0
+    }
+  },
+  {
+    "nombre": "namaste",
+    "autonomiaMaxima": 1000,
+    "autonomiaActual": 1000,
+    "capacidadCarga": 500,
+    "experiencia": {
+      "TECHNICA": 0,
+      "ESTRATEGICA": 0,
+      "CIENTIFICA": 0
+    }
   }
-}, {
-  "nombre" : "Space-X",
-  "autonomiaMaxima" : 1800,
-  "autonomiaActual" : 1800,
-  "capacidadCarga" : 3000,
-  "experiencia" : {
-    "CIENTIFICA" : 2000,
-    "TECHNICA" : 0,
-    "ESTRATEGICA" : 0
-  }
-}, {
-  "nombre" : "Black pearl",
-  "autonomiaMaxima" : 2500,
-  "autonomiaActual" : 2500,
-  "capacidadCarga" : 5000,
-  "experiencia" : {
-    "CIENTIFICA" : 0,
-    "TECHNICA" : 0,
-    "ESTRATEGICA" : 0
-  }
-}, {
-  "nombre" : "North light",
-  "autonomiaMaxima" : 2700,
-  "autonomiaActual" : 2700,
-  "capacidadCarga" : 2500,
-  "experiencia" : {
-    "CIENTIFICA" : 0,
-    "TECHNICA" : 0,
-    "ESTRATEGICA" : 0
-  }
-}, {
-  "nombre" : "namaste",
-  "autonomiaMaxima" : 1000,
-  "autonomiaActual" : 1000,
-  "capacidadCarga" : 500,
-  "experiencia" : {
-    "CIENTIFICA" : 0,
-    "TECHNICA" : 0,
-    "ESTRATEGICA" : 0
-  }
-}, {
-  "nombre" : "2",
-  "autonomiaMaxima" : 2,
-  "autonomiaActual" : 2,
-  "capacidadCarga" : 2,
-  "experiencia" : {
-    "CIENTIFICA" : 0,
-    "TECHNICA" : 0,
-    "ESTRATEGICA" : 0
-  }
-} ]
+]
