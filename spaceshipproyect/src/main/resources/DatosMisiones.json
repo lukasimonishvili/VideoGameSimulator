@@ -1,7 +1,7 @@
 [ {
-  "nombre" : "ver si hay agua en mars",
-  "duracion" : 8,
-  "prioridad" : 9,
-  "estado" : "COMPLETADA",
+  "nombre" : "Mision Aurora",
+  "duracion" : 9,
+  "prioridad" : 8,
+  "estado" : "PENDIENTE",
   "experienciaRequerida" : 0
 } ]

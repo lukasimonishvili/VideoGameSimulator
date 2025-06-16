@@ -14,7 +14,7 @@
   "autonomiaActual" : 1800,
   "capacidadCarga" : 3000,
   "experiencia" : {
-    "CIENTIFICA" : 3000,
+    "CIENTIFICA" : 4000,
     "TECHNICA" : 0,
     "ESTRATEGICA" : 0
   }
@@ -46,6 +46,16 @@
   "experiencia" : {
     "CIENTIFICA" : 0,
     "TECHNICA" : 0,
+    "ESTRATEGICA" : 0
+  }
+}, {
+  "nombre" : "Andromeda",
+  "autonomiaMaxima" : 1200,
+  "autonomiaActual" : 1200,
+  "capacidadCarga" : 600,
+  "experiencia" : {
+    "CIENTIFICA" : 0,
+    "TECHNICA" : 1000,
     "ESTRATEGICA" : 0
   }
 } ]

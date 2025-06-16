@@ -59,9 +59,6 @@ public class RegistroMisiones {
                 nuevaMision=new MisionExploracion(nombre, duracion, prioridad, experienciaRequerida, EstadoMission.PENDIENTE);
                 break;
             case 2:
-                System.out.println("La Recolección de Datos debe durar entre 4 y 8 horas.");
-                System.out.println("Ingrese la duración de horas para la Recolección de Datos: ");
-                duracion=lectura.nextInt();
                 nuevaMision=new MisionRecoleccionDatos(nombre, duracion, prioridad, experienciaRequerida, EstadoMission.PENDIENTE);
                 break;
             case 3:
