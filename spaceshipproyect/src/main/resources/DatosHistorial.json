@@ -20,4 +20,48 @@
   },
   "experienciaObtenida" : 1000,
   "eventoEspecial" : ""
+}, {
+  "mision" : {
+    "tipo" : "CIENTIFICA",
+    "nombre" : "Mapeo Alfa",
+    "duracion" : 10,
+    "prioridad" : 9,
+    "estado" : "COMPLETADA",
+    "experienciaRequerida" : 2
+  },
+  "nave" : {
+    "nombre" : "Space-X",
+    "autonomiaMaxima" : 1800,
+    "autonomiaActual" : 1800,
+    "capacidadCarga" : 3000,
+    "experiencia" : {
+      "CIENTIFICA" : 4000,
+      "TECHNICA" : 0,
+      "ESTRATEGICA" : 0
+    }
+  },
+  "experienciaObtenida" : 1000,
+  "eventoEspecial" : ""
+}, {
+  "mision" : {
+    "tipo" : "TECHNICA",
+    "nombre" : "Escaneo Delta",
+    "duracion" : 5,
+    "prioridad" : 6,
+    "estado" : "COMPLETADA",
+    "experienciaRequerida" : 0
+  },
+  "nave" : {
+    "nombre" : "Andromeda",
+    "autonomiaMaxima" : 1200,
+    "autonomiaActual" : 1200,
+    "capacidadCarga" : 600,
+    "experiencia" : {
+      "CIENTIFICA" : 0,
+      "TECHNICA" : 1000,
+      "ESTRATEGICA" : 0
+    }
+  },
+  "experienciaObtenida" : 1000,
+  "eventoEspecial" : ""
 } ]

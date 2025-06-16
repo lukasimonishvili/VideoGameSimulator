@@ -28,7 +28,7 @@ public class RegistroMisiones {
     }
 
     public void agregarMision() {
-        System.out.println("----REGISTRO DE MISIONES.----");
+        System.out.println("\n----REGISTRO DE MISIONES.----");
         System.out.println("Ingrese el nombre de la misión: ");
         String nombre = lectura.nextLine();
         
@@ -59,9 +59,6 @@ public class RegistroMisiones {
                 nuevaMision=new MisionExploracion(nombre, duracion, prioridad, experienciaRequerida, EstadoMission.PENDIENTE);
                 break;
             case 2:
-                System.out.println("La Recolección de Datos debe durar entre 4 y 8 horas.");
-                System.out.println("Ingrese la duración de horas para la Recolección de Datos: ");
-                duracion=lectura.nextInt();
                 nuevaMision=new MisionRecoleccionDatos(nombre, duracion, prioridad, experienciaRequerida, EstadoMission.PENDIENTE);
                 break;
             case 3:
